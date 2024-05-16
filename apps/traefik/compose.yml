@@ -109,8 +109,8 @@ services:
       DEFAULT_ACTION: auth
       DEFAULT_PROVIDER: oidc
     secrets:
-      source: github_oauth
-      target: /config
+      - source: github_oauth
+        target: /config
     networks:
       traefik:
     security_opt:

@@ -22,10 +22,6 @@ services:
         target: 443
         protocol: tcp
         mode: host
-      - published: 5432
-        target: 5432
-        protocol: tcp
-        mode: host
     environment:
       CF_DNS_API_TOKEN: /run/secrets/cloudflare_api_token
     secrets:

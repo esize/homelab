@@ -10,6 +10,11 @@ include:
   - apps/traefik/compose.yml # Traefik (Reverse Proxy)
   - apps/socket-proxy/compose.yml # Docker Socket Proxy (Security)
 
+  #############################################################################
+  # UTILITIES
+  #############################################################################
+  - apps/watchtower/compose.yml #  Watchtower (Container Updating)
+
 
 ################################################################################
 # NETWORK CONFIGURATION

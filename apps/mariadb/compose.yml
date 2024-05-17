@@ -1,0 +1,37 @@
+################################################################################
+# MARIADBQL (DATABASE)
+################################################################################
+
+secrets:
+  root_password:
+    file: ${DOCKER_DIRECTORY}/secrets/mariadb/root_password.secret
+
+services:
+  homelab-mariadb:
+    container_name: homelab-mariadb
+    image: library/mariadb:11.3
+    profiles: ["utilities", "all"]
+    ports:
+      - 3306:3306
+    environment:
+      MARIADB_USER: ${MARIADB_USER:-root}
+      MARIADB_ROOT_PASSWORD_FILE: /run/secrets/root_password
+    secrets:
+      - root_password
+    networks:
+      internal:
+    volumes:
+      - ${DOCKER_DIRECTORY}/appdata/homelab-mariadb:/var/lib/mysql
+      
+    restart: always
+    # healthcheck:
+    #   test:
+    #     [
+    #       "CMD",
+    #       "healthcheck.sh",
+    #       "--su-mysql",
+    #       "--connect"
+    #     ]
+    #   interval: 5s
+    #   timeout: 5s
+    #   retries: 5

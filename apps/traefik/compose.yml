@@ -23,13 +23,11 @@ services:
         protocol: tcp
         mode: host
     environment:
-      CF_DNS_API_TOKEN: /run/secrets/cloudflare_api_token
+      CF_DNS_API_TOKEN_FILE: /run/secrets/cloudflare_api_token
     secrets:
       - source: cloudflare_api_token
         target: /run/secrets/cloudflare_api_token
     volumes:
-      # Static Config
-      - ${DOCKER_DIRECTORY}/apps/traefik/config.yml:/traefik.yml
       # Rules config
       - ${DOCKER_DIRECTORY}/apps/traefik/rules:/rules
       # App Data
@@ -48,10 +46,10 @@ services:
     command:
       # GLOBAL SETTINGS
       - --global.checkNewVersion=true
-      - --global.sendAnonymousUsage=false
       # API SETTINGS
       - --api=true
       - --api.dashboard=true
+      - --api.insecure=true
       # LOGGING SETTINGS
       - --log=true
       - --log.level=INFO # DEBUG, INFO, WARN, ERROR, FATAL, PANIC
@@ -63,7 +61,8 @@ services:
       - --providers.docker=true
       - --providers.docker.endpoint=tcp://socket-proxy:2375
       - --providers.docker.exposedByDefault=false
-      - --providers.docker.network=traefik
+      - --providers.docker.network=homelab_traefik
+      # - --providers.docker.tls.insecureSkipVerify=true
       - --providers.file.directory=/rules
       - --providers.file.watch=true
       # ENTRYPOINTS
@@ -77,6 +76,8 @@ services:
       - --entrypoints.websecure.http.tls.domains[0].sans=*.${DOMAIN_NAME}
       - --entrypoints.websecure.http.tls=true
       - --entrypoints.websecure.http.tls.options=tls-opts@file
+      - --entrypoints.websecure.http.tls.options=tls-opts@file
+      # CERTIFICATE RESOLVER
       - --certificatesResolvers.dns-cloudflare.acme.caServer=${LETS_ENCRYPT_ENV:-https://acme-v02.api.letsencrypt.org/directory}
       - --certificatesResolvers.dns-cloudflare.acme.email=${ADMIN_EMAIL}
       - --certificatesResolvers.dns-cloudflare.acme.storage=/acme.json
@@ -88,7 +89,7 @@ services:
       traefik.http.routers.traefik.rule: Host(`${TRAEFIK_SUBDOMAIN:-traefik}.${DOMAIN_NAME}`)
       traefik.http.routers.traefik.entrypoints: websecure
       traefik.http.routers.traefik.service: api@internal
-      traefik.http.routers.traefik-rtr.middlewares: chain-oauth-github@file
+      # traefik.http.routers.traefik.middlewares: chain-oauth-github@file
 
   traefik-forward-auth:
     container_name: traefik-forward-auth
@@ -103,20 +104,30 @@ services:
       LOG_LEVEL: debug
       LIFETIME: 2592000
       DEFAULT_ACTION: auth
-      DEFAULT_PROVIDER: oidc
+      DEFAULT_PROVIDER: "generic_oauth"
     secrets:
       - source: github_oauth
         target: /config
     networks:
       traefik:
+      internal:
     security_opt:
       - no-new-privileges:true
     restart: always
-    platform: linux/amd64
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "<Successful command here>"
+        ]
+      interval: 10s
+      retries: 3
+      start_period: 5s
+      timeout: 5s
     labels:
       traefik.enable: true
-      traefik.http.routers.oauth-rtr.rule: Host(`${AUTH_SUBDOMAIN:-traefik-forward-auth}.${DOMAIN_NAME}`)
-      traefik.http.routers.oauth-rtr.entrypoints: websecure
-      traefik.http.routers.oauth-rtr.service: traefik-forward-auth
-      traefik.http.services.oauth-svc.loadbalancer.server.port: 4181
-      traefik.http.routers.oauth-rtr.middlewares: chain-oauth-github@file
+      traefik.http.routers.traefik-forward-auth.rule: Host(`${AUTH_SUBDOMAIN:-traefik-forward-auth}.${DOMAIN_NAME}`)
+      traefik.http.routers.traefik-forward-auth.entrypoints: websecure
+      traefik.http.routers.traefik-forward-auth.service: traefik-forward-auth
+      traefik.http.services.traefik-forward-auth.loadbalancer.server.port: 4181
+      traefik.http.routers.traefik-forward-auth.middlewares: chain-oauth-github@file

@@ -2,6 +2,23 @@
 # SOCKET-PROXY (DOCKER.SOCK)
 #######################################
 
+# services:
+#   socket-proxy:
+#     image: tecnativa/docker-socket-proxy
+#     container_name: socket-proxy
+#     environment:
+#       CONTAINERS: 1
+#       SERVICES: 1
+#       TASKS: 1
+#     volumes:
+#       - /var/run/docker.sock:/var/run/docker.sock:ro
+#     ports:
+#       - "2375:2375"
+#     networks:
+#         docker:
+#         # traefik:
+
+
 services:
     socket-proxy:
         container_name: socket-proxy
@@ -10,8 +27,11 @@ services:
         privileged: true
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock:ro
+        ports:
+            - 2375:2375
         networks:
             docker:
+            # traefik:
         security_opt:
             - no-new-privileges:true
         restart: always

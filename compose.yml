@@ -4,22 +4,26 @@
 
 include:
     ################################################################################
-    # TRAEFIK (CORE)
+    # TRAEFIK (INFRA)
     ################################################################################
-
     - apps/traefik/compose.yml # Traefik (Reverse Proxy)
     - apps/socket-proxy/compose.yml # Docker Socket Proxy (Security)
 
     ################################################################################
+    # CORE
+    ################################################################################
+    - apps/homepage/compose.yml # Homepage (It's a homepage...)
+
+    ################################################################################
     # SHARED
     ################################################################################
-    - apps/postgres/compose.yml # Postgresql (Database)
-    - apps/mariadb/compose.yml # MariaDB (Database)
+    # - apps/postgres/compose.yml # Postgresql (Database)
+    # - apps/mariadb/compose.yml # MariaDB (Database)
 
     ################################################################################
     # UTILITIES
     ################################################################################
-    - apps/watchtower/compose.yml #  Watchtower (Container Updating)
+    # - apps/watchtower/compose.yml #  Watchtower (Container Updating)
 
 
 ####################################################################################
@@ -36,9 +40,19 @@ networks:
         driver: bridge
         ipam:
             config:
-                - subnet: 172.15.0.0/16
+                - subnet: 192.168.91.0/24
     internal:
         driver: bridge
         ipam:
             config:
-                - subnet: 172.20.0.0/16
+                - subnet: 192.168.92.0/24
+
+
+
+# networks:
+#   traefik:
+#     external: true
+#   internal:
+#     driver: bridge
+#   docker:
+#     driver: bridge

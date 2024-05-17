@@ -33,7 +33,7 @@ http:
 
         middlewares-auth:
             forwardAuth:
-                address: http://traefik-forward-auth:4181
+                address: http://traefik-forward-auth-homelab
                 trustForwardHeader: true
                 authResponseHeaders:
                     - X-Forwarded-User

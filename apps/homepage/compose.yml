@@ -1,0 +1,29 @@
+################################################################################
+# HOMEPAGE
+################################################################################
+
+services:
+  homepage:
+    container_name: homepage
+    image: ghcr.io/gethomepage/homepage:latest
+    profiles: ["utilities", "all"]
+    volumes:
+      - ${DOCKER_DIRECTORY}/apps/homepage/config:/config
+    environment:
+      PUID: $PUID
+      PGID: $PGID
+    security_opt:
+      - no-new-privileges:true
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    ports:
+      - 3000:3000
+    networks:
+      traefik:
+      docker:
+    labels:
+      traefik.enable: true
+      traefik.http.routers.homepage.rule: Host(`${DOMAIN_NAME}`)
+      traefik.http.routers.homepage.entrypoints: websecure
+      traefik.http.routers.homepage.service: homepage
+      traefik.http.services.homepage.loadbalancer.server.port: 3000
+      traefik.http.routers.homepage.middlewares: chain-oauth-github@file

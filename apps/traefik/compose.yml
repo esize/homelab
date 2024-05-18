@@ -29,7 +29,7 @@ services:
       # Provision script
       - './provision.sh:/provision.sh:ro'
       # Static config
-      - ${DOCKER_DIRECTORY}/apps/traefik/traefik.yml:traefik.template.yml:ro
+      - ${DOCKER_DIRECTORY}/apps/traefik/traefik.yml:/traefik.template.yml:ro
       # Rules config (dynamic)
       - ${DOCKER_DIRECTORY}/apps/traefik/rules:/rules:ro
       # App Data

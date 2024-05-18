@@ -9,6 +9,4 @@ chmod 600 /certificates/acme.json
 cp /traefik.template.yml /etc/traefik/traefik.yml
 sed -i "s/\${DOMAIN_NAME}/$DOMAIN_NAME/" /etc/traefik/traefik.yml
 sed -i "s/\${ADMIN_EMAIL}/$ADMIN_EMAIL/" /etc/traefik/traefik.yml
-
-LE_ENV="${LETS_ENCRYPT_ENV:-https://acme-v02.api.letsencrypt.org/directory}"
-sed -i "s/\${LE_ENV}/$LE_ENV/" /etc/traefik/traefik.yml
+sed -i "s/\${LETS_ENCRYPT_ENV}/$LETS_ENCRYPT_ENV/" /etc/traefik/traefik.yml

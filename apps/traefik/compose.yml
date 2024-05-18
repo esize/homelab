@@ -24,7 +24,7 @@ services:
       CF_DNS_API_TOKEN_FILE: /run/secrets/cloudflare_api_token
       DOMAIN_NAME: ${DOMAIN_NAME}
       ADMIN_EMAIL: ${ADMIN_EMAIL}
-      LETS_ENCRYPT_ENV: ${LETS_ENCRYPT_ENV}
+      LETS_ENCRYPT_ENV: ${LETS_ENCRYPT_ENV:-https://acme-v02.api.letsencrypt.org/directory}
     secrets:
       - source: cloudflare_api_token
         target: /run/secrets/cloudflare_api_token

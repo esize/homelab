@@ -46,7 +46,7 @@ entryPoints:
 certificatesResolvers:
   dns-cloudflare:
     acme:
-      caServer: ${LE_ENV}
+      caServer: ${LETS_ENCRYPT_ENV}
       email: ${ADMIN_EMAIL}
       storage: /acme.json
       dnsChallenge:

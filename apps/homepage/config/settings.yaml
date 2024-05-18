@@ -7,9 +7,8 @@ providers:
   weatherapi: weatherapiapikey
 title: WoolHomepage
 background:
-  image: https://images.unsplash.com/photo-1542396601-dca920ea2807?q=80&w=2702&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
-  blur: sm
-cardBlur: lg
+  image: https://images.unsplash.com/photo-1543253539-58c7d1c00c8a?q=80&w=2668&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
+cardBlur: xl
 theme: dark
 color: slate
 language: en-US

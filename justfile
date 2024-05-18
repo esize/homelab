@@ -23,9 +23,6 @@ db name engine='postgres':
 rm:
     docker compose -f compose.yml --profile all down -v
     sudo rm -rf ./appdata
-    mkdir -p appdata/traefik/acme
-    sudo touch appdata/traefik/acme/acme.json
-    sudo chmod 600 appdata/traefik/acme/acme.json
     
 forced:
     just rm

@@ -1,16 +1,16 @@
 http:
-    middlewares:
-        ####################################
-        # CHAINS
-        ####################################
+  middlewares:
+    ####################################
+    # CHAINS
+    ####################################
 
-        chain-rate-limit:
-            chain:
-                middlewares:
-                    - middlewares-rate-limit
+    chain-rate-limit:
+      chain:
+        middlewares:
+          - middlewares-rate-limit
 
-        chain-no-auth:
-            chain:
-                middlewares:
-                    - middlewares-rate-limit
-                    - middlewares-secure-headers
+    chain-no-auth:
+      chain:
+        middlewares:
+          - middlewares-rate-limit
+          - middlewares-secure-headers

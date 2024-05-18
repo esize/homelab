@@ -1,32 +1,32 @@
 http:
-    middlewares:
-        ####################################
-        # MIDDLEWARES
-        ####################################
+	middlewares:
+		####################################
+		# MIDDLEWARES
+		####################################
 
-        middlewares-rate-limit:
-            rateLimit:
-                average: 100
-                burst: 50
+		middlewares-rate-limit:
+			rateLimit:
+				average: 100
+				burst: 50
 
-        middlewares-secure-headers:
-            headers:
-                accessControlAllowMethods:
-                    - GET
-                    - OPTIONS
-                    - PUT
-                accessControlMaxAge: 100
-                hostsProxyHeaders:
-                    - X-Forwarded-Host
-                stsSeconds: 63072000
-                stsIncludeSubdomains: true
-                stsPreload: true
-                forceSTSHeader: true
-                customFrameOptionsValue: SAMEORIGIN
-                contentTypeNosniff: true
-                browserXssFilter: true
-                referrerPolicy: same-origin
-                permissionsPolicy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), vr=()
-                customResponseHeaders:
-                    X-Robots-Tag: none,noarchive,nosnippet,notranslate,noimageindex,
-                    server: ""
+		middlewares-secure-headers:
+			headers:
+				accessControlAllowMethods:
+					- GET
+					- OPTIONS
+					- PUT
+				accessControlMaxAge: 100
+				hostsProxyHeaders:
+					- X-Forwarded-Host
+				stsSeconds: 63072000
+				stsIncludeSubdomains: true
+				stsPreload: true
+				forceSTSHeader: true
+				customFrameOptionsValue: SAMEORIGIN
+				contentTypeNosniff: true
+				browserXssFilter: true
+				referrerPolicy: same-origin
+				permissionsPolicy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), vr=()
+				customResponseHeaders:
+					X-Robots-Tag: none,noarchive,nosnippet,notranslate,noimageindex,
+					server: ""

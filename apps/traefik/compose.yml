@@ -5,8 +5,6 @@
 secrets:
   cloudflare_api_token:
     file: ${DOCKER_DIRECTORY}/secrets/traefik/cloudflare_api_token.secret
-  github_oauth:
-    file: ${DOCKER_DIRECTORY}/secrets/traefik/github_oauth.secret
 
 services:
   traefik:

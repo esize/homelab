@@ -9,12 +9,13 @@
 - search:
     provider: duckduckgo
     target: _blank
-- openmeteo:
+- openweathermap:
     label: Home
     latitude: 27.9475
     longitude: -82.4584
     timezone: America/New_York
     units: imperial
+    provider: openweathermap
     cache: 5
     format:
         maximumFractionDigits: 1

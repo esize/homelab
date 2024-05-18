@@ -2,6 +2,10 @@
 # HOMEPAGE
 ################################################################################
 
+secrets:
+  openweather_api_key:
+    file: ${DOCKER_DIRECTORY}/secrets/homepage/openweather.secret
+
 services:
   homepage:
     container_name: homepage
@@ -12,6 +16,10 @@ services:
     environment:
       PUID: $PUID
       PGID: $PGID
+      HOMEPAGE_FILE_OPENWEATHER_API_KEY_FILE: /run/secrets/openweather_api_key
+    secrets:
+      - source: openweather_api_key
+        target: /run/secrets/openweather_api_key
     security_opt:
       - no-new-privileges:true
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}

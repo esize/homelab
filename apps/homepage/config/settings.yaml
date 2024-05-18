@@ -3,7 +3,7 @@
 # https://gethomepage.dev/latest/configs/settings
 
 providers:
-  openweathermap: openweathermapapikey
+  openweathermap: {{HOMEPAGE_FILE_/run/secrets/openweather_api_key}}
   weatherapi: weatherapiapikey
 title: WoolHomepage
 background:

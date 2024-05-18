@@ -44,7 +44,6 @@ services:
     restart: always
     depends_on:
       - socket-proxy
-      - traefik-forward-auth
     entrypoint: []
     command: 'sh -c "/provision.sh && traefik"'
     labels:

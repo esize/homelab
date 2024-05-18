@@ -2,10 +2,10 @@
 # For configuration options and examples, please see:
 # https://gethomepage.dev/latest/configs/services
 
-- My First Group:
-    - My First Service:
-        href: http://localhost/
+- Weather:
+    - OpenMeteo:
         description: Homepage is awesome
+        widget: openmeteo
 
 - My Second Group:
     - My Second Service:

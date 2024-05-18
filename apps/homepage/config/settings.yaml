@@ -5,3 +5,14 @@
 providers:
   openweathermap: openweathermapapikey
   weatherapi: weatherapiapikey
+title: WoolHomepage
+background:
+  image: https://images.unsplash.com/photo-1607629823685-ae0850607241?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
+  blur: md
+cardBlur: lg
+theme: dark
+color: slate
+language: en-US
+target: _self
+hideVersion: true
+showStats: true

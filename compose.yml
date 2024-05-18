@@ -35,7 +35,7 @@ networks:
         driver: bridge
         ipam:
             config:
-                - subnet: 192.168.254.0/24
+                - subnet: 192.168.90.0/24
     docker:
         driver: bridge
         ipam:

@@ -5,6 +5,7 @@
 providers:
   openweathermap: {{HOMEPAGE_FILE_OPENWEATHER_API_KEY_FILE}}
   weatherapi: weatherapiapikey
+  homeassistant: {{HOMEPAGE_FILE_HOMEASSISTANT_API_KEY_FILE}}
 title: WoolHomepage
 background:
   image: https://images.unsplash.com/photo-1508787216176-cf6663365b21?q=80&w=2671&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D

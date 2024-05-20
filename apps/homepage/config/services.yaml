@@ -2,11 +2,18 @@
 # For configuration options and examples, please see:
 # https://gethomepage.dev/latest/configs/services
 
-- Weather:
-    - OpenMeteo:
-        description: Homepage is awesome
-        widget: openmeteo
-
+- Smart Home:
+    - Home Assistant:
+        href: https://home.local.wool.homes/
+        description: Smart Home hub
+        icon: home-assistant.svg
+        widget:
+            type: homeassistant
+            url: https://home.local.wool.homes/
+            provider: homeassistant
+            fields:
+                - lights_on
+                - switches_on
 - My Second Group:
     - My Second Service:
         href: http://localhost/

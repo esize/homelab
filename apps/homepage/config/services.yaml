@@ -22,7 +22,7 @@
         siteMonitor: https://home.local.wool.homes/5c53de3b_esphome/ingress
         widget:
             type: esphome
-            url: http://192.168.254.133
+            url: http://192.168.254.172:6052
 - My Second Group:
     - My Second Service:
         href: http://localhost/

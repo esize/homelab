@@ -6,15 +6,19 @@
   - SeaPort:
     - icon: https://seaport.seaworldentertainment.com/client/images/apple-touch-icon-precomposed.png
       href: https://seaport.seaworldentertainment.com/client/mytoday
+      description: Schedules and Company News
   - ReadyOp:
     - icon: https://seaworld.readyop.com/assets/images/icons/apple-touch-icon.png
       href: https://seaworld.readyop.com/
+      description: Security Logs and Reports
   - Job Postings:
     - icon: mdi-briefcase-search
       href: https://www.myworkday.com/seaworldentertainment/d/task/3005$4482.htmld
+      description: Open Job Postings
   - Workday:
     - icon: https://user-images.githubusercontent.com/13351305/162011104-9b313d6a-1b19-45fd-9237-2de5c73182b6.svg
       href: https://www.myworkday.com/seaworldentertainment/d/home.htmld
+      description: Time Keeping and Business Processes
 
 - Developer:
     - Github:

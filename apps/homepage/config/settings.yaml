@@ -15,4 +15,4 @@ language: en-US
 target: _self
 hideVersion: true
 headerStyle: boxed
-showStats: true
+showStats: false

@@ -13,8 +13,8 @@
     - icon: mdi-briefcase-search
       href: https://www.myworkday.com/seaworldentertainment/d/task/3005$4482.htmld
   - Workday:
-    - icon: icons/workday.svg
-      href: https://user-images.githubusercontent.com/13351305/162011104-9b313d6a-1b19-45fd-9237-2de5c73182b6.svg
+    - icon: https://user-images.githubusercontent.com/13351305/162011104-9b313d6a-1b19-45fd-9237-2de5c73182b6.svg
+      href: https://www.myworkday.com/seaworldentertainment/d/home.htmld
 
 - Developer:
     - Github:

@@ -15,6 +15,14 @@
             fields:
                 - lights_on
                 - switches_on
+    - ESPHome:
+        href: https://home.local.wool.homes/5c53de3b_esphome/ingress
+        description: Turn microcontrollers into IOT devices
+        icon: esphome.svg
+        siteMonitor: https://home.local.wool.homes/5c53de3b_esphome/ingress
+        widget:
+            type: esphome
+            url: https://home.local.wool.homes/5c53de3b_esphome/ingress
 - My Second Group:
     - My Second Service:
         href: http://localhost/

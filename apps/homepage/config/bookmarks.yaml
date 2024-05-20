@@ -20,6 +20,11 @@
       href: https://www.myworkday.com/seaworldentertainment/d/home.htmld
       description: Time Keeping and Business Processes
 
+- Personal:
+    - YouTube:
+        - icon: si-youtube
+          href: https://youtube.com
+
 - Developer:
     - Github:
         - abbr: GH

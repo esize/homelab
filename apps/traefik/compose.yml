@@ -55,3 +55,8 @@ services:
       traefik.http.routers.traefik.entrypoints: websecure
       traefik.http.routers.traefik.service: api@internal
 
+      homepage.group: Docker
+      homepage.name: Traefik
+      homepage.icon: traefik.svg
+      homepage.href: https://${TRAEFIK_SUBDOMAIN:-traefik}.${DOMAIN_NAME}
+      homepage.description: Reverse proxy

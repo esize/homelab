@@ -8,11 +8,6 @@ services:
       DOZZLE_TAILSIZE: 300
       DOZZLE_FILTER: "status=running"
       DOCKER_HOST: tcp://socket-proxy:2375
-    secrets:
-      - source: 
-        target: /run/secrets/
-    volumes:
-      - ${DOCKER_DIRECTORY}/appdata/dozzle:/
     security_opt:
       - no-new-privileges:true
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}

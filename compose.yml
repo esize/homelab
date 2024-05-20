@@ -23,7 +23,8 @@ include:
   ################################################################################
   # UTILITIES
   ################################################################################
-  # - apps/watchtower/compose.yml #  Watchtower (Container Updating)
+  - apps/watchtower/compose.yml #  Watchtower (Container Updating)
+  - apps/dozzle/compose.yml #  Dozzle (Container Logs)
 
 
 ####################################################################################

@@ -15,6 +15,7 @@ services:
     profiles: ["utilities", "all"]
     volumes:
       - ${DOCKER_DIRECTORY}/apps/homepage/config:/config
+      - ${DOCKER_DIRECTORY}/apps/homepage/icons:/app/public/icons
     environment:
       PUID: $PUID
       PGID: $PGID

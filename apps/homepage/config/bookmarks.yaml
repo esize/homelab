@@ -2,6 +2,20 @@
 # For configuration options and examples, please see:
 # https://gethomepage.dev/latest/configs/bookmarks
 
+- Work:
+  - SeaPort:
+    - icon: icons/seaport.png
+      href: https://seaport.seaworldentertainment.com/client/mytoday
+  - ReadyOp:
+    - icon: icons/readyop.png
+      href: https://seaworld.readyop.com/
+  - Job Postings:
+    - icon: mdi-briefcase-search
+      href: https://www.myworkday.com/seaworldentertainment/d/task/3005$4482.htmld
+  - Workday:
+    - icon: icons/workday.svg
+      href: https://www.myworkday.com/seaworldentertainment/d/home.htmld
+
 - Developer:
     - Github:
         - abbr: GH

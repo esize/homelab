@@ -18,7 +18,7 @@ services:
     environment:
       PUID: $PUID
       PGID: $PGID
-      LOG_LEVEL: info
+      LOG_LEVEL: debug
       HOMEPAGE_FILE_OPENWEATHER_API_KEY_FILE: /run/secrets/openweather_api_key
       HOMEPAGE_FILE_HOMEASSISTANT_API_KEY_FILE: /run/secrets/homeassistant_api_key
     secrets:

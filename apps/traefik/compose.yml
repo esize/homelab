@@ -54,3 +54,4 @@ services:
       traefik.http.routers.traefik.rule: Host(`${TRAEFIK_SUBDOMAIN:-traefik}.${DOMAIN_NAME}`)
       traefik.http.routers.traefik.entrypoints: websecure
       traefik.http.routers.traefik.service: api@internal
+

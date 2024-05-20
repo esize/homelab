@@ -60,3 +60,5 @@ services:
       homepage.icon: traefik.svg
       homepage.href: https://${TRAEFIK_SUBDOMAIN:-traefik}.${DOMAIN_NAME}
       homepage.description: Reverse proxy
+      homepage.widget.type: traefik
+      homepage.widget.url: https://${TRAEFIK_SUBDOMAIN:-traefik}.${DOMAIN_NAME}

@@ -10,7 +10,7 @@
         widget:
             type: homeassistant
             url: https://home.local.wool.homes/
-            provider: homeassistant
+            key: {{HOMEPAGE_FILE_HOMEASSISTANT_API_KEY_FILE}}
             fields:
                 - lights_on
                 - switches_on

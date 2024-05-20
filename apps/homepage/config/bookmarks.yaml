@@ -4,17 +4,17 @@
 
 - Work:
   - SeaPort:
-    - icon: icons/seaport.png
+    - icon: https://seaport.seaworldentertainment.com/client/images/apple-touch-icon-precomposed.png
       href: https://seaport.seaworldentertainment.com/client/mytoday
   - ReadyOp:
-    - icon: icons/readyop.png
+    - icon: https://seaworld.readyop.com/assets/images/icons/apple-touch-icon.png
       href: https://seaworld.readyop.com/
   - Job Postings:
     - icon: mdi-briefcase-search
       href: https://www.myworkday.com/seaworldentertainment/d/task/3005$4482.htmld
   - Workday:
     - icon: icons/workday.svg
-      href: https://www.myworkday.com/seaworldentertainment/d/home.htmld
+      href: https://user-images.githubusercontent.com/13351305/162011104-9b313d6a-1b19-45fd-9237-2de5c73182b6.svg
 
 - Developer:
     - Github:

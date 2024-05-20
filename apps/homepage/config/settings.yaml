@@ -16,3 +16,4 @@ target: _self
 hideVersion: true
 headerStyle: boxed
 showStats: false
+statusStyle: dot

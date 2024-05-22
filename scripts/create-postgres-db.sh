@@ -47,6 +47,16 @@ function create_user_and_database() {
 		echo ""
 		echo "Creating '$database' database"
 		echo ""
+		if database_exists "$database"; then
+				echo "Database '$database' already exists. Skipping..."
+		else
+				echo "Database '${database}' does not exist. Creating database ${database}..."
+
+				docker exec homelab-postgres psql -v ON_ERROR_STOP=1 -U "$POSTGRES_USER" <<-EOSQL
+						CREATE DATABASE $database;
+				EOSQL
+                echo -e "Done!\n"
+		fi
 
 		if user_exists "$database"; then
 				echo "User '$database' already exists. Skipping..."
@@ -59,16 +69,10 @@ function create_user_and_database() {
                 echo -e "Done!\n"
 		fi
 
-		if database_exists "$database"; then
-				echo "Database '$database' already exists. Skipping..."
-		else
-				echo "Database '${database}' does not exist. Creating database ${database}..."
 
-				docker exec homelab-postgres psql -v ON_ERROR_STOP=1 -U "$POSTGRES_USER" <<-EOSQL
-						CREATE DATABASE $database;
+		docker exec homelab-postgres psql -v ON_ERROR_STOP=1 -U "$POSTGRES_USER" <<-EOSQL
+					CREATE SCHEMA $database AUTHORIZATION $database;
 				EOSQL
-                echo -e "Done!\n"
-		fi
 
 		docker exec homelab-postgres psql -v ON_ERROR_STOP=1 -U "$POSTGRES_USER" <<-EOSQL
 			GRANT SET ON PARAMETER session_replication_role TO $database;

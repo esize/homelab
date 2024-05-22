@@ -1,0 +1,64 @@
+####################################
+# kestra
+####################################
+
+secrets:
+  openweather_api_key:
+    file: ${DOCKER_DIRECTORY}/secrets/kestra/openweather.secret
+  homeassistant_api_key:
+    file: ${DOCKER_DIRECTORY}/secrets/kestra/homeassistant.secret
+
+services:
+  kestra:
+    container_name: kestra
+    image: kestra/kestra:latest-full
+    pull_policy: always
+    profiles: ["utilities", "automation", "all"]
+    user: "root"
+    command: server standalone --worker-thread=128
+    volumes:
+      - ${DOCKER_DIRECTORY}/appdata/kestra:/app/storage
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /tmp/kestra-wd:/tmp/kestra-wd
+    environment:
+      KESTRA_CONFIGURATION: |
+        datasources:
+          postgres:
+            url: jdbc:postgresql://postgres:5432/kestra
+            driverClassName: org.postgresql.Driver
+            username: kestra
+            password: kestra
+        kestra:
+          server:
+            basic-auth:
+              enabled: false
+              username: "admin@kestra.io" # it must be a valid email address
+              password: kestra
+          repository:
+            type: postgres
+          storage:
+            type: local
+            local:
+              base-path: "/app/storage"
+          queue:
+            type: postgres
+          tasks:
+            tmp-dir:
+              path: /tmp/kestra-wd/tmp
+          url: https://${KESTRA_SUBDOMAIN:-kestra}.${DOMAIN_NAME}/
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    networks:
+      traefik:
+      internal:
+    labels:
+      traefik.enable: true
+      traefik.http.routers.kestra.rule: Host(`${KESTRA_SUBDOMAIN:-kestra}.${DOMAIN_NAME}`)
+      traefik.http.routers.kestra.entrypoints: websecure
+      traefik.http.routers.kestra.service: kestra
+      traefik.http.services.kestra.loadbalancer.server.port: 8080
+
+      homepage.group: Docker
+      homepage.name: Kestra
+      homepage.icon: kestra.svg
+      homepage.href: https://${KESTRA_SUBDOMAIN:-kestra}.${DOMAIN_NAME}
+      homepage.description: Homelab Automation

@@ -22,6 +22,7 @@ services:
             driverClassName: org.postgresql.Driver
             username: kestra
             password: kestra
+            schema: kestra
         kestra:
           server:
             basic-auth:

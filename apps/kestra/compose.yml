@@ -2,12 +2,6 @@
 # kestra
 ####################################
 
-secrets:
-  openweather_api_key:
-    file: ${DOCKER_DIRECTORY}/secrets/kestra/openweather.secret
-  homeassistant_api_key:
-    file: ${DOCKER_DIRECTORY}/secrets/kestra/homeassistant.secret
-
 services:
   kestra:
     container_name: kestra

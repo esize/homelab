@@ -18,7 +18,7 @@ include:
   ################################################################################
   # SHARED
   ################################################################################
-  - apps/postgres/compose.yml # Postgresql (Database)
+  # - apps/postgres/compose.yml # Postgresql (Database)
   # - apps/mariadb/compose.yml # MariaDB (Database)
 
   ################################################################################

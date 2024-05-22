@@ -71,6 +71,6 @@ services:
 
       homepage.group: Docker
       homepage.name: Kestra
-      homepage.icon: kestra.svg
+      homepage.icon: https://kestra.io/icon.svg
       homepage.href: https://${KESTRA_SUBDOMAIN:-kestra}.${DOMAIN_NAME}
       homepage.description: Homelab Automation

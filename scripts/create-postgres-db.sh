@@ -70,7 +70,8 @@ function create_user_and_database() {
 		fi
 
 		docker exec homelab-postgres psql -v ON_ERROR_STOP=1 -U "$POSTGRES_USER" <<-EOSQL
-			CREATE SCHEMA $database AUTHORIZATION $database;
+			GRANT CREATE ON DATABASE $database TO $database;
+			CREATE SCHEMA IF NOT EXISTS $database AUTHORIZATION $database;
 			GRANT SET ON PARAMETER session_replication_role TO $database;
 			ALTER DATABASE $database OWNER TO $database;
 			GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA $database TO $database;

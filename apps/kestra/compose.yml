@@ -18,7 +18,7 @@ services:
       KESTRA_CONFIGURATION: |
         datasources:
           postgres:
-            url: jdbc:postgresql://postgres:5432/kestra
+            url: jdbc:postgresql://homelab-postgres:5432/kestra
             driverClassName: org.postgresql.Driver
             username: kestra
             password: kestra

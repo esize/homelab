@@ -13,6 +13,10 @@ logs container *FLAGS:
 
 alias log := logs
 
+r:
+    git pull
+    just up
+
 down-v:
     docker compose -f compose.yml --profile all down -v
 

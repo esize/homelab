@@ -24,9 +24,18 @@
     - YouTube:
         - icon: si-youtube
           href: https://youtube.com
+          description:
+    - Proton Mail:
+        - icon: si-protonmail
+          href: https://mail.proton.me/u/0/inbox
+          description:
+    - Amazon:
+        - icon: si-amazon
+          href: https://amazon.com/gp/css/order-history
+          description:
 
 - Developer:
     - Github:
-        - abbr: GH
-          icon: si-github
+        - icon: si-github
           href: https://github.com/esize?tab=repositories
+          description:

@@ -17,9 +17,8 @@ hideVersion: true
 headerStyle: boxed
 showStats: false
 statusStyle: basic
-
-- search:
-    provider: duckduckgo # google, duckduckgo, bing, baidu, brave or custom
-    focus: true # Optional, will set focus to the search bar on page load
-    showSearchSuggestions: true # Optional, will show search suggestions. Defaults to false
-    target: _self # One of _self, _blank, _parent or _top
+quicklaunch:
+  searchDescriptions: true
+  hideInternetSearch: false
+  showSearchSuggestions: true
+  hideVisitURL: false

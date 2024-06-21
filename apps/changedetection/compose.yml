@@ -1,0 +1,52 @@
+#######################################
+# CHANGE DETECTION (DETECTING CHANGES)
+#######################################
+services:
+  changedetection:
+    container_name: changedetection
+    image: ghcr.io/dgtlmoon/changedetection.io
+    profiles: ['apps', 'all']
+    environment:
+      PUID: 1000
+      PGID: 1000
+      PLAYWRIGHT_DRIVER_URL: ws://playwright-chrome:3000
+      BASE_URL: ${CHANGEDETECTION_SUBDOMAIN:-changedetection}.${DOMAIN_NAME}
+      USE_X_SETTINGS: 1
+      HIDE_REFERRER: true
+    security_opt:
+      - no-new-privileges:true
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    volumes:
+      - ${DOCKER_DIRECTORY}/appdata/changedetection:/datastore
+    networks:
+      traefik:
+      internal:
+    depends_on:
+      playwright-chrome:
+        condition: service_started
+    labels:
+      traefik.enable: true
+      traefik.http.routers.changedetection.rule: Host(`${CHANGEDETECTION_SUBDOMAIN:-changedetection}.${DOMAIN_NAME}`)
+      traefik.http.routers.changedetection.entrypoints: websecure
+      traefik.http.routers.changedetection.service: changedetection
+      traefik.http.services.changedetection.loadbalancer.server.port: 5000
+
+      homepage.group: Apps
+      homepage.name: Change Detection
+      homepage.icon: https://raw.githubusercontent.com/dgtlmoon/changedetection.io/master/changedetectionio/static/images/avatar-256x256.png
+      homepage.href: https://${changedetection_SUBDOMAIN:-changedetection}.${DOMAIN_NAME}
+      homepage.description: Detects Changes
+
+  playwright-chrome:
+    hostname: playwright-chrome
+    image: dgtlmoon/sockpuppetbrowser:latest
+    cap_add:
+      - SYS_ADMIN
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    networks:
+      internal:
+    environment:
+      SCREEN_WIDTH: 1920
+      SCREEN_HEIGHT: 1024
+      SCREEN_DEPTH: 16
+      MAX_CONCURRENT_CHROME_PROCESSES: 10

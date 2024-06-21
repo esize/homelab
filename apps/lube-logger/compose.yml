@@ -27,7 +27,7 @@ services:
       traefik.enable: true
       traefik.http.routers.lubelogger.rule: Host(`${LUBE_LOGGER_SUBDOMAIN:-lubelogger}.${DOMAIN_NAME}`)
       traefik.http.routers.lubelogger.entrypoints: websecure
-      traefik.http.routers.lubelogger.service: homepage
+      traefik.http.routers.lubelogger.service: lubelogger
       traefik.http.services.lubelogger.loadbalancer.server.port: 5000
 
       homepage.group: Apps

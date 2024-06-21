@@ -1,0 +1,46 @@
+####################################
+# LUBE LOGGER
+####################################
+
+services:
+  lube-logger:
+    container_name: lube-logger
+    image: ghcr.io/hargata/lubelogger:latest
+    profiles: ["apps", "all"]
+    volumes:
+      - config:/App/config
+      - data:/App/data
+      - translations:/App/wwwroot/translations
+      - documents:/App/wwwroot/documents
+      - images:/App/wwwroot/images
+      - temp:/App/wwwroot/temp
+      - log:/App/log
+      - keys:/root/.aspnet/DataProtection-Keys
+    environment:
+      PUID: $PUID
+      PGID: $PGID
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    networks:
+      traefik:
+      docker:
+    labels:
+      traefik.enable: true
+      traefik.http.routers.lubelogger.rule: Host(`${LUBE_LOGGER_SUBDOMAIN:-lubelogger}.${DOMAIN_NAME}`)
+      traefik.http.routers.lubelogger.entrypoints: websecure
+      traefik.http.routers.lubelogger.service: homepage
+      traefik.http.services.lubelogger.loadbalancer.server.port: 5000
+
+      homepage.group: Apps
+      homepage.name: Lube Logger
+      homepage.icon: mdi-cog-outline
+      homepage.href: https://${LUBE_LOGGER_SUBDOMAIN:-lubelogger}.${DOMAIN_NAME}
+      homepage.description: Vehicle Maintenance Tracker
+volumes:
+  config:
+  data:
+  translations:
+  documents:
+  images:
+  temp:
+  log:
+  keys:

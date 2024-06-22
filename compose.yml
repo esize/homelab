@@ -13,13 +13,6 @@ include:
   # CORE
   ################################################################################
   - apps/homepage/compose.yml # Homepage (It's a homepage...)
-  - apps/kestra/compose.yml # Kestra (Automation)
-
-  ################################################################################
-  # SHARED
-  ################################################################################
-  # - apps/postgres/compose.yml # Postgresql (Database)
-  # - apps/mariadb/compose.yml # MariaDB (Database)
 
   ################################################################################
   # UTILITIES

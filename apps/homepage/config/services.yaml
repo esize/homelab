@@ -50,7 +50,7 @@
     - Authentik:
         href: https://auth.local.wool.homes/if/admin/
         description: All things auth
-        icon: authentik.svg
+        icon: authentik.png
         siteMonitor: https://auth.local.wool.homes
     - Ansible Semaphore:
         href: https://ansible.local.wool.homes

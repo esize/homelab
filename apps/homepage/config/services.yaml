@@ -32,7 +32,7 @@
         siteMonitor: https://proxmox.local.wool.homes/
         widget:
             type: proxmox
-            url: http://192.168.254.12:8006
+            url: https://192.168.254.12:8006
             username: api@pam!homepage
             password: {{HOMEPAGE_FILE_PROXMOX_API_KEY_FILE}}
             node: pve

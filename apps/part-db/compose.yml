@@ -1,0 +1,36 @@
+#######################################
+# PART DB 
+#######################################
+
+services:
+  partdb:
+    container_name: partdb
+    image: jbtronics/part-db1:latest
+    profiles: ['apps', 'all']
+    environment:
+      DATABASE_URL: sqlite:///%kernel.project_dir%/var/db/app.db
+      APP_ENV: docker
+      DEFAULT_LANG: en
+      DEFAULT_TIMEZONE: America/New_York
+      BASE_CURRENCY: USD
+      INSTANCE_NAME: Part-DB
+      TRUSTED_PROXIES: 127.0.0.0/8,::1,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16
+      DEFAULT_URI: https://${PARTDB_SUBDOMAIN:-partdb}.${DOMAIN_NAME}/
+
+    volumes:
+      - ${DOCKER_DIRECTORY}/appdata/part-db/uploads:/var/www/html/uploads
+      - ${DOCKER_DIRECTORY}/appdata/part-db/public_media:/var/www/html/public/media
+      - ${DOCKER_DIRECTORY}/appdata/part-db/db:/var/www/html/var/db
+
+    labels:
+      traefik.enable: true
+      traefik.http.routers.partdb.rule: Host(`${PARTDB_SUBDOMAIN:-partdb}.${DOMAIN_NAME}`)
+      traefik.http.routers.partdb.entrypoints: websecure
+      traefik.http.routers.partdb.service: partdb
+      traefik.http.services.partdb.loadbalancer.server.port: 80
+
+      homepage.group: Apps
+      homepage.name: Part-DB
+      homepage.icon: https://raw.githubusercontent.com/dgtlmoon/partdb.io/master/partdbio/static/images/avatar-256x256.png
+      homepage.href: https://${PARTDB_SUBDOMAIN:-partdb}.${DOMAIN_NAME}/
+      homepage.description: Open-Source inventory management system for your electronic components.

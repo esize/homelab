@@ -6,7 +6,7 @@
     - Home Assistant:
         href: https://home.local.wool.homes/
         description: Smart Home hub
-        icon: home-assistant.svg
+        icon: si-homeassistant
         siteMonitor: https://home.local.wool.homes/
         widget:
             type: homeassistant
@@ -18,7 +18,7 @@
     - ESPHome:
         href: https://home.local.wool.homes/5c53de3b_esphome/ingress
         description: Turn microcontrollers into IOT devices
-        icon: esphome.svg
+        icon: si-esphome
         siteMonitor: https://home.local.wool.homes/5c53de3b_esphome/ingress
         widget:
             type: esphome
@@ -28,34 +28,34 @@
     - Forgejo:
         href: https://forgejo.local.wool.homes/
         description: Self-hosted GitHub
-        icon: forgejo.svg
+        icon: si-forgejo
         siteMonitor: https://forgejo.local.wool.homes/
 
 - Infra:
     - Proxmox:
         href: https://proxmox.local.wool.homes/
         description: Enterprise Virtualization Platform
-        icon: proxmox.svg
+        icon: si-proxmox
         siteMonitor: https://proxmox.local.wool.homes/
     - PiHole:
         href: http://pi.hole/admin/login.php/
         description: Ad Blocking and Local DNS
-        icon: pi-hole.svg
+        icon: si-pihole
         siteMonitor: http://pi.hole/admin/
     - TrueNAS:
         href: https://truenas.local.wool.homes/ui/storage/
         description: NAS and some Kubernetes fun
-        icon: truenas.svg
+        icon: si-truenas
         siteMonitor: http://192.168.254.5:81
     - Authentik:
         href: https://auth.local.wool.homes/if/admin/
         description: All things auth
-        icon: authentik.png
+        icon: si-authentik
         siteMonitor: https://auth.local.wool.homes
     - Ansible Semaphore:
         href: https://ansible.local.wool.homes
         description: Ansible Semaphore dashboard and automations.
-        icon: ansible.svg
+        icon: si-ansible
         siteMonitor: https://ansible.local.wool.homes
 
 - Apps:
@@ -67,12 +67,12 @@
     - Immich:
         href: https://immich.local.wool.homes
         description: Google Photos but local
-        icon: immich.svg
+        icon: si-immich
         siteMonitor: https://immich.local.wool.homes
     - Paperless:
         href: https://paperless.local.wool.homes/
         description: Document management system
-        icon: paperless-ngx.svg
+        icon: si-paperlessngx
         siteMonitor: https://paperless.local.wool.homes/
     - IT-Tools:
         href: https://tools.local.wool.homes/

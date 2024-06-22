@@ -5,7 +5,7 @@ services:
   changedetection:
     container_name: changedetection
     image: ghcr.io/dgtlmoon/changedetection.io
-    profiles: ['apps', 'all']
+    profiles: ['changedetection', 'apps', 'all']
     environment:
       PUID: 1000
       PGID: 1000
@@ -40,6 +40,7 @@ services:
   playwright-chrome:
     hostname: playwright-chrome
     image: dgtlmoon/sockpuppetbrowser:latest
+    profiles: ['changedetection', 'apps', 'all']
     cap_add:
       - SYS_ADMIN
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}

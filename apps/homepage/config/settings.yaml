@@ -22,3 +22,17 @@ quicklaunch:
   hideInternetSearch: false
   showSearchSuggestions: true
   hideVisitURL: false
+layout:
+  - Work:
+    style: row
+    columns: 4
+  - Personal:
+    style: row
+    columns: 3
+  - Apps:
+  - Docker:
+  - Developer:
+  - Dev:
+    header: false
+  - Infra:
+  - Smart Home:

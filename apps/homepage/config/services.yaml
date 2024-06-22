@@ -24,7 +24,7 @@
             type: esphome
             url: http://192.168.254.172:6052
 
-- Developer:
+- Dev:
     - Forgejo:
         href: https://forgejo.local.wool.homes/
         description: Self-hosted GitHub

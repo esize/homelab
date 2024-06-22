@@ -46,7 +46,7 @@
         href: https://truenas.local.wool.homes/ui/storage/
         description: NAS and some Kubernetes fun
         icon: truenas.svg
-        siteMonitor: 192.168.254.5:81
+        siteMonitor: http://192.168.254.5:81
     - Authentik:
         href: https://auth.local.wool.homes/if/admin/
         description: All things auth

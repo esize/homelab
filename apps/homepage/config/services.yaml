@@ -46,7 +46,7 @@
         href: https://truenas.local.wool.homes/ui/storage/
         description: NAS and some Kubernetes fun
         icon: truenas.svg
-        siteMonitor: https://truenas.local.wool.homes
+        siteMonitor: 192.168.254.5:81
     - Authentik:
         href: https://auth.local.wool.homes/if/admin/
         description: All things auth
@@ -62,7 +62,7 @@
     - Fasten Health:
         href: https://fasten.local.wool.homes
         description: Self-hosted health records
-        icon: fasten.svg
+        icon: https://github.com/fastenhealth/fasten-onprem/blob/main/frontend/src/assets/favicon/android-chrome-512x512.png?raw=true
         siteMonitor: https://fasten.local.wool.homes
     - Immich:
         href: https://immich.local.wool.homes
@@ -77,7 +77,7 @@
     - IT-Tools:
         href: https://tools.local.wool.homes/
         description: Handy tools for developers
-        icon: ittools.svg
+        icon: it-tools.svg
         siteMonitor: https://tools.local.wool.homes/
     - Stirling PDF:
         href: https://pdf.local.wool.homes

@@ -23,3 +23,16 @@
         widget:
             type: esphome
             url: http://192.168.254.172:6052
+
+- Infra:
+    - Proxmox:
+        href: https://proxmox.local.wool.homes/
+        description: Enterprise Virtualization Platform
+        icon: proxmox.svg
+        siteMonitor: https://proxmox.local.wool.homes/
+        widget:
+            type: proxmox
+            url: https://proxmox.local.wool.homes/
+            username: api@pam!homepage
+            password: {{HOMEPAGE_FILE_PROXMOX_API_KEY_FILE}}
+            node: pve

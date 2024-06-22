@@ -40,7 +40,7 @@
     - PiHole:
         href: http://pi.hole/admin/login.php/
         description: Ad Blocking and Local DNS
-        icon: pihole.svg
+        icon: pi-hole.svg
         siteMonitor: http://pi.hole/admin/
     - TrueNAS:
         href: https://truenas.local.wool.homes/ui/storage/

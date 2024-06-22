@@ -32,7 +32,7 @@
         siteMonitor: https://proxmox.local.wool.homes/
         widget:
             type: proxmox
-            url: https://proxmox.local.wool.homes/
+            url: https://proxmox.local.wool.homes
             username: api@pam!homepage
             password: {{HOMEPAGE_FILE_PROXMOX_API_KEY_FILE}}
             node: pve

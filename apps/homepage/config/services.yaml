@@ -24,9 +24,73 @@
             type: esphome
             url: http://192.168.254.172:6052
 
+- Developer:
+    - Forgejo:
+        href: https://forgejo.local.wool.homes/
+        description: Self-hosted GitHub
+        icon: forgejo.svg
+        siteMonitor: https://forgejo.local.wool.homes/
+
 - Infra:
     - Proxmox:
         href: https://proxmox.local.wool.homes/
         description: Enterprise Virtualization Platform
         icon: proxmox.svg
         siteMonitor: https://proxmox.local.wool.homes/
+    - PiHole:
+        href: http://pi.hole/admin/login.php/
+        description: Ad Blocking and Local DNS
+        icon: pihole.svg
+        siteMonitor: http://pi.hole/admin/
+    - TrueNAS:
+        href: https://truenas.local.wool.homes/ui/storage/
+        description: NAS and some Kubernetes fun
+        icon: truenas.svg
+        siteMonitor: https://truenas.local.wool.homes
+    - Authentik:
+        href: https://auth.local.wool.homes/if/admin/
+        description: All things auth
+        icon: authentik.svg
+        siteMonitor: https://auth.local.wool.homes
+    - Ansible Semaphore:
+        href: https://ansible.local.wool.homes
+        description: Ansible Semaphore dashboard and automations.
+        icon: ansible.svg
+        siteMonitor: https://ansible.local.wool.homes
+
+- Apps:
+    - Fasten Health:
+        href: https://fasten.local.wool.homes
+        description: Self-hosted health records
+        icon: fasten.svg
+        siteMonitor: https://fasten.local.wool.homes
+    - Immich:
+        href: https://immich.local.wool.homes
+        description: Google Photos but local
+        icon: immich.svg
+        siteMonitor: https://immich.local.wool.homes
+    - Paperless:
+        href: https://paperless.local.wool.homes/
+        description: Document management system
+        icon: paperless-ngx.svg
+        siteMonitor: https://paperless.local.wool.homes/
+    - IT-Tools:
+        href: https://tools.local.wool.homes/
+        description: Handy tools for developers
+        icon: ittools.svg
+        siteMonitor: https://tools.local.wool.homes/
+    - Stirling PDF:
+        href: https://pdf.local.wool.homes
+        description: Sooooo many pdf tools!
+        icon: stirling-pdf.svg
+        siteMonitor: https://pdf.local.wool.homes
+    - FreshRSS:
+        href: https://rss.local.wool.homes
+        description: Aggregate RSS feeds for easy consumption
+        icon: freshrss.svg
+        siteMonitor: https://rss.local.wool.homes
+    - Zipline:
+        href: https://zipline.local.wool.homes/
+        description: Screenshots and pastebins
+        icon: https://raw.githubusercontent.com/diced/zipline/trunk/public/zipline.png
+        siteMonitor: https://zipline.local.wool.homes/

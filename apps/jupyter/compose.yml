@@ -1,0 +1,29 @@
+####################################
+# JUPYTER LAB
+####################################
+
+services:
+  jupyter:
+    container_name: jupyter
+    image: quay.io/jupyter/datascience-notebook:latest
+    profiles: ['all', 'apps', 'developer', 'jupyter']
+    volumes:
+      - ${DOCKER_DIRECTORY}/appdata/jupyter:/home/jovyan/work
+    environment:
+      JUPYTER_TOKEN: ''
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    networks:
+      traefik:
+    
+    labels:
+      traefik.enable: true
+      traefik.http.routers.jupyter.rule: Host(`${JUPYTER_SUBDOMAIN:-jupyter}.${DOMAIN_NAME}`)
+      traefik.http.routers.jupyter.entrypoints: websecure
+      traefik.http.routers.jupyter.service: jupyter
+      traefik.http.services.jupyter.loadbalancer.server.port: 8888
+
+      homepage.group: Dev
+      homepage.name: Jupyter Lab
+      homepage.icon: si-jupyter
+      homepage.href: https://${JUPYTER_SUBDOMAIN:-jupyter}.${DOMAIN_NAME}
+      homepage.description: A web-based interactive development environment for notebooks, code, and data.

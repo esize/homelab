@@ -26,6 +26,7 @@ include:
   - apps/lube-logger/compose.yml #  Lube Logger (Vehicle Maintenance)
   - apps/changedetection/compose.yml #  Change Detection (Detecting Changes)
   - apps/part-db/compose.yml
+  - apps/jupyter/compose.yml
 
 ####################################################################################
 # NETWORK CONFIGURATION

@@ -19,6 +19,7 @@ include:
   ################################################################################
   - apps/watchtower/compose.yml #  Watchtower (Container Updating)
   - apps/dozzle/compose.yml #  Dozzle (Container Logs)
+  - apps/monitoring/compose.yml #  Grafana, Prometheus, InfluxDB, etc.
 
   ################################################################################
   # APPS

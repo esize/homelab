@@ -1,0 +1,111 @@
+################################################################################
+# MONITORING (HOMELAB MONITORING APPS)
+################################################################################
+
+secrets:
+  influxdb_token:
+    file: ${DOCKER_DIRECTORY}/secrets/influxdb/token.secret
+
+services:
+  prometheus:
+    container_name: prometheus
+    image: prom/prometheus
+    profiles: ["all", "monitoring", "utilities", "prometheus"]
+    volumes:
+      - ${DOCKER_DIRECTORY}/apps/monitoring/prometheus:/etc/prometheus
+      - ${DOCKER_DIRECTORY}/appdata/prometheus:/prometheus
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    extra_hosts:
+      - "dock:host-gateway"
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    networks:
+      traefik:
+      internal:
+    labels:
+      traefik.enable: true
+      traefik.http.routers.prometheus.rule: Host(`${PROMETHEUS_SUBDOMAIN:-prometheus}.${DOMAIN_NAME}`)
+      traefik.http.routers.prometheus.entrypoints: websecure
+      traefik.http.routers.prometheus.service: prometheus
+      traefik.http.services.prometheus.loadbalancer.server.port: 9090
+
+      homepage.group: Apps
+      homepage.name: Prometheus
+      homepage.icon: si-prometheus
+      homepage.href: https://${PROMETHEUS_SUBDOMAIN:-prometheus}.${DOMAIN_NAME}
+      homepage.description: Time-series database
+
+  grafana:
+    container_name: grafana
+    image: grafana/grafana
+    profiles: ["all", "monitoring", "utilities", "grafana"]
+    volumes:
+      - ${DOCKER_DIRECTORY}/apps/monitoring/grafana:/etc/grafana/provisioning/datasources
+      - ${DOCKER_DIRECTORY}/appdata/grafana:/var/lib/grafana
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    networks:
+      traefik:
+      internal:
+    labels:
+      traefik.enable: true
+      traefik.http.routers.grafana.rule: Host(`${GRAFANA_SUBDOMAIN:-grafana}.${DOMAIN_NAME}`)
+      traefik.http.routers.grafana.entrypoints: websecure
+      traefik.http.routers.grafana.service: prometheus
+      traefik.http.services.grafana.loadbalancer.server.port: 3000
+
+      homepage.group: Apps
+      homepage.name: Grafana
+      homepage.icon: si-grafana
+      homepage.href: https://${GRAFANA_SUBDOMAIN:-grafana}.${DOMAIN_NAME}
+      homepage.description: Pretty graphs and dashboards
+
+  influxdb:
+    container_name: influxdb
+    image: influxdb:alpine
+    profiles: ["all", "monitoring", "utilities", "influxdb"]
+    volumes:
+      - ${DOCKER_DIRECTORY}/apps/monitoring/influxdb/config:/etc/influxdb2
+      - ${DOCKER_DIRECTORY}/apps/monitoring/influxdb/scripts:/docker-entrypoint-initdb.d
+      - ${DOCKER_DIRECTORY}/appdata/influxdb:/var/lib/influxdb2
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    extra_hosts:
+      - "dock:host-gateway"
+    networks:
+      traefik:
+      internal:
+    labels:
+      traefik.enable: true
+      traefik.http.routers.influxdb.rule: Host(`${INFLUXDB_SUBDOMAIN:-influxdb}.${DOMAIN_NAME}`)
+      traefik.http.routers.influxdb.entrypoints: websecure
+      traefik.http.routers.influxdb.service: influxdb
+      traefik.http.services.influxdb.loadbalancer.server.port: 8086
+
+      homepage.group: Apps
+      homepage.name: InfluxDB
+      homepage.icon: si-influxdb
+      homepage.href: https://${INFLUXDB_SUBDOMAIN:-influxdb}.${DOMAIN_NAME}
+      homepage.description: Time-series database
+
+  telegraf:
+    container_name: telegraf
+    image: telegraf:latest
+    profiles: ["all", "monitoring", "utilities", "telegraf"]
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ${DOCKER_DIRECTORY}/apps/monitoring/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+      - /:/hostfs:ro
+    restart: always
+    extra_hosts:
+      - "dock:host-gateway"
+    entrypoint: /bin/bash -c "/entrypoint.sh telegraf"
+    user: telegraf:999
+    pid: "host"
+    secrets:
+      - influxdb_token
+    environment:
+      - HOST_ETC=/hostfs/etc
+      - HOST_PROC=/hostfs/proc
+      - HOST_SYS=/hostfs/sys
+      - HOST_VAR=/hostfs/var
+      - HOST_RUN=/hostfs/run
+      - HOST_MOUNT_PREFIX=/hostfs

@@ -19,6 +19,7 @@ services:
       - "dock:host-gateway"
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
+    user: '1000'
     networks:
       traefik:
       internal:
@@ -43,9 +44,12 @@ services:
       - ${DOCKER_DIRECTORY}/apps/monitoring/grafana:/etc/grafana/provisioning/datasources
       - ${DOCKER_DIRECTORY}/appdata/grafana:/var/lib/grafana
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    user: '1000'
     networks:
       traefik:
       internal:
+    environment:
+      - GF_SERVER_ROOT_URL=https://${GRAFANA_SUBDOMAIN:-grafana}.${DOMAIN_NAME}/
     labels:
       traefik.enable: true
       traefik.http.routers.grafana.rule: Host(`${GRAFANA_SUBDOMAIN:-grafana}.${DOMAIN_NAME}`)

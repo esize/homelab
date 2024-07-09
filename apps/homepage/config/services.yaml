@@ -30,6 +30,11 @@
         description: Self-hosted GitHub
         icon: si-forgejo
         siteMonitor: https://forgejo.local.wool.homes/
+    - Penpot:
+        href: https://penpot.local.wool.homes/
+        description: Open Source Design and Collaboration Tool
+        icon: si-penpot
+        siteMonitor: https://penpot.local.wool.homes/
 
 - Infra:
     - Proxmox:

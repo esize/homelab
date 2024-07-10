@@ -63,6 +63,87 @@
         icon: si-ansible
         siteMonitor: https://ansible.local.wool.homes
 
+- Enterprise:
+    - Business Central:
+        href: https://business.local.wool.homes/business-central/
+        description: Business process management
+        icon: https://drools.org/headerFooter/droolsIcon.png
+        siteMonitor: https://business.local.wool.homes/
+    - OrangeHRM:
+        href: https://hr.local.wool.homes/
+        description: HR Management System
+        icon: https://avatars3.githubusercontent.com/u/11557709?s=280&v=4
+        siteMonitor: https://hr.local.wool.homes/
+    - OpenEMR:
+        href: https://openemr.local.wool.homes/
+        description: Electronic Health Record System
+        icon: https://www.open-emr.org/wiki/images/d/de/Menu-logo-large.png
+        siteMonitor: https://openemr.local.wool.homes/
+    - Keycloak:
+        href: https://keycloak.local.wool.homes/
+        description: LDAP
+        icon: si-keycloak
+        siteMonitor: https://keycloak.local.wool.homes/
+
+
+
+- Media:
+    - Jellyfin:
+        href: https://jellyfin.local.wool.homes/
+        description: Self-hosted streaming service
+        icon: si-jellyfin
+        siteMonitor: https://jellyfin.local.wool.homes/
+    - Jellyseerr:
+        href: https://jellyseerr.local.wool.homes/
+        description: Media request management
+        icon: jellyseerr.svg
+        siteMonitor: https://jellyseerr.local.wool.homes/
+    - MakeMKV:
+        href: https://makemkv.local.wool.homes/
+        description: DVD ripper
+        icon: makemkv.png
+        siteMonitor: https://makemkv.local.wool.homes/
+    - nzbget:
+        href: https://nzbget.local.wool.homes/
+        description: Usenet NZB client
+        icon: nzbget.png
+        siteMonitor: https://nzbget.local.wool.homes/
+    - qBittorrent:
+        href: https://torrent.local.wool.homes/
+        description: Bittorrent Client
+        icon: si-qbittorrent
+        siteMonitor: https://torrent.local.wool.homes/
+    - Radarr:
+        href: https://radarr.local.wool.homes/
+        description: Movie manager and automation
+        icon: radarr.svg
+        siteMonitor: https://radarr.local.wool.homes/
+    - Sonarr:
+        href: https://sonarr.local.wool.homes/
+        description: TV show manager and automation
+        icon: sonarr.svg
+        siteMonitor: https://sonarr.local.wool.homes/
+    - Readarr:
+        href: https://readarr.local.wool.homes/
+        description: Book manager and automation
+        icon: readarr.svg
+        siteMonitor: https://readarr.local.wool.homes/
+    - Tdarr:
+        href: https://tdarr.local.wool.homes/
+        description: Transcoding manager and automation
+        icon: tdarr.svg
+        siteMonitor: https://tdarr.local.wool.homes/
+    - Prowlarr:
+        href: https://prowlarr.local.wool.homes/
+        description: Indexer management
+        icon: prowlarr.svg
+        siteMonitor: https://prowlarr.local.wool.homes/
+    - Calibre:
+        href: https://calibre.local.wool.homes/
+        description: E-book manager and editor
+        icon: si-calibreweb
+        siteMonitor: https://calibre.local.wool.homes/
+
 - Apps:
     - Fasten Health:
         href: https://fasten.local.wool.homes
@@ -99,3 +180,14 @@
         description: Screenshots and pastebins
         icon: https://raw.githubusercontent.com/diced/zipline/trunk/public/zipline.png
         siteMonitor: https://zipline.local.wool.homes/
+    - Cal:
+        href: https://cal.local.wool.homes/
+        description: Powerful calendar
+        icon: si-caldotcom
+        siteMonitor: https://cal.local.wool.homes/
+    - Budibase:
+        href: https://budibase.local.wool.homes/
+        description: Airtable alternative
+        icon: si-budibase
+        siteMonitor: https://budibase.local.wool.homes/
+

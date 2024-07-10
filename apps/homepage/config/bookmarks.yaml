@@ -38,4 +38,12 @@
     - Github:
         - icon: si-github
           href: https://github.com/esize?tab=repositories
-          description:
+    - Simple Icons:
+        - icon: si-simpleicons
+          href: https://simpleicons.org/
+    - Dashboard Icons:
+        - icon: mdi-view-dashboard
+          href: https://github.com/walkxcode/dashboard-icons/tree/main/svg
+    - MDI:
+        - icon: mdi-vector-square
+          href: https://pictogrammers.com/library/mdi/

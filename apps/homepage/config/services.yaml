@@ -116,22 +116,22 @@
     - Radarr:
         href: https://radarr.local.wool.homes/
         description: Movie manager and automation
-        icon: radarr.svg
+        icon: si-radarr
         siteMonitor: https://radarr.local.wool.homes/
     - Sonarr:
         href: https://sonarr.local.wool.homes/
         description: TV show manager and automation
-        icon: sonarr.svg
+        icon: si-sonarr
         siteMonitor: https://sonarr.local.wool.homes/
     - Readarr:
         href: https://readarr.local.wool.homes/
         description: Book manager and automation
-        icon: readarr.svg
+        icon: si-readarr
         siteMonitor: https://readarr.local.wool.homes/
     - Tdarr:
         href: https://tdarr.local.wool.homes/
         description: Transcoding manager and automation
-        icon: tdarr.svg
+        icon: https://home.tdarr.io/static/media/logo3-min.246d6df44c7f16ddebaf.png
         siteMonitor: https://tdarr.local.wool.homes/
     - Prowlarr:
         href: https://prowlarr.local.wool.homes/

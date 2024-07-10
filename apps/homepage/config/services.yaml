@@ -126,7 +126,7 @@
     - Readarr:
         href: https://readarr.local.wool.homes/
         description: Book manager and automation
-        icon: si-readarr
+        icon: readarr.svg
         siteMonitor: https://readarr.local.wool.homes/
     - Tdarr:
         href: https://tdarr.local.wool.homes/

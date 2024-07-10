@@ -190,4 +190,9 @@
         description: Airtable alternative
         icon: si-budibase
         siteMonitor: https://budibase.local.wool.homes/
+    - LibreSpeed:
+        href: https://librespeed.local.wool.homes/
+        description: Speedtest
+        icon: si-speedtest
+        siteMonitor: https://librespeed.local.wool.homes/
 

@@ -95,7 +95,7 @@
         siteMonitor: https://jellyfin.local.wool.homes/
         widget:
             type: jellyfin
-            url: https://jellyfin.local.wool.homes
+            url: http://192.168.254.13:8096
             key: {{HOMEPAGE_FILE_JELLYFIN_API_KEY_FILE}}
             enableBlocks: true # optional, defaults to false
             enableNowPlaying: true # optional, defaults to true

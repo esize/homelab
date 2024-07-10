@@ -93,6 +93,15 @@
         description: Self-hosted streaming service
         icon: si-jellyfin
         siteMonitor: https://jellyfin.local.wool.homes/
+        widget:
+            type: jellyfin
+            url: https://jellyfin.local.wool.homes
+            key: {{HOMEPAGE_FILE_JELLYFIN_API_KEY_FILE}}
+            enableBlocks: true # optional, defaults to false
+            enableNowPlaying: true # optional, defaults to true
+            enableUser: true # optional, defaults to false
+            showEpisodeNumber: true # optional, defaults to false
+            expandOneStreamToTwoRows: false # optional, defaults to true
     - Jellyseerr:
         href: https://jellyseerr.local.wool.homes/
         description: Media request management

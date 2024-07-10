@@ -9,6 +9,9 @@ secrets:
     file: ${DOCKER_DIRECTORY}/secrets/homepage/homeassistant.secret
   proxmox_api_key:
     file: ${DOCKER_DIRECTORY}/secrets/homepage/proxmox.secret
+  jellyfin_api_key:
+    file: ${DOCKER_DIRECTORY}/secrets/homepage/jellyfin.secret
+
 
 services:
   homepage:
@@ -31,6 +34,8 @@ services:
         target: /run/secrets/homeassistant_api_key
       - source: proxmox_api_key
         target: /run/secrets/proxmox_api_key
+      - source: jellyfin_api_key
+        target: /run/secrets/jellyfin_api_key
     security_opt:
       - no-new-privileges:true
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}

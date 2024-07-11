@@ -89,7 +89,7 @@ services:
       CHROME_URL: wss://${RESUME_CHROME_SUBDOMAIN:-resume-chrome}.${DOMAIN_NAME}
 
       # -- Database (Postgres) --
-      DATABASE_URL: postgresql://resume_postgres:postgres@postgres:5432/postgres
+      DATABASE_URL: postgresql://postgres:postgres@resume_postgres:5432/postgres
 
       # -- Auth --
       ACCESS_TOKEN_SECRET: access_token_secret

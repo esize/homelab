@@ -28,6 +28,7 @@ include:
   - apps/changedetection/compose.yml #  Change Detection (Detecting Changes)
   - apps/part-db/compose.yml
   - apps/jupyter/compose.yml
+  - apps/resume/compose.yml
 
 ####################################################################################
 # NETWORK CONFIGURATION

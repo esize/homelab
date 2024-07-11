@@ -1,0 +1,116 @@
+################################################################################
+# REACTIVE RESUME
+################################################################################
+
+services:
+  resume_postgres:
+    container_name: resume_postgres
+    image: postgres:16-alpine
+    profiles: ["all", "apps", "utilities", "resume"]
+    volumes:
+      - ${DOCKER_DIRECTORY}/appdata/resume/db:/var/lib/postgresql/data
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    networks:
+      internal:
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  resume_minio:
+    container_name: resume_minio
+    image: minio/minio
+    profiles: ["all", "apps", "utilities", "resume"]
+    volumes:
+      - ${DOCKER_DIRECTORY}/appdata/resume/minio:/data
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    networks:
+      internal:
+      traefik:
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+    labels:
+      traefik.enable: true
+      traefik.http.routers.resume-minio.rule: Host(`${RESUME_MINIO_SUBDOMAIN:-resume-minio}.${DOMAIN_NAME}`)
+      traefik.http.routers.resume-minio.entrypoints: websecure
+      traefik.http.routers.resume-minio.service: resume-minio
+      traefik.http.services.resume-minio.loadbalancer.server.port: 9000
+
+  resume_chrome:
+    container_name: resume_chrome
+    image: ghcr.io/browserless/chromium:latest
+    profiles: ["all", "apps", "utilities", "resume"]
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    networks:
+      internal:
+      traefik:
+    environment:
+      TIMEOUT: 10000
+      CONCURRENT: 10
+      TOKEN: chrome_token
+      EXIT_ON_HEALTH_FAILURE: true
+      PRE_REQUEST_HEALTH_CHECK: true
+    labels:
+      traefik.enable: true
+      traefik.http.routers.resume-chrome.rule: Host(`${RESUME_CHROME_SUBDOMAIN:-resume-chrome}.${DOMAIN_NAME}`)
+      traefik.http.routers.resume-chrome.entrypoints: websecure
+      traefik.http.routers.resume-chrome.service: resume-chrome
+      traefik.http.services.resume-chrome.loadbalancer.server.port: 3000
+
+  resume:
+    container_name: resume
+    image: amruthpillai/reactive-resume:latest
+    profiles: ["all", "apps", "utilities", "resume"]
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    depends_on:
+      - resume_postgres
+      - resume_minio
+      - resume_chrome
+    networks:
+      internal:
+      traefik:
+    environment:
+      # -- Environment Variables --
+      PORT: 3000
+      NODE_ENV: production
+
+      # -- URLs --
+      PUBLIC_URL: https://${RESUME_SUBDOMAIN:-resume}.${DOMAIN_NAME}
+      STORAGE_URL: https://${RESUME_MINIO_SUBDOMAIN:-resume-minio}.${DOMAIN_NAME}
+
+      # -- Printer (Chrome) --
+      CHROME_TOKEN: chrome_token
+      CHROME_URL: wss://${RESUME_CHROME_SUBDOMAIN:-resume-chrome}.${DOMAIN_NAME}
+
+      # -- Database (Postgres) --
+      DATABASE_URL: postgresql://resume_postgres:postgres@postgres:5432/postgres
+
+      # -- Auth --
+      ACCESS_TOKEN_SECRET: access_token_secret
+      REFRESH_TOKEN_SECRET: refresh_token_secret
+
+      # -- Emails --
+      MAIL_FROM: noreply@${DOMAIN_NAME}
+      # SMTP_URL: smtp://user:pass@smtp:587 # Optional
+
+      # -- Storage (Minio) --
+      STORAGE_ENDPOINT: resume_minio
+      STORAGE_PORT: 9000
+      STORAGE_REGION: us-east-1 # Optional
+      STORAGE_BUCKET: default
+      STORAGE_ACCESS_KEY: minioadmin
+      STORAGE_SECRET_KEY: minioadmin
+      STORAGE_USE_SSL: false
+      STORAGE_SKIP_BUCKET_CHECK: false
+    labels:
+      traefik.enable: true
+      traefik.http.routers.resume.rule: Host(`${RESUME_SUBDOMAIN:-resume}.${DOMAIN_NAME}`)
+      traefik.http.routers.resume.entrypoints: websecure
+      traefik.http.routers.resume.service: resume
+      traefik.http.services.resume.loadbalancer.server.port: 3000

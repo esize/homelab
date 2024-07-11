@@ -35,6 +35,7 @@ services:
     environment:
       MINIO_ROOT_USER: minioadmin
       MINIO_ROOT_PASSWORD: minioadmin
+      DOMAIN_NAME: ${RESUME_MINIO_SUBDOMAIN:-resume-minio}.${DOMAIN_NAME}
     labels:
       traefik.enable: true
       traefik.http.routers.resume-minio.rule: Host(`${RESUME_MINIO_SUBDOMAIN:-resume-minio}.${DOMAIN_NAME}`)

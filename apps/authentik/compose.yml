@@ -20,6 +20,8 @@ services:
       AUTHENTIK_POSTGRESQL__USER: ${PG_USER:-authentik}
       AUTHENTIK_POSTGRESQL__NAME: ${PG_DB:-authentik}
       AUTHENTIK_POSTGRESQL__PASSWORD: ${PG_PASS:-authentik}
+      AUTHENTIK_LISTEN__TRUSTED_PROXY_CIDRS: 
+        - "*"
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
     networks:
       internal:
@@ -40,6 +42,8 @@ services:
       AUTHENTIK_POSTGRESQL__USER: ${PG_USER:-authentik}
       AUTHENTIK_POSTGRESQL__NAME: ${PG_DB:-authentik}
       AUTHENTIK_POSTGRESQL__PASSWORD: ${PG_PASS:-authentik}
+      AUTHENTIK_LISTEN__TRUSTED_PROXY_CIDRS: 
+        - "*"
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
     networks:
       traefik:

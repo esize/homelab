@@ -25,10 +25,9 @@ include:
   # APPS
   ################################################################################
   - apps/lube-logger/compose.yml #  Lube Logger (Vehicle Maintenance)
+  - apps/part-db/compose.yml  #  Part DB (Component Inventory)
   - apps/changedetection/compose.yml #  Change Detection (Detecting Changes)
-  - apps/part-db/compose.yml
-  - apps/jupyter/compose.yml
-  - apps/resume/compose.yml
+  - apps/jupyter/compose.yml #  Jupyter Lab (Interactive Development Environment)
 
 ####################################################################################
 # NETWORK CONFIGURATION

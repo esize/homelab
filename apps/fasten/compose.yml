@@ -1,0 +1,29 @@
+services:
+  fasten:
+    container_name: fasten
+    image: ghcr.io/fastenhealth/fasten-onprem:main
+    profiles: ['fasten', 'apps', 'all']
+    environment:
+      PUID: ${PUID}
+      PGID: ${PGID}
+      TZ: ${TZ}
+    volumes:
+      - ${DOCKER_DIRECTORY}/appdata/fasten/db:/opt/fasten/db
+      - ${DOCKER_DIRECTORY}/appdata/fasten/cache:/opt/fasten/cache
+
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    networks:
+      traefik:
+    labels:
+      traefik.enable: true
+      traefik.http.routers.fasten.rule: Host(`${FASTEN_SUBDOMAIN:-fasten}.${DOMAIN_NAME}`)
+      traefik.http.routers.fasten.entrypoints: websecure
+      traefik.http.routers.fasten.service: fasten
+      traefik.http.services.fasten.loadbalancer.server.port: 8080
+
+      homepage.group: Apps
+      homepage.name: Fasten
+      homepage.icon: https://www.fastenhealth.com/apple-touch-icon.png
+      homepage.href: https://${FASTEN_SUBDOMAIN:-fasten}.${DOMAIN_NAME}
+      homepage.description: Personal health records
+      

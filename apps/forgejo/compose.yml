@@ -12,6 +12,8 @@ services:
       FORGEJO__database__USER: forgejo
       FORGEJO__database__PASSWD: forgejo
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    ports:
+      - "127.0.0.1:2222:22"
     networks:
       traefik:
       internal:

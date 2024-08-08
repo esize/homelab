@@ -1,0 +1,27 @@
+services:
+  forgejo:
+    image: codeberg.org/forgejo/forgejo:latest
+    container_name: forgejo
+    profiles: ["forgejo", "apps", "all"]
+    environment:
+      USER_UID: 1000
+      USER_GID: 1000
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    networks:
+      traefik:
+    volumes:
+      - ${DOCKER_DIRECTORY}/appdata/forgejo:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    labels:
+      traefik.enable: true
+      traefik.http.routers.forgejo.rule: Host(`${FORGEJO_SUBDOMAIN:-forgejo}.${DOMAIN_NAME}`)
+      traefik.http.routers.forgejo.entrypoints: websecure
+      traefik.http.routers.forgejo.service: forgejo
+      traefik.http.services.forgejo.loadbalancer.server.port: 3000
+
+      homepage.group: Apps
+      homepage.name: Forgejo
+      homepage.icon: forgejo.svg
+      homepage.href: https://${FORGEJO_SUBDOMAIN:-forgejo}.${DOMAIN_NAME}
+      homepage.description: Self-hosted Git

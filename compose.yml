@@ -26,10 +26,11 @@ include:
   # APPS
   ################################################################################
   - apps/lube-logger/compose.yml #  Lube Logger (Vehicle Maintenance)
-  - apps/part-db/compose.yml  #  Part DB (Component Inventory)
+  - apps/part-db/compose.yml #  Part DB (Component Inventory)
   - apps/changedetection/compose.yml #  Change Detection (Detecting Changes)
   - apps/jupyter/compose.yml #  Jupyter Lab (Interactive Development Environment)
   - apps/fasten/compose.yml #  Fasten (Personal Health Records)
+  - apps/forgejo/compose.yml # Forgejo (Git)
 
 ####################################################################################
 # NETWORK CONFIGURATION
@@ -51,3 +52,4 @@ networks:
     ipam:
       config:
         - subnet: 192.168.92.0/24
+

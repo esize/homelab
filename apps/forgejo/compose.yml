@@ -32,16 +32,43 @@ services:
       homepage.href: https://${FORGEJO_SUBDOMAIN:-forgejo}.${DOMAIN_NAME}
       homepage.description: Self-hosted Git
 
+  docker-in-docker:
+    image: docker:dind
+    container_name: docker_dind
+    profiles: ["forgejo", "apps", "all"]
+    privileged: true
+    command: ["dockerd", "-H", "tcp://0.0.0.0:2375", "--tls=false"]
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    networks:
+      internal:
+
+  runner:
+    image: code.forgejo.org/forgejo/runner:3.5.0
+    container_name: forgejo_runner
+    profiles: ["forgejo", "apps", "all"]
+    environment:
+      DOCKER_HOST: tcp://docker-in-docker:2375
+    user: 1001:1001
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    networks:
+      internal:
+    volumes:
+      - ${DOCKER_DIRECTORY}/appdata/forgejo/runner:/data
+    command: '/bin/sh -c "while : ; do sleep 1; done ;"'
+    depends_on:
+      docker-in-docker:
+        condition: service_started
+
   db:
     image: postgres:14
     container_name: forgejo_db
+    profiles: ["forgejo", "apps", "all"]
     environment:
       POSTGRES_USER: forgejo
       POSTGRES_PASSWORD: forgejo
       POSTGRES_DB: forgejo
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
     networks:
-      traefik:
       internal:
     volumes:
       - ${DOCKER_DIRECTORY}/appdata/forgejo/db:/var/lib/postgresql/data

@@ -6,11 +6,17 @@ services:
     environment:
       USER_UID: 1000
       USER_GID: 1000
+      FORGEJO__database__DB_TYPE: postgres
+      FORGEJO__database__HOST: db:5432
+      FORGEJO__database__NAME: forgejo
+      FORGEJO__database__USER: forgejo
+      FORGEJO__database__PASSWD: forgejo
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
     networks:
       traefik:
+      internal:
     volumes:
-      - ${DOCKER_DIRECTORY}/appdata/forgejo:/data
+      - ${DOCKER_DIRECTORY}/appdata/forgejo/server:/data
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     labels:
@@ -25,3 +31,17 @@ services:
       homepage.icon: forgejo.svg
       homepage.href: https://${FORGEJO_SUBDOMAIN:-forgejo}.${DOMAIN_NAME}
       homepage.description: Self-hosted Git
+
+  db:
+    image: postgres:14
+    container_name: forgejo_db
+    environment:
+      POSTGRES_USER: forgejo
+      POSTGRES_PASSWORD: forgejo
+      POSTGRES_DB: forgejo
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    networks:
+      traefik:
+      internal:
+    volumes:
+      - ${DOCKER_DIRECTORY}/appdata/forgejo/db:/var/lib/postgresql/data

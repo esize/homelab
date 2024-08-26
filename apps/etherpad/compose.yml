@@ -40,8 +40,8 @@ services:
       homepage.href: https://${ETHERPAD_SUBDOMAIN:-etherpad}.${DOMAIN_NAME}
       homepage.description: Text editor and stuff
     networks:
-      - internal
-      - traefik
+      internal:
+      traefik:
 
   postgres:
     image: postgres:15-alpine
@@ -56,4 +56,4 @@ services:
     volumes:
       - ${DOCKER_DIRECTORY}/appdata/etherpad/db:/var/lib/postgresql/data/pgdata
     networks:
-      - internal
+      internal:

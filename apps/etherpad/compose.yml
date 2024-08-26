@@ -1,0 +1,59 @@
+services:
+  etherpad:
+    image: etherpad/etherpad:latest
+    profiles: ["etherpad", "apps", "all"]
+    user: 0:0
+    tty: true
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    stdin_open: true
+    volumes:
+      - ${DOCKER_DIRECTORY}/appdata/etherpad/plugins:/opt/etherpad-lite/src/plugin_packages
+      - ${DOCKER_DIRECTORY}/appdata/etherpad/var:/opt/etherpad-lite/var
+    depends_on:
+      - postgres
+    environment:
+      NODE_ENV: production
+      ADMIN_PASSWORD: admin
+      DB_CHARSET: utf8mb4
+      DB_HOST: postgres
+      DB_NAME: etherpad
+      DB_PASS: admin
+      DB_USER: admin
+      DB_TYPE: "postgres"
+      DB_PORT: 5432
+
+      DEFAULT_PAD_TEXT:
+      DISABLE_IP_LOGGING: false
+      SOFFICE: null
+      TRUST_PROXY: true
+
+    labels:
+      traefik.enable: true
+      traefik.http.routers.etherpad.rule: Host(`${ETHERPAD_SUBDOMAIN:-etherpad}.${DOMAIN_NAME}`)
+      traefik.http.routers.etherpad.entrypoints: websecure
+      traefik.http.routers.etherpad.service: etherpad
+      traefik.http.services.etherpad.loadbalancer.server.port: 9001
+
+      homepage.group: Apps
+      homepage.name: Etherpad
+      homepage.icon: etherpad.svg
+      homepage.href: https://${ETHERPAD_SUBDOMAIN:-etherpad}.${DOMAIN_NAME}
+      homepage.description: Text editor and stuff
+    networks:
+      - internal
+      - traefik
+
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: ${DOCKER_COMPOSE_POSTGRES_DATABASE:-etherpad}
+      POSTGRES_PASSWORD: ${DOCKER_COMPOSE_POSTGRES_PASSWORD:-admin}
+      POSTGRES_PORT: ${DOCKER_COMPOSE_POSTGRES_PORT:-5432}
+      POSTGRES_USER: ${DOCKER_COMPOSE_POSTGRES_USER:-admin}
+      PGDATA: /var/lib/postgresql/data/pgdata
+
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    volumes:
+      - ${DOCKER_DIRECTORY}/appdata/etherpad/db:/var/lib/postgresql/data/pgdata
+    networks:
+      - internal

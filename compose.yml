@@ -32,6 +32,7 @@ include:
   - apps/fasten/compose.yml #  Fasten (Personal Health Records)
   - apps/forgejo/compose.yml # Forgejo (Git)
   - apps/etherpad/compose.yml # Etherpad
+  - apps/syncthing/compose.yml # Syncthing
 
 ####################################################################################
 # NETWORK CONFIGURATION

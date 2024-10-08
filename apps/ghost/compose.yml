@@ -22,7 +22,7 @@ services:
       traefik.http.routers.ghost.service: ghost
       traefik.http.services.ghost.loadbalancer.server.port: 2368
 
-  db:
+  ghost-db:
     image: mysql:8.0
     restart: unless-stopped
     networks:

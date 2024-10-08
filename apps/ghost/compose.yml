@@ -28,7 +28,7 @@ services:
   ghostdb:
        image: mariadb:10.5.3
        volumes:
-          - ghostdb:/var/lib/mysql
+          - ${DOCKER_DIRECTORY}/appdata/ghost/db:/var/lib/mysql
        restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
        environment:
           MYSQL_RANDOM_ROOT_PASSWORD: '1'

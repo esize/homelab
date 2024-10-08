@@ -41,6 +41,3 @@ services:
 
 networks:
   ghost:
-    external: false
-  traefik:
-    external: true

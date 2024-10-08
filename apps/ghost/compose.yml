@@ -21,10 +21,13 @@ services:
       traefik.http.routers.ghost.entrypoints: websecure
       traefik.http.routers.ghost.service: ghost
       traefik.http.services.ghost.loadbalancer.server.port: 2368
+    depends_on:
+      ghost-db:
+        condition: service_healthy
 
   ghost-db:
     image: mysql:8.0
-    restart: unless-stopped
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
     networks:
       - default
     environment:
@@ -32,3 +35,8 @@ services:
       MYSQL_DATABASE: ghost
     volumes:
       - ${DOCKER_DIRECTORY}/appdata/ghost/db:/var/lib/ghost
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1"]
+      timeout: 5s
+      retries: 10
+      start_period: 30s

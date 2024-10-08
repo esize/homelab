@@ -7,7 +7,7 @@ services:
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
     environment:
       database__client: mysql
-      database__connection__host: db
+      database__connection__host: ghost-db
       database__connection__user: root
       database__connection__password: SOME_PRIVATE_ROOT_PASSWORD
       database__connection__database: ghost

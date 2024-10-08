@@ -7,14 +7,12 @@ services:
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
     environment:
       database__client: mysql
-      database__connection__host: ghost-db
-      database__connection__user: root
-      database__connection__password: SOME_PRIVATE_ROOT_PASSWORD
+      database__connection__host: ghostdb
+      database__connection__user: mariadbuser
+      database__connection__password: mariadbpassword
       database__connection__database: ghost
       url: https://${GHOST_SUBDOMAIN:-ghost}.${DOMAIN_NAME}
 
-    networks:
-      traefik:
     labels:
       traefik.enable: true
       traefik.http.routers.ghost.rule: Host(`${GHOST_SUBDOMAIN:-ghost}.${DOMAIN_NAME}`)
@@ -22,22 +20,27 @@ services:
       traefik.http.routers.ghost.service: ghost
       traefik.http.services.ghost.loadbalancer.server.port: 2368
     depends_on:
-      ghost-db:
-        condition: service_healthy
-
-  ghost-db:
-    image: mysql:8.0-debian
-    profiles: ["all", "apps", "ghost"]
-    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+      - ghostdb
     networks:
-      - default
-    environment:
-      MYSQL_ROOT_PASSWORD: SOME_PRIVATE_ROOT_PASSWORD
-      MYSQL_DATABASE: ghost
-    volumes:
-      - ${DOCKER_DIRECTORY}/appdata/ghost/db:/var/lib/ghost
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1"]
-      timeout: 5s
-      retries: 10
-      start_period: 30s
+      - ghost
+      - traefik
+
+  ghostdb:
+       image: mariadb:10.5.3
+       volumes:
+          - ghostdb:/var/lib/mysql
+       restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+       environment:
+          MYSQL_RANDOM_ROOT_PASSWORD: '1'
+          MYSQL_DATABASE: ghost
+          MYSQL_USER: mariadbuser
+          MYSQL_PASSWORD: mariadbpassword
+       networks:
+          - ghost
+
+
+networks:
+  ghost:
+    external: false
+  traefik:
+    external: true

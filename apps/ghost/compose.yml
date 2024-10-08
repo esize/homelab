@@ -26,7 +26,7 @@ services:
         condition: service_healthy
 
   ghost-db:
-    image: mysql:8.0
+    image: mysql
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
     networks:
       - default

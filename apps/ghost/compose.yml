@@ -26,7 +26,8 @@ services:
         condition: service_healthy
 
   ghost-db:
-    image: mysql
+    image: mysql:8.0-debian
+    profiles: ["all", "apps", "ghost"]
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
     networks:
       - default

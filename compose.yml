@@ -33,6 +33,7 @@ include:
   - apps/forgejo/compose.yml # Forgejo (Git)
   - apps/etherpad/compose.yml # Etherpad
   - apps/syncthing/compose.yml # Syncthing
+  - apps/ghost/compose.yml # Ghost
 
 ####################################################################################
 # NETWORK CONFIGURATION

@@ -1,0 +1,24 @@
+####################################
+# POSTHOG
+####################################
+
+services:
+  db:
+    container_name: db
+    image: postgres:12-alpine
+    profiles: ['posthog', 'all']
+    environment:
+      POSTGRES_USER: posthog
+      POSTGRES_DB: posthog
+      POSTGRES_PASSWORD: posthog
+    healthcheck:
+            test: ['CMD-SHELL', 'pg_isready -U posthog']
+            interval: 5s
+            timeout: 5s
+    volumes:
+      - ${DOCKER_DIRECTORY}/appdata/posthog/db:/var/lib/postgresql/data
+    security_opt:
+      - no-new-privileges:true
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    
+      

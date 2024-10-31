@@ -1,7 +1,7 @@
 services:
   ambient-weather:
-    container_name: ambient-weather
-    image: ambient-weather-server
+    container_name: ambient-weather-server
+    image: philosowaffle/ambientweather-local-server:latest
     profiles: ["all", "apps", "ambient-weather"]
     volumes:
       - ${DOCKER_DIRECTORY}/api.configuration.local.json:/app/configuration.local.json:ro

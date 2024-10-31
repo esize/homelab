@@ -1,0 +1,12 @@
+services:
+  ambient-weather:
+    container_name: ambient-weather
+    image: ambient-weather-server
+    profiles: ["all", "apps", "ambient-weather"]
+    volumes:
+      - ${DOCKER_DIRECTORY}/api.configuration.local.json:/app/configuration.local.json:ro
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    ports:
+      - 8001:8080
+    environment:
+      - TZ=America/New_York

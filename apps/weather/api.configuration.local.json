@@ -1,0 +1,7 @@
+{
+  "Observability": {
+    "Metrics": {
+      "Enabled": true
+    }
+  }
+}

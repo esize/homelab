@@ -35,8 +35,7 @@ include:
   - apps/syncthing/compose.yml # Syncthing
   - apps/ghost/compose.yml # Ghost
   - apps/zipline/compose.yml # Zipline (File Sharing)
-  - apps/paperless/compose.yml # Paperless (Document Management)
-  
+  - apps/cal/compose.yml # Cal (Scheduling)
 ####################################################################################
 # NETWORK CONFIGURATION
 ####################################################################################

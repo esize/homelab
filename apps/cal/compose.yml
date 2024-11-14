@@ -1,0 +1,58 @@
+####################################
+# CAL (Scheduling infrastructure)
+####################################
+
+services:
+  cal:
+    image: calcom/cal.com:latest
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    networks:
+      traefik:
+      cal-internal:
+    labels:
+      traefik.enable: true
+      traefik.http.routers.cal.rule: Host(`${CAL_SUBDOMAIN:-cal}.${DOMAIN_NAME}`)
+      traefik.http.routers.cal.entrypoints: websecure
+      traefik.http.routers.cal.tls: true
+      traefik.http.services.cal.loadbalancer.server.port: 3000
+      homepage.group: Apps
+      homepage.name: Cal
+      homepage.icon: si-cal
+      homepage.href: https://${CAL_SUBDOMAIN:-cal}.${DOMAIN_NAME}
+      homepage.description: Scheduling infrastructure
+    environment:
+      NEXT_PUBLIC_LICENSE_CONSENT: agree
+      NEXT_PUBLIC_WEBAPP_URL: https://${CAL_SUBDOMAIN:-cal}.${DOMAIN_NAME}
+      NEXTAUTH_SECRET: ${CAL_NEXTAUTH_SECRET:-changeme}
+      CALENDSO_ENCRYPTION_KEY: ${CAL_ENCRYPTION_KEY:-changeme}
+      POSTGRES_USER: ${CAL_DB_USER:-cal}
+      POSTGRES_PASSWORD: ${CAL_DB_PASSWORD:-cal}
+      POSTGRES_DB: ${CAL_DB_NAME:-cal}
+      DATABASE_HOST: cal-db:5432
+      DATABASE_URL: postgresql://${CAL_DB_USER:-cal}:${CAL_DB_PASSWORD:-cal}@cal-db:5432/${CAL_DB_NAME:-cal}
+      CALCOM_TELEMETRY_DISABLED: 1
+      NODE_ENV: production
+    depends_on:
+      cal-db:
+        condition: service_healthy
+
+  cal-db:
+    image: postgres:15-alpine
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    networks:
+      cal-internal:
+    environment:
+      POSTGRES_USER: ${CAL_DB_USER:-cal}
+      POSTGRES_PASSWORD: ${CAL_DB_PASSWORD:-cal}
+      POSTGRES_DB: ${CAL_DB_NAME:-cal}
+    healthcheck:
+      test: ['CMD', 'pg_isready', '-U', '${POSTGRES_USER}', '-d', '${POSTGRES_DB}']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - ${DOCKER_DIRECTORY}/appdata/cal/db:/var/lib/postgresql/data
+
+networks:
+  cal-internal:
+    external: false

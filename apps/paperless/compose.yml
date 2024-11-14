@@ -11,7 +11,7 @@ services:
     volumes:
       - ${DOCKER_DIRECTORY}/appdata/paperless/redisdata:/data
 
-  db:
+  paperless-db:
     image: docker.io/library/mariadb:10
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
     networks:
@@ -25,14 +25,14 @@ services:
       MARIADB_PASSWORD: paperless
       MARIADB_ROOT_PASSWORD: paperless
 
-  webserver:
+  paperless-webserver:
     image: ghcr.io/paperless-ngx/paperless-ngx:latest
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
     networks:
       - paperless-internal
       - traefik
     depends_on:
-      - db
+      - paperless-db
       - broker
       - gotenberg
       - tika
@@ -62,7 +62,7 @@ services:
     environment:
       PAPERLESS_REDIS: redis://broker:6379
       PAPERLESS_DBENGINE: mariadb
-      PAPERLESS_DBHOST: db
+      PAPERLESS_DBHOST: paperless-db
       PAPERLESS_DBUSER: paperless # only needed if non-default username
       PAPERLESS_DBPASS: paperless # only needed if non-default password
       PAPERLESS_DBPORT: 3306

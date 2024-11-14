@@ -184,11 +184,6 @@
         description: Aggregate RSS feeds for easy consumption
         icon: freshrss.svg
         siteMonitor: https://rss.local.wool.homes
-    - Zipline:
-        href: https://zipline.local.wool.homes/
-        description: Screenshots and pastebins
-        icon: https://raw.githubusercontent.com/diced/zipline/trunk/public/zipline.png
-        siteMonitor: https://zipline.local.wool.homes/
     - Cal:
         href: https://cal.local.wool.homes/
         description: Powerful calendar

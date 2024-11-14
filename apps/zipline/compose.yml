@@ -35,7 +35,7 @@ services:
       homepage.description: Screenshots and pastebins
 
   zipline-db:
-  image: postgres:15
+    image: postgres:15
     restart: unless-stopped
     environment:
       - POSTGRES_USER=postgres

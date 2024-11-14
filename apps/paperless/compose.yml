@@ -53,6 +53,12 @@ services:
       traefik.http.routers.paperless.tls: true
       traefik.http.services.paperless.loadbalancer.server.port: 8000
 
+      homepage.group: Apps
+      homepage.name: Paperless
+      homepage.icon: si-paperlessngx
+      homepage.href: https://${PAPERLESS_SUBDOMAIN:-paperless}.${DOMAIN_NAME}
+      homepage.description: Document Management
+
     environment:
       PAPERLESS_REDIS: redis://broker:6379
       PAPERLESS_DBENGINE: mariadb

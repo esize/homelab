@@ -164,11 +164,6 @@
         description: Google Photos but local
         icon: si-immich
         siteMonitor: https://immich.local.wool.homes
-    - Paperless:
-        href: https://paperless.local.wool.homes/
-        description: Document management system
-        icon: si-paperlessngx
-        siteMonitor: https://paperless.local.wool.homes/
     - IT-Tools:
         href: https://tools.local.wool.homes/
         description: Handy tools for developers

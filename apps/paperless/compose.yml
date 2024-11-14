@@ -1,0 +1,87 @@
+####################################
+# PAPERLESS
+####################################
+
+services:
+  broker:
+    image: docker.io/library/redis:7
+    networks:
+      - paperless-internal
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    volumes:
+      - ${DOCKER_DIRECTORY}/appdata/paperless/redisdata:/data
+
+  db:
+    image: docker.io/library/mariadb:10
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    networks:
+      - paperless-internal
+    volumes:
+      - ${DOCKER_DIRECTORY}/appdata/paperless/dbdata:/var/lib/mysql
+    environment:
+      MARIADB_HOST: paperless
+      MARIADB_DATABASE: paperless
+      MARIADB_USER: paperless
+      MARIADB_PASSWORD: paperless
+      MARIADB_ROOT_PASSWORD: paperless
+
+  webserver:
+    image: ghcr.io/paperless-ngx/paperless-ngx:latest
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    networks:
+      - paperless-internal
+      - traefik
+    depends_on:
+      - db
+      - broker
+      - gotenberg
+      - tika
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:8000']
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    volumes:
+      - ${DOCKER_DIRECTORY}/appdata/paperless/data:/usr/src/paperless/data
+      - ${DOCKER_DIRECTORY}/appdata/paperless/media:/usr/src/paperless/media
+      - ${DOCKER_DIRECTORY}/appdata/paperless/export:/usr/src/paperless/export
+    env_file: .env
+    labels:
+      traefik.enable: true
+      traefik.http.routers.paperless.rule: Host(`${PAPERLESS_SUBDOMAIN:-paperless}.${DOMAIN_NAME}`)
+      traefik.http.routers.paperless.entrypoints: websecure
+      traefik.http.routers.paperless.tls: true
+      traefik.http.services.paperless.loadbalancer.server.port: 8000
+
+    environment:
+      PAPERLESS_REDIS: redis://broker:6379
+      PAPERLESS_DBENGINE: mariadb
+      PAPERLESS_DBHOST: db
+      PAPERLESS_DBUSER: paperless # only needed if non-default username
+      PAPERLESS_DBPASS: paperless # only needed if non-default password
+      PAPERLESS_DBPORT: 3306
+      PAPERLESS_TIKA_ENABLED: 1
+      PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://gotenberg:3000
+      PAPERLESS_TIKA_ENDPOINT: http://tika:9998
+
+  gotenberg:
+    image: docker.io/gotenberg/gotenberg:7.10
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    networks:
+      - paperless-internal
+    # The gotenberg chromium route is used to convert .eml files. We do not
+    # want to allow external content like tracking pixels or even javascript.
+    command:
+      - 'gotenberg'
+      - '--chromium-disable-javascript=true'
+      - '--chromium-allow-list=file:///tmp/.*'
+
+  tika:
+    image: ghcr.io/paperless-ngx/tika:latest
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    networks:
+      - paperless-internal
+
+networks:
+  paperless-internal:
+    external: false

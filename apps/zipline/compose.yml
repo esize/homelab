@@ -16,7 +16,7 @@ services:
       - CORE_SECRET=RMbcIzuRhDAFzXE0awfdG6WrlUPL1pEs0bVHVFkdEAOeflAEH4XIhqXtsJVuZkIa
       - CORE_HOST=0.0.0.0
       - CORE_PORT=3000
-      - CORE_DATABASE_URL=postgres://postgres:postgres@postgres/postgres
+      - CORE_DATABASE_URL=postgres://postgres:postgres@zipline-db/postgres
       - CORE_LOGGER=true
     volumes:
       - ${DOCKER_DIRECTORY}/appdata/zipline/uploads:/zipline/uploads

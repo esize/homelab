@@ -34,8 +34,6 @@ include:
   - apps/etherpad/compose.yml # Etherpad
   - apps/syncthing/compose.yml # Syncthing
   - apps/ghost/compose.yml # Ghost
-  - apps/weather/compose.yml # Ambient Weather
-
 ####################################################################################
 # NETWORK CONFIGURATION
 ####################################################################################

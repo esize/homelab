@@ -1,6 +1,6 @@
 services:
   forgejo:
-    image: codeberg.org/forgejo/forgejo:8
+    image: codeberg.org/forgejo/forgejo:9
     container_name: forgejo
     profiles: ["forgejo", "apps", "all"]
     environment:
@@ -45,7 +45,7 @@ services:
       internal:
 
   runner:
-    image: code.forgejo.org/forgejo/runner:3.5.0
+    image: code.forgejo.org/forgejo/runner:4
     container_name: forgejo_runner
     profiles: ["forgejo", "apps", "all"]
     environment:

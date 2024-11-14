@@ -46,7 +46,7 @@ services:
       POSTGRES_PASSWORD: ${CAL_DB_PASSWORD:-cal}
       POSTGRES_DB: ${CAL_DB_NAME:-cal}
     healthcheck:
-      test: ['CMD', 'pg_isready', '-U', '${POSTGRES_USER}', '-d', '${POSTGRES_DB}']
+      test: ['CMD', 'pg_isready', '-U', '${CAL_DB_USER:-cal}', '-d', '${CAL_DB_NAME:-cal}']
       interval: 10s
       timeout: 5s
       retries: 5

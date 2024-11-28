@@ -14,7 +14,7 @@ services:
       traefik.http.routers.tools.rule: Host(`${IT_TOOLS_SUBDOMAIN:-tools}.${DOMAIN_NAME}`)
       traefik.http.routers.tools.entrypoints: websecure
       traefik.http.routers.tools.service: tools
-      traefik.http.services.tools.loadbalancer.server.port: 8080
+      traefik.http.services.tools.loadbalancer.server.port: 80
 
       homepage.group: Apps
       homepage.name: IT Tools

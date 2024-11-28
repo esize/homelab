@@ -1,0 +1,22 @@
+################################################################################
+# STIRLING PDF
+################################################################################
+
+services:
+  stirling-pdf:
+    image: stirlingtools/stirling-pdf:latest
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    networks:
+      traefik:
+    labels:
+      traefik.enable: true
+      traefik.http.routers.pdf.rule: Host(`${PDF_SUBDOMAIN:-pdf}.${DOMAIN_NAME}`)
+      traefik.http.routers.pdf.entrypoints: websecure
+      traefik.http.routers.pdf.service: pdf
+      traefik.http.services.pdf.loadbalancer.server.port: 8080
+
+      homepage.group: Apps
+      homepage.name: Stirling PDF
+      homepage.icon: stirling-pdf.svg
+      homepage.href: https://${PDF_SUBDOMAIN:-pdf}.${DOMAIN_NAME}
+      homepage.description: Sooooo many pdf tools!

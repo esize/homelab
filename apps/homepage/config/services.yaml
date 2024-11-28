@@ -9,20 +9,20 @@
         icon: si-homeassistant
         siteMonitor: https://home.local.wool.homes/
         widget:
-            type: homeassistant
-            url: https://home.local.wool.homes/
-            key: {{HOMEPAGE_FILE_HOMEASSISTANT_API_KEY_FILE}}
-            fields:
-                - lights_on
-                - switches_on
+          type: homeassistant
+          url: https://home.local.wool.homes/
+          key: { { HOMEPAGE_FILE_HOMEASSISTANT_API_KEY_FILE } }
+          fields:
+            - lights_on
+            - switches_on
     - ESPHome:
         href: https://home.local.wool.homes/5c53de3b_esphome/ingress
         description: Turn microcontrollers into IOT devices
         icon: si-esphome
         siteMonitor: https://home.local.wool.homes/5c53de3b_esphome/ingress
         widget:
-            type: esphome
-            url: http://192.168.254.172:6052
+          type: esphome
+          url: http://192.168.254.172:6052
 
 - Dev:
     - Forgejo:
@@ -85,8 +85,6 @@
         icon: si-keycloak
         siteMonitor: https://keycloak.local.wool.homes/
 
-
-
 - Media:
     - Jellyfin:
         href: https://jellyfin.local.wool.homes/
@@ -94,14 +92,14 @@
         icon: si-jellyfin
         siteMonitor: https://jellyfin.local.wool.homes/
         widget:
-            type: jellyfin
-            url: http://192.168.254.13:8096
-            key: {{HOMEPAGE_FILE_JELLYFIN_API_KEY_FILE}}
-            enableBlocks: true # optional, defaults to false
-            enableNowPlaying: true # optional, defaults to true
-            enableUser: true # optional, defaults to false
-            showEpisodeNumber: true # optional, defaults to false
-            expandOneStreamToTwoRows: false # optional, defaults to true
+          type: jellyfin
+          url: http://192.168.254.13:8096
+          key: { { HOMEPAGE_FILE_JELLYFIN_API_KEY_FILE } }
+          enableBlocks: true # optional, defaults to false
+          enableNowPlaying: true # optional, defaults to true
+          enableUser: true # optional, defaults to false
+          showEpisodeNumber: true # optional, defaults to false
+          expandOneStreamToTwoRows: false # optional, defaults to true
     - Jellyseerr:
         href: https://jellyseerr.local.wool.homes/
         description: Media request management
@@ -164,16 +162,6 @@
         description: Google Photos but local
         icon: si-immich
         siteMonitor: https://immich.local.wool.homes
-    - IT-Tools:
-        href: https://tools.local.wool.homes/
-        description: Handy tools for developers
-        icon: it-tools.svg
-        siteMonitor: https://tools.local.wool.homes/
-    - Stirling PDF:
-        href: https://pdf.local.wool.homes
-        description: Sooooo many pdf tools!
-        icon: stirling-pdf.svg
-        siteMonitor: https://pdf.local.wool.homes
     - FreshRSS:
         href: https://rss.local.wool.homes
         description: Aggregate RSS feeds for easy consumption
@@ -194,4 +182,3 @@
         description: Speedtest
         icon: si-speedtest
         siteMonitor: https://librespeed.local.wool.homes/
-

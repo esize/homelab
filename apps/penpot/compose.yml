@@ -37,7 +37,7 @@ services:
     volumes:
       - penpot_assets:/opt/data/assets
     environment:
-      PENPOT_FLAGS: enable-registration enable-login-with-password disable-email-verification enable-smtp enable-prepl-server
+      PENPOT_FLAGS: enable-registration enable-login-with-password disable-email-verification enable-prepl-server
       PENPOT_URL: https://${PENPOT_SUBDOMAIN:-penpot}.${DOMAIN_NAME}
       PENPOT_DATABASE_URI: postgresql://penpot-postgres/penpot
       PENPOT_DATABASE_USERNAME: penpot

@@ -35,6 +35,7 @@ include:
   - apps/syncthing/compose.yml # Syncthing
   - apps/ghost/compose.yml # Ghost
   - apps/zipline/compose.yml # Zipline (File Sharing)
+  - apps/pdf/compose.yml # Stirling PDF (PDF Tools)
 
 
 ####################################################################################

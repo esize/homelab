@@ -7,35 +7,7 @@ secrets:
     file: ${DOCKER_DIRECTORY}/secrets/influxdb/token.secret
 
 services:
-  prometheus:
-    container_name: prometheus
-    image: prom/prometheus:latest
-    profiles: ["all", "monitoring", "utilities", "prometheus"]
-    volumes:
-      - ${DOCKER_DIRECTORY}/apps/monitoring/prometheus:/etc/prometheus
-      - ${DOCKER_DIRECTORY}/appdata/prometheus:/prometheus
-    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
-    extra_hosts:
-      - "dock:host-gateway"
-    command:
-      - '--config.file=/etc/prometheus/prometheus.yml'
-    user: '1000'
-    networks:
-      traefik:
-      internal:
-    labels:
-      traefik.enable: true
-      traefik.http.routers.prometheus.rule: Host(`${PROMETHEUS_SUBDOMAIN:-prometheus}.${DOMAIN_NAME}`)
-      traefik.http.routers.prometheus.entrypoints: websecure
-      traefik.http.routers.prometheus.service: prometheus
-      traefik.http.services.prometheus.loadbalancer.server.port: 9090
-
-      homepage.group: Apps
-      homepage.name: Prometheus
-      homepage.icon: si-prometheus
-      homepage.href: https://${PROMETHEUS_SUBDOMAIN:-prometheus}.${DOMAIN_NAME}
-      homepage.description: Time-series database
-
+  
   grafana:
     container_name: grafana
     image: grafana/grafana

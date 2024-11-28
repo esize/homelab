@@ -1,0 +1,90 @@
+################################################################################
+# PENPOT
+################################################################################
+
+services:
+  penpot-frontend:
+    image: penpotapp/frontend:latest
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    networks:
+      traefik:
+      penpot:
+    volumes:
+      - penpot_assets:/opt/data/assets
+    labels:
+      traefik.enable: true
+      traefik.http.routers.penpot-frontend.rule: Host(`${PENPOT_SUBDOMAIN:-penpot}.${DOMAIN_NAME}`)
+      traefik.http.routers.penpot-frontend.entrypoints: websecure
+      traefik.http.routers.penpot-frontend.service: penpot-frontend
+      traefik.http.services.penpot-frontend.loadbalancer.server.port: 80
+
+      homepage.group: Dev
+      homepage.name: Penpot
+      homepage.icon: penpot.svg
+      homepage.href: https://${PENPOT_SUBDOMAIN:-penpot}.${DOMAIN_NAME}
+      homepage.description: Open Source Design and Collaboration Tool
+    environment:
+      PENPOT_FLAGS: enable-registration enable-login-with-password
+    depends_on:
+      - penpot-backend
+      - penpot-exporter
+
+  penpot-backend:
+    image: penpotapp/backend:latest
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    networks:
+      penpot:
+    volumes:
+      - penpot_assets:/opt/data/assets
+    environment:
+      PENPOT_FLAGS: enable-registration enable-login-with-password disable-email-verification enable-smtp enable-prepl-server
+      PENPOT_URL: https://${PENPOT_SUBDOMAIN:-penpot}.${DOMAIN_NAME}
+      PENPOT_DATABASE_URI: postgresql://penpot-postgres/penpot
+      PENPOT_DATABASE_USERNAME: penpot
+      PENPOT_DATABASE_PASSWORD: penpot
+      PENPOT_REDIS_URI: redis://penpot-redis/0
+      PENPOT_ASSETS_STORAGE_BACKEND: assets-fs
+      PENPOT_STORAGE_ASSETS_FS_DIRECTORY: /opt/data/assets
+      PENPOT_TELEMETRY_ENABLED: false
+    depends_on:
+      - penpot-postgres
+      - penpot-redis
+
+  penpot-exporter:
+    image: penpotapp/exporter:latest
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    networks:
+      penpot:
+    environment:
+      PENPOT_PUBLIC_URL: http://penpot-frontend
+      PENPOT_REDIS_URI: redis://penpot-redis/0
+
+  penpot-postgres:
+    image: postgres:15
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    stop_signal: SIGINT
+    networks:
+      penpot:
+    volumes:
+      - penpot_postgres_v15:/var/lib/postgresql/data
+    environment:
+      POSTGRES_INITDB_ARGS: --data-checksums
+      POSTGRES_DB: penpot
+      POSTGRES_USER: penpot
+      POSTGRES_PASSWORD: penpot
+
+  penpot-redis:
+    image: redis:7
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    networks:
+      penpot:
+
+networks:
+  penpot:
+    external: false
+  traefik:
+    external: true
+
+volumes:
+  penpot_postgres_v15:
+  penpot_assets:

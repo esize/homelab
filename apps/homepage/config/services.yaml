@@ -24,18 +24,6 @@
           type: esphome
           url: http://192.168.254.172:6052
 
-- Dev:
-    - Forgejo:
-        href: https://forgejo.local.wool.homes/
-        description: Self-hosted GitHub
-        icon: si-forgejo
-        siteMonitor: https://forgejo.local.wool.homes/
-    - Penpot:
-        href: https://penpot.local.wool.homes/
-        description: Open Source Design and Collaboration Tool
-        icon: si-penpot
-        siteMonitor: https://penpot.local.wool.homes/
-
 - Infra:
     - Proxmox:
         href: https://proxmox.local.wool.homes/
@@ -152,11 +140,6 @@
         siteMonitor: https://calibre.local.wool.homes/
 
 - Apps:
-    - Fasten Health:
-        href: https://fasten.local.wool.homes
-        description: Self-hosted health records
-        icon: https://github.com/fastenhealth/fasten-onprem/blob/main/frontend/src/assets/favicon/android-chrome-512x512.png?raw=true
-        siteMonitor: https://fasten.local.wool.homes
     - Immich:
         href: https://immich.local.wool.homes
         description: Google Photos but local
@@ -167,11 +150,6 @@
         description: Aggregate RSS feeds for easy consumption
         icon: freshrss.svg
         siteMonitor: https://rss.local.wool.homes
-    - Cal:
-        href: https://cal.local.wool.homes/
-        description: Powerful calendar
-        icon: si-caldotcom
-        siteMonitor: https://cal.local.wool.homes/
     - Budibase:
         href: https://budibase.local.wool.homes/
         description: Airtable alternative

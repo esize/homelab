@@ -28,7 +28,7 @@ services:
       traefik.http.routers.forgejo.service: forgejo
       traefik.http.services.forgejo.loadbalancer.server.port: 3000
 
-      homepage.group: Apps
+      homepage.group: Dev
       homepage.name: Forgejo
       homepage.icon: forgejo.svg
       homepage.href: https://${FORGEJO_SUBDOMAIN:-forgejo}.${DOMAIN_NAME}

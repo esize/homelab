@@ -9,7 +9,7 @@ secrets:
 services:
   prometheus:
     container_name: prometheus
-    image: prom/prometheus
+    image: prom/prometheus:latest
     profiles: ["all", "monitoring", "utilities", "prometheus"]
     volumes:
       - ${DOCKER_DIRECTORY}/apps/monitoring/prometheus:/etc/prometheus

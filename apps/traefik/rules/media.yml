@@ -1,0 +1,142 @@
+http:
+  routers:
+    jellyfin:
+      entryPoints:
+        - "https"
+      rule: "Host(`jellyfin.lab.wool.homes`)"
+      middlewares:
+        - jellyfin-mw
+      tls: {}
+      service: jellyfin
+    qbittorrent:
+      entryPoints:
+        - "https"
+      rule: "Host(`torrent.lab.wool.homes`)"
+      tls: {}
+      service: qbittorrent
+    prowlarr:
+      entryPoints:
+        - "https"
+      rule: "Host(`prowlarr.lab.wool.homes`)"
+      tls: {}
+      service: prowlarr
+    radarr:
+      entryPoints:
+        - "https"
+      rule: "Host(`radarr.lab.wool.homes`)"
+      tls: {}
+      service: radarr
+    sonarr:
+      entryPoints:
+        - "https"
+      rule: "Host(`sonarr.lab.wool.homes`)"
+      tls: {}
+      service: sonarr
+    readarr:
+      entryPoints:
+        - "https"
+      rule: "Host(`readarr.lab.wool.homes`)"
+      tls: {}
+      service: readarr
+    jellyseerr:
+      entryPoints:
+        - "https"
+      rule: "Host(`jellyseerr.lab.wool.homes`)"
+      tls: {}
+      service: jellyseerr
+    tdarr:
+      entryPoints:
+        - "https"
+      rule: "Host(`tdarr.lab.wool.homes`)"
+      tls: {}
+      service: tdarr
+    makemkv:
+      entryPoints:
+        - "https"
+      rule: "Host(`makemkv.lab.wool.homes`)"
+      tls: {}
+      service: makemkv
+    nzbget:
+      entryPoints:
+        - "https"
+      rule: "Host(`nzbget.lab.wool.homes`)"
+      tls: {}
+      service: nzbget
+    calibre:
+      entryPoints:
+        - "https"
+      rule: "Host(`calibre.lab.wool.homes`)"
+      tls: {}
+      service: calibre
+  services:
+    jellyfin:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.254.13:8096"
+        passHostHeader: true
+    qbittorrent:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.254.13:8080"
+        passHostHeader: true
+    prowlarr:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.254.13:9696"
+        passHostHeader: true
+    radarr:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.254.13:7878"
+        passHostHeader: true
+    sonarr:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.254.13:8989"
+        passHostHeader: true
+    readarr:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.254.13:8787"
+        passHostHeader: true
+    jellyseerr:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.254.13:5055"
+        passHostHeader: true
+    tdarr:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.254.13:8265"
+        passHostHeader: true
+    makemkv:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.254.13:5800"
+        passHostHeader: true
+    nzbget:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.254.13:6789"
+        passHostHeader: true
+    calibre:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.254.13:9080"
+        passHostHeader: true
+  middlewares:
+    jellyfin-mw:
+      headers:
+        sslRedirect: true
+        sslForceHost: true
+        stsSeconds: 315360000
+        stsIncludeSubdomains: true
+        stsPreload: true
+        forceSTSHeader: true
+        frameDeny: true
+        contentTypeNosniff: true
+        customFrameOptionsValue: "allow from https://jellyfin.lab.wool.homes"
+        customResponseHeaders:
+          X-XSS-PROTECTION: 0
+        customRequestHeaders:
+          X-Robots-Tag: noindex,nofollow,nosnippet,noarchive,notranslate,noimageindex

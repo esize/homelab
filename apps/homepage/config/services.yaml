@@ -65,10 +65,10 @@
 
 - Media:
     - Jellyfin:
-        href: https://jellyfin.local.wool.homes/
+        href: https://jellyfin.lab.wool.homes/
         description: Self-hosted streaming service
         icon: si-jellyfin
-        siteMonitor: https://jellyfin.local.wool.homes/
+        siteMonitor: https://jellyfin.lab.wool.homes/
         widget:
           type: jellyfin
           url: http://192.168.254.13:8096
@@ -79,59 +79,52 @@
           showEpisodeNumber: true # optional, defaults to false
           expandOneStreamToTwoRows: false # optional, defaults to true
     - Jellyseerr:
-        href: https://jellyseerr.local.wool.homes/
+        href: https://jellyseerr.lab.wool.homes/
         description: Media request management
         icon: jellyseerr.svg
-        siteMonitor: https://jellyseerr.local.wool.homes/
+        siteMonitor: https://jellyseerr.lab.wool.homes/
     - MakeMKV:
-        href: https://makemkv.local.wool.homes/
+        href: https://makemkv.lab.wool.homes/
         description: DVD ripper
         icon: makemkv.png
-        siteMonitor: https://makemkv.local.wool.homes/
+        siteMonitor: https://makemkv.lab.wool.homes/
     - nzbget:
-        href: https://nzbget.local.wool.homes/
+        href: https://nzbget.lab.wool.homes/
         description: Usenet NZB client
         icon: nzbget.png
         siteMonitor: https://nzbget.local.wool.homes/
     - qBittorrent:
-        href: https://torrent.local.wool.homes/
+        href: https://torrent.lab.wool.homes/
         description: Bittorrent Client
         icon: si-qbittorrent
-        siteMonitor: https://torrent.local.wool.homes/
+        siteMonitor: https://torrent.lab.wool.homes/
     - Radarr:
-        href: https://radarr.local.wool.homes/
+        href: https://radarr.lab.wool.homes/
         description: Movie manager and automation
         icon: si-radarr
-        siteMonitor: https://radarr.local.wool.homes/
+        siteMonitor: https://radarr.lab.wool.homes/
     - Sonarr:
-        href: https://sonarr.local.wool.homes/
+        href: https://sonarr.lab.wool.homes/
         description: TV show manager and automation
         icon: si-sonarr
-        siteMonitor: https://sonarr.local.wool.homes/
+        siteMonitor: https://sonarr.lab.wool.homes/
     - Readarr:
-        href: https://readarr.local.wool.homes/
+        href: https://readarr.lab.wool.homes/
         description: Book manager and automation
         icon: readarr.svg
         siteMonitor: https://readarr.local.wool.homes/
     - Tdarr:
-        href: https://tdarr.local.wool.homes/
+        href: https://tdarr.lab.wool.homes/
         description: Transcoding manager and automation
         icon: https://home.tdarr.io/static/media/logo3-min.246d6df44c7f16ddebaf.png
-        siteMonitor: https://tdarr.local.wool.homes/
+        siteMonitor: https://tdarr.lab.wool.homes/
     - Prowlarr:
-        href: https://prowlarr.local.wool.homes/
+        href: https://prowlarr.lab.wool.homes/
         description: Indexer management
         icon: prowlarr.svg
-        siteMonitor: https://prowlarr.local.wool.homes/
+        siteMonitor: https://prowlarr.lab.wool.homes/
     - Calibre:
-        href: https://calibre.local.wool.homes/
+        href: https://calibre.lab.wool.homes/
         description: E-book manager and editor
         icon: si-calibreweb
-        siteMonitor: https://calibre.local.wool.homes/
-
-- Apps:
-    - Budibase:
-        href: https://budibase.local.wool.homes/
-        description: Airtable alternative
-        icon: si-budibase
-        siteMonitor: https://budibase.local.wool.homes/
+        siteMonitor: https://calibre.lab.wool.homes/

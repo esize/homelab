@@ -11,13 +11,13 @@ services:
       traefik:
     labels:
       traefik.enable: true
-      traefik.http.routers.it-tools.rule: Host(`${IT_TOOLS_SUBDOMAIN:-it-tools}.${DOMAIN_NAME}`)
-      traefik.http.routers.it-tools.entrypoints: websecure
-      traefik.http.routers.it-tools.service: it-tools
-      traefik.http.services.it-tools.loadbalancer.server.port: 8080
+      traefik.http.routers.tools.rule: Host(`${IT_TOOLS_SUBDOMAIN:-tools}.${DOMAIN_NAME}`)
+      traefik.http.routers.tools.entrypoints: websecure
+      traefik.http.routers.tools.service: tools
+      traefik.http.services.tools.loadbalancer.server.port: 8080
 
       homepage.group: Apps
       homepage.name: IT Tools
       homepage.icon: it-tools.svg
-      homepage.href: https://${IT_TOOLS_SUBDOMAIN:-it-tools}.${DOMAIN_NAME}
+      homepage.href: https://${IT_TOOLS_SUBDOMAIN:-tools}.${DOMAIN_NAME}
       homepage.description: Miscellaneous IT Tools

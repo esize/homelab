@@ -17,7 +17,6 @@ http:
   services:
     proxmox:
       loadBalancer:
-        passHostHeader: true
         serversTransport: "pve"
         servers:
           - url: "https://192.168.254.12:8006"

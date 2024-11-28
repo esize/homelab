@@ -1,0 +1,82 @@
+#########################
+# Kestra
+#########################
+
+services:
+  kestra:
+    image: kestra/kestra:latest
+    profiles: ["apps", "all", "kestra"]
+    container_name: kestra
+    pull_policy: always
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    user: "root"
+    command: server standalone
+    volumes:
+      - /tmp/kestra-wd:/tmp/kestra-wd
+      - ${DOCKER_DIRECTORY}/appdata/kestra:/var/lib/kestra
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      KESTRA_CONFIGURATION: |
+        datasources:
+          postgres:
+            url: jdbc:postgresql://postgres:5432/kestra
+            driverClassName: org.postgresql.Driver
+            username: kestra
+            password: k3str4
+        kestra:
+          server:
+            basicAuth:
+              enabled: false
+              username: "admin@kestra.io" # it must be a valid email address
+              password: kestra
+          repository:
+            type: postgres
+          storage:
+            type: local
+            local:
+              basePath: "/app/storage"
+          queue:
+            type: postgres
+          tasks:
+            tmpDir:
+              path: /tmp/kestra-wd/tmp
+          url: https://${KESTRA_SUBDOMAIN:-kestra}.${DOMAIN_NAME}
+    networks:
+      traefik:
+      kestra:
+    labels:
+      traefik.enable: true
+      traefik.http.routers.kestra.rule: Host(`${KESTRA_SUBDOMAIN:-kestra}.${DOMAIN_NAME}`)
+      traefik.http.routers.kestra.entrypoints: websecure
+      traefik.http.routers.kestra.service: kestra
+      traefik.http.services.kestra.loadbalancer.server.port: 8080
+
+      homepage.group: Infra
+      homepage.name: Kestra
+      homepage.icon: si-kestra
+      homepage.href: https://${KESTRA_SUBDOMAIN:-kestra}.${DOMAIN_NAME}
+      homepage.description: Workflow Engine
+    depends_on:
+      postgres:
+        condition: service_started
+        
+  postgres:
+    image: postgres:15
+    profiles: ["apps", "all", "kestra"]
+    container_name: kestra-postgres
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    volumes:
+      - ${DOCKER_DIRECTORY}/appdata/kestra-postgres:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: kestra
+      POSTGRES_USER: kestra
+      POSTGRES_PASSWORD: k3str4
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"]
+      interval: 30s
+      timeout: 10s
+      retries: 10
+
+volumes:
+  kestra:
+    external: false

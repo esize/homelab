@@ -19,7 +19,7 @@ services:
       KESTRA_CONFIGURATION: |
         datasources:
           postgres:
-            url: jdbc:postgresql://postgres:5432/kestra
+            url: jdbc:postgresql://kestra-postgres:5432/kestra
             driverClassName: org.postgresql.Driver
             username: kestra
             password: k3str4
@@ -60,7 +60,7 @@ services:
       postgres:
         condition: service_started
         
-  postgres:
+  kestra-postgres:
     image: postgres:15
     profiles: ["apps", "all", "kestra"]
     container_name: kestra-postgres
@@ -71,6 +71,8 @@ services:
       POSTGRES_DB: kestra
       POSTGRES_USER: kestra
       POSTGRES_PASSWORD: k3str4
+    networks:
+      kestra:
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"]
       interval: 30s

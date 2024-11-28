@@ -13,7 +13,6 @@ include:
   # CORE
   ################################################################################
   - apps/homepage/compose.yml # Homepage (It's a homepage...)
-  - apps/authentik/compose.yml # Authentik (Central Authentication)
 
   ################################################################################
   # UTILITIES
@@ -21,6 +20,7 @@ include:
   - apps/watchtower/compose.yml #  Watchtower (Container Updating)
   - apps/dozzle/compose.yml #  Dozzle (Container Logs)
   - apps/monitoring/compose.yml #  Grafana, Prometheus, InfluxDB, etc.
+  - apps/it-tools/compose.yml #  IT Tools (Miscellaneous)
 
   ################################################################################
   # APPS
@@ -35,7 +35,8 @@ include:
   - apps/syncthing/compose.yml # Syncthing
   - apps/ghost/compose.yml # Ghost
   - apps/zipline/compose.yml # Zipline (File Sharing)
-  - apps/cal/compose.yml # Cal (Scheduling)
+
+
 ####################################################################################
 # NETWORK CONFIGURATION
 ####################################################################################

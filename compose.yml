@@ -44,7 +44,7 @@ include:
 ####################################################################################
 
 networks:
-  traefik:
+  homelab_traefik:
     driver: bridge
     ipam:
       config:

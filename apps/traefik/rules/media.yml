@@ -2,7 +2,7 @@ http:
   routers:
     jellyfin:
       entryPoints:
-        - "https"
+        - websecure
       rule: "Host(`jellyfin.lab.wool.homes`)"
       middlewares:
         - jellyfin-mw
@@ -10,61 +10,61 @@ http:
       service: jellyfin
     qbittorrent:
       entryPoints:
-        - "https"
+        - websecure
       rule: "Host(`torrent.lab.wool.homes`)"
       tls: {}
       service: qbittorrent
     prowlarr:
       entryPoints:
-        - "https"
+        - websecure
       rule: "Host(`prowlarr.lab.wool.homes`)"
       tls: {}
       service: prowlarr
     radarr:
       entryPoints:
-        - "https"
+        - websecure
       rule: "Host(`radarr.lab.wool.homes`)"
       tls: {}
       service: radarr
     sonarr:
       entryPoints:
-        - "https"
+        - websecure
       rule: "Host(`sonarr.lab.wool.homes`)"
       tls: {}
       service: sonarr
     readarr:
       entryPoints:
-        - "https"
+        - websecure
       rule: "Host(`readarr.lab.wool.homes`)"
       tls: {}
       service: readarr
     jellyseerr:
       entryPoints:
-        - "https"
+        - websecure
       rule: "Host(`jellyseerr.lab.wool.homes`)"
       tls: {}
       service: jellyseerr
     tdarr:
       entryPoints:
-        - "https"
+        - websecure
       rule: "Host(`tdarr.lab.wool.homes`)"
       tls: {}
       service: tdarr
     makemkv:
       entryPoints:
-        - "https"
+        - websecure
       rule: "Host(`makemkv.lab.wool.homes`)"
       tls: {}
       service: makemkv
     nzbget:
       entryPoints:
-        - "https"
+        - websecure
       rule: "Host(`nzbget.lab.wool.homes`)"
       tls: {}
       service: nzbget
     calibre:
       entryPoints:
-        - "https"
+        - websecure
       rule: "Host(`calibre.lab.wool.homes`)"
       tls: {}
       service: calibre

@@ -130,11 +130,6 @@
         siteMonitor: https://calibre.local.wool.homes/
 
 - Apps:
-    - FreshRSS:
-        href: https://rss.local.wool.homes
-        description: Aggregate RSS feeds for easy consumption
-        icon: freshrss.svg
-        siteMonitor: https://rss.local.wool.homes
     - Budibase:
         href: https://budibase.local.wool.homes/
         description: Airtable alternative

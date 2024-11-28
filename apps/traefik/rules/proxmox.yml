@@ -1,0 +1,41 @@
+####################################################################################
+# PROXMOX
+####################################################################################
+
+http:
+  routers:
+    proxmox:
+      rule: Host(`proxmox.lab.wool.homes`)
+      entrypoints:
+        - websecure
+      middlewares:
+        - default-headers
+        - https-redirectscheme
+      tls: {}
+      service: proxmox
+
+  services:
+    proxmox:
+      loadBalancer:
+        servers:
+          - url: "https://192.168.254.12:8006"
+        passHostHeader: true
+
+  middlewares:
+    default-headers:
+      headers:
+        frameDeny: true
+        browserXssFilter: true
+        contentTypeNosniff: true
+        forceSTSHeader: true
+        stsIncludeSubdomains: true
+        stsPreload: true
+        stsSeconds: 15552000
+        customFrameOptionsValue: SAMEORIGIN
+        customRequestHeaders:
+          X-Forwarded-Proto: https
+    https-redirectscheme:
+      redirectScheme:
+        scheme: https
+        port: 443
+        permanent: true

@@ -36,6 +36,7 @@ services:
 
   zipline-db:
     image: postgres:15
+    container_name: zipline-db
     restart: unless-stopped
     environment:
       - POSTGRES_USER=postgres

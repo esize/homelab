@@ -4,6 +4,7 @@
 
 services:
   stirling-pdf:
+    container_name: stirling-pdf
     image: stirlingtools/stirling-pdf:latest
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
     networks:

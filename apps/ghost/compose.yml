@@ -5,6 +5,7 @@ services:
     volumes:
       - ${DOCKER_DIRECTORY}/appdata/ghost/content:/var/lib/ghost/content
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    container_name: ghost
     environment:
       database__client: mysql
       database__connection__host: ghostdb
@@ -26,17 +27,18 @@ services:
       - traefik
 
   ghostdb:
-       image: mariadb:10.5.3
-       volumes:
-          - ${DOCKER_DIRECTORY}/appdata/ghost/db:/var/lib/mysql
-       restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
-       environment:
-          MYSQL_RANDOM_ROOT_PASSWORD: '1'
-          MYSQL_DATABASE: ghost
-          MYSQL_USER: mariadbuser
-          MYSQL_PASSWORD: mariadbpassword
-       networks:
-          - ghost
+    image: mariadb:10.5.3
+    container_name: ghostdb
+    volumes:
+      - ${DOCKER_DIRECTORY}/appdata/ghost/db:/var/lib/mysql
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+      MYSQL_DATABASE: ghost
+      MYSQL_USER: mariadbuser
+      MYSQL_PASSWORD: mariadbpassword
+    networks:
+      - ghost
 
 
 networks:

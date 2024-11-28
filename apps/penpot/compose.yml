@@ -5,6 +5,7 @@
 services:
   penpot-frontend:
     image: penpotapp/frontend:latest
+    container_name: penpot-frontend
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
     networks:
       traefik:
@@ -31,6 +32,7 @@ services:
 
   penpot-backend:
     image: penpotapp/backend:latest
+    container_name: penpot-backend
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
     networks:
       penpot:
@@ -52,6 +54,7 @@ services:
 
   penpot-exporter:
     image: penpotapp/exporter:latest
+    container_name: penpot-exporter
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
     networks:
       penpot:
@@ -61,6 +64,7 @@ services:
 
   penpot-postgres:
     image: postgres:15
+    container_name: penpot-postgres
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
     stop_signal: SIGINT
     networks:
@@ -75,6 +79,7 @@ services:
 
   penpot-redis:
     image: redis:7
+    container_name: penpot-redis
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
     networks:
       penpot:

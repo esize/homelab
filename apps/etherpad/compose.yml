@@ -1,6 +1,7 @@
 services:
   etherpad:
     image: etherpad/etherpad:latest
+    container_name: etherpad
     profiles: ["etherpad", "apps", "all"]
     user: 0:0
     tty: true
@@ -45,6 +46,7 @@ services:
 
   postgres:
     image: postgres:15-alpine
+    container_name: etherpad-postgres
     environment:
       POSTGRES_DB: ${DOCKER_COMPOSE_POSTGRES_DATABASE:-etherpad}
       POSTGRES_PASSWORD: ${DOCKER_COMPOSE_POSTGRES_PASSWORD:-admin}

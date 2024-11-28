@@ -38,6 +38,7 @@ services:
       homepage.description: Detects Changes
 
   playwright-chrome:
+    container_name: playwright-chrome
     hostname: playwright-chrome
     image: dgtlmoon/sockpuppetbrowser:latest
     profiles: ['changedetection', 'apps', 'all']

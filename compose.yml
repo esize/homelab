@@ -37,7 +37,7 @@ include:
   - apps/zipline/compose.yml # Zipline (File Sharing)
   - apps/pdf/compose.yml # Stirling PDF (PDF Tools)
   - apps/penpot/compose.yml # Penpot (Design)
-
+  - apps/freshrss/compose.yml # FreshRSS (News Feed Reader)
 
 ####################################################################################
 # NETWORK CONFIGURATION

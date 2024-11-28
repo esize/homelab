@@ -13,6 +13,7 @@ include:
   # CORE
   ################################################################################
   - apps/homepage/compose.yml # Homepage (It's a homepage...)
+  - apps/kestra/compose.yml # Kestra (Workflow Engine)
 
   ################################################################################
   # UTILITIES

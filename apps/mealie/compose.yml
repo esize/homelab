@@ -1,0 +1,65 @@
+####################################################################################
+# MEALIE
+####################################################################################
+
+services:
+  mealie:
+    image: ghcr.io/mealie-recipes/mealie:v2.3.0
+    container_name: mealie
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    volumes:
+      - ${DOCKER_DIRECTORY}/appdata/mealie/app:/app/data/
+    environment:
+      ALLOW_SIGNUP: "false"
+      PUID: 1000
+      PGID: 1000
+      TZ: America/New_York
+      BASE_URL: https://${MEALIE_SUBDOMAIN:-mealie}.${DOMAIN_NAME}
+
+      # Database Settings
+      DB_ENGINE: postgres
+      POSTGRES_USER: mealie
+      POSTGRES_PASSWORD: mealie
+      POSTGRES_SERVER: mealie-postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: mealie
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      traefik:
+      mealie:
+    labels:
+      traefik.enable: true
+      traefik.http.routers.mealie.rule: Host(`${MEALIE_SUBDOMAIN:-mealie}.${DOMAIN_NAME}`)
+      traefik.http.routers.mealie.entrypoints: websecure
+      traefik.http.routers.mealie.service: mealie
+      traefik.http.services.mealie.loadbalancer.server.port: 9000
+
+      homepage.group: Apps
+      homepage.name: Mealie
+      homepage.icon: mdi-food
+      homepage.href: https://${MEALIE_SUBDOMAIN:-mealie}.${DOMAIN_NAME}
+      homepage.description: Recipe Manager
+
+  postgres:
+    container_name: mealie-postgres
+    image: postgres:15
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    volumes:
+      - ${DOCKER_DIRECTORY}/appdata/mealie/postgres:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: mealie
+      POSTGRES_USER: mealie
+    networks:
+      mealie:
+    healthcheck:
+      test: ["CMD", "pg_isready"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+
+
+networks:
+  mealie:
+    external: false

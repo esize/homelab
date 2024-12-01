@@ -39,6 +39,7 @@ include:
   - apps/pdf/compose.yml # Stirling PDF (PDF Tools)
   - apps/penpot/compose.yml # Penpot (Design)
   - apps/freshrss/compose.yml # FreshRSS (News Feed Reader)
+  - apps/mealie/compose.yml # Mealie (Recipe Manager)
 
 ####################################################################################
 # NETWORK CONFIGURATION

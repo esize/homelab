@@ -24,7 +24,7 @@ services:
       POSTGRES_PORT: 5432
       POSTGRES_DB: mealie
     depends_on:
-      postgres:
+      mealie-postgres:
         condition: service_healthy
     networks:
       traefik:
@@ -42,7 +42,7 @@ services:
       homepage.href: https://${MEALIE_SUBDOMAIN:-mealie}.${DOMAIN_NAME}
       homepage.description: Recipe Manager
 
-  postgres:
+  mealie-postgres:
     container_name: mealie-postgres
     image: postgres:15
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}

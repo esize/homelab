@@ -41,9 +41,9 @@ services:
       homepage.icon: mdi-food
       homepage.href: https://${MEALIE_SUBDOMAIN:-mealie}.${DOMAIN_NAME}
       homepage.description: Recipe Manager
-      secrets:
-        - source: openai_api_key
-          target: OPENAI_API_KEY
+    secrets:
+      - source: openai_api_key
+        target: OPENAI_API_KEY
 
   mealie-postgres:
     container_name: mealie-postgres

@@ -7,7 +7,7 @@
         href: https://home.wool.homes/
         description: Smart Home hub
         icon: si-homeassistant
-        siteMonitor: https://home.local.wool.homes/
+        siteMonitor: https://home.lab.wool.homes/
         widget:
           type: homeassistant
           url: https://home.wool.homes/
@@ -29,39 +29,12 @@
         href: https://proxmox.lab.wool.homes/
         description: Enterprise Virtualization Platform
         icon: si-proxmox
-        siteMonitor: https://proxmox.local.wool.homes/
+        siteMonitor: https://proxmox.lab.wool.homes/
     - PiHole:
         href: http://pi.hole/admin/login.php/
         description: Ad Blocking and Local DNS
         icon: si-pihole
         siteMonitor: http://pi.hole/admin/
-    - Ansible Semaphore:
-        href: https://ansible.local.wool.homes
-        description: Ansible Semaphore dashboard and automations.
-        icon: si-ansible
-        siteMonitor: https://ansible.local.wool.homes
-
-- Enterprise:
-    - Business Central:
-        href: https://business.local.wool.homes/business-central/
-        description: Business process management
-        icon: https://drools.org/headerFooter/droolsIcon.png
-        siteMonitor: https://business.local.wool.homes/
-    - OrangeHRM:
-        href: https://hr.local.wool.homes/
-        description: HR Management System
-        icon: https://avatars3.githubusercontent.com/u/11557709?s=280&v=4
-        siteMonitor: https://hr.local.wool.homes/
-    - OpenEMR:
-        href: https://openemr.local.wool.homes/
-        description: Electronic Health Record System
-        icon: https://www.open-emr.org/wiki/images/d/de/Menu-logo-large.png
-        siteMonitor: https://openemr.local.wool.homes/
-    - Keycloak:
-        href: https://keycloak.local.wool.homes/
-        description: LDAP
-        icon: si-keycloak
-        siteMonitor: https://keycloak.local.wool.homes/
 
 - Media:
     - Jellyfin:
@@ -92,7 +65,7 @@
         href: https://nzbget.lab.wool.homes/
         description: Usenet NZB client
         icon: nzbget.png
-        siteMonitor: https://nzbget.local.wool.homes/
+        siteMonitor: https://nzbget.lab.wool.homes/
     - qBittorrent:
         href: https://torrent.lab.wool.homes/
         description: Bittorrent Client
@@ -112,7 +85,7 @@
         href: https://readarr.lab.wool.homes/
         description: Book manager and automation
         icon: readarr.svg
-        siteMonitor: https://readarr.local.wool.homes/
+        siteMonitor: https://readarr.lab.wool.homes/
     - Tdarr:
         href: https://tdarr.lab.wool.homes/
         description: Transcoding manager and automation

@@ -17,19 +17,16 @@ services:
       POSTGRES_USER: ${POSTGRES_USER-nextcloud}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD-nextcloud}
     healthcheck:
-      test: ["CMD", "pg_isready"]
+      test: ["CMD", "pg_isready", "-U", "nextcloud"]
       interval: 30s
       timeout: 20s
       retries: 3
     networks:
       nextcloud:
-    expose:
-      - 5432
 
   nextcloud-redis:
     image: redis:alpine
     container_name: nextcloud-redis
-    hostname: nextcloud-redis
     networks:
       nextcloud:
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
@@ -41,15 +38,16 @@ services:
     container_name: nextcloud-app
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
     depends_on:
-      - nextcloud-db
-      - nextcloud-redis
+      nextcloud-db:
+        condition: service_healthy
+      nextcloud-redis:
     profiles: ["all", "apps", "nextcloud"]
     environment:
-      REDIS_HOST: nextcloud-redis:6379
+      REDIS_HOST: nextcloud-redis
       POSTGRES_DB: ${POSTGRES_DB-nextcloud}
       POSTGRES_USER: ${POSTGRES_USER-nextcloud}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD-nextcloud}
-      POSTGRES_HOST: nextcloud-db:5432
+      POSTGRES_HOST: nextcloud-db
       NEXTCLOUD_TRUSTED_DOMAINS: ${NEXTCLOUD_SUBDOMAIN:-nextcloud}.${DOMAIN_NAME}
       NEXTCLOUD_UPDATE: 1
       NEXTCLOUD_DATA_DIR: /media/nextcloud
@@ -59,9 +57,6 @@ services:
     volumes:
       - ${DOCKER_DIRECTORY}/appdata/nextcloud/html:/var/www/html
       - /media/nextcloud:/media/nextcloud
-    links:
-      - nextcloud-db
-      - nextcloud-redis
     labels:
       traefik.enable: true
       traefik.http.routers.nextcloud.rule: Host(`${NEXTCLOUD_SUBDOMAIN:-nextcloud}.${DOMAIN_NAME}`)
@@ -90,8 +85,9 @@ services:
       - /media/nextcloud:/media/nextcloud
     entrypoint: /cron.sh
     depends_on:
-      - nextcloud-db
-      - nextcloud-redis
+      nextcloud-db:
+        condition: service_healthy
+      nextcloud-redis:
     networks:
       nextcloud:
 

@@ -1,0 +1,98 @@
+####################################################################################
+# NEXTCLOUD
+####################################################################################
+
+services:
+  nextcloud-db:
+    image: postgres:15-alpine
+    container_name: nextcloud-db
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    profiles: ["all", "apps", "nextcloud"]
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - ${DOCKER_DIRECTORY}/appdata/nextcloud/database:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    healthcheck:
+      test: ["CMD", "pg_isready"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+
+  nextcloud-redis:
+    image: redis:alpine
+    container_name: nextcloud-redis
+    hostname: nextcloud-redis
+    networks:
+      nextcloud:
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    profiles: ["all", "apps", "nextcloud"]
+    command: redis-server --requirepass ${REDIS_PASSWORD}
+
+  nextcloud-app:
+    image: nextcloud:latest
+    container_name: nextcloud-app
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    depends_on:
+      - nextcloud-db
+      - nextcloud-redis
+    profiles: ["all", "apps", "nextcloud"]
+    environment:
+      REDIS_HOST: nextcloud-redis
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_HOST: nextcloud-db
+      NEXTCLOUD_TRUSTED_DOMAINS: ${NEXTCLOUD_SUBDOMAIN:-nextcloud}.${DOMAIN_NAME}
+      NEXTCLOUD_UPDATE: 1
+    volumes:
+      - ${DOCKER_DIRECTORY}/appdata/nextcloud/html:/var/www/html
+      - nextcloud-media:/media
+    links:
+      - nextcloud-db
+    labels:
+      traefik.enable: true
+      traefik.http.routers.nextcloud.rule: Host(`${NEXTCLOUD_SUBDOMAIN:-nextcloud}.${DOMAIN_NAME}`)
+      traefik.http.routers.nextcloud.entrypoints: websecure
+      traefik.http.routers.nextcloud.service: nextcloud
+      traefik.http.services.nextcloud.loadbalancer.server.port: 80
+      traefik.http.routers.nextcloud.middlewares: "nextcloud-dav"
+      traefik.http.middlewares.nextcloud-dav.replacepathregex.regex: "^/.well-known/ca(l|rd)dav"
+      traefik.http.middlewares.nextcloud-dav.replacepathregex.replacement: "/remote.php/dav/"
+
+      homepage.group: Apps
+      homepage.name: NextCloud
+      homepage.icon: nextcloud.svg
+      homepage.href: https://${NEXTCLOUD_SUBDOMAIN:-nextcloud}.${DOMAIN_NAME}
+      homepage.description: "The cloud™"
+    networks:
+      traefik:
+      nextcloud:
+
+  nextcloud-cron:
+    image: nextcloud:latest
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    profiles: ["all", "apps", "nextcloud"]
+    volumes:
+      - ${DOCKER_DIRECTORY}/appdata/nextcloud/html:/var/www/html
+    entrypoint: /cron.sh
+    depends_on:
+      - nextcloud-db
+      - nextcloud-redis
+    networks:
+      nextcloud:
+
+networks:
+  nextcloud:
+    external: false
+
+volumes:
+  nextcloud-media:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /media

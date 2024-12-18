@@ -30,6 +30,11 @@
         description: Enterprise Virtualization Platform
         icon: si-proxmox
         siteMonitor: https://proxmox.lab.wool.homes/
+    - Proxmox Backup Server:
+        href: https://pbs.lab.wool.homes/
+        description: Enterprise Backup Platform
+        icon: mdi-backup-restore
+        siteMonitor: https://pbs.lab.wool.homes/
     - PiHole:
         href: http://pi.hole/admin/login.php/
         description: Ad Blocking and Local DNS

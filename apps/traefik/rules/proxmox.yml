@@ -13,6 +13,15 @@ http:
         - https-redirectscheme
       tls: {}
       service: proxmox
+    pbs:
+      rule: Host(`pbs.lab.wool.homes`)
+      entrypoints:
+        - websecure
+      middlewares:
+        - default-headers
+        - https-redirectscheme
+      tls: {}
+      service: pbs
 
   services:
     proxmox:
@@ -20,6 +29,12 @@ http:
         serversTransport: "pve"
         servers:
           - url: "https://192.168.254.201:8006"
+        passHostHeader: true
+    pbs:
+      loadBalancer:
+        serversTransport: "pve"
+        servers:
+          - url: "https://192.168.254.200:8007"
         passHostHeader: true
   serversTransports:
     pve:

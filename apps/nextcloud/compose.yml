@@ -21,6 +21,8 @@ services:
       interval: 30s
       timeout: 20s
       retries: 3
+    expose:
+      - 5432
 
   nextcloud-redis:
     image: redis:alpine
@@ -48,6 +50,7 @@ services:
       POSTGRES_HOST: nextcloud-db
       NEXTCLOUD_TRUSTED_DOMAINS: ${NEXTCLOUD_SUBDOMAIN:-nextcloud}.${DOMAIN_NAME}
       NEXTCLOUD_UPDATE: 1
+      NEXTCLOUD_DATA_DIR: /media
     volumes:
       - ${DOCKER_DIRECTORY}/appdata/nextcloud/html:/var/www/html
       - nextcloud-media:/media

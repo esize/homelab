@@ -53,7 +53,7 @@ services:
       NEXTCLOUD_DATA_DIR: /var/www/html/data
     volumes:
       - ${DOCKER_DIRECTORY}/appdata/nextcloud/html:/var/www/html
-      - nextcloud-media:/var/www/html/data
+      - /media/nextcloud:/var/www/html/data
     links:
       - nextcloud-db
     labels:
@@ -91,11 +91,3 @@ services:
 networks:
   nextcloud:
     external: false
-
-volumes:
-  nextcloud-media:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: /media

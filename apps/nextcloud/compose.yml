@@ -35,7 +35,7 @@ services:
     command: redis-server --requirepass
 
   nextcloud-app:
-    image: nextcloud:latest
+    image: nextcloud:apache
     container_name: nextcloud-app
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
     depends_on:

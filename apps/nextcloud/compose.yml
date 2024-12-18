@@ -41,6 +41,7 @@ services:
       nextcloud-db:
         condition: service_healthy
       nextcloud-redis:
+        condition: service_started
     profiles: ["all", "apps", "nextcloud"]
     environment:
       REDIS_HOST: nextcloud-redis
@@ -88,6 +89,7 @@ services:
       nextcloud-db:
         condition: service_healthy
       nextcloud-redis:
+        condition: service_started
     networks:
       nextcloud:
 

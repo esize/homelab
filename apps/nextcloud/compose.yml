@@ -44,7 +44,7 @@ services:
         condition: service_started
     profiles: ["all", "apps", "nextcloud"]
     environment:
-      REDIS_HOST: nextcloud-redis
+      REDIS_HOST: nextcloud-redis:6379
       POSTGRES_DB: ${POSTGRES_DB-nextcloud}
       POSTGRES_USER: ${POSTGRES_USER-postgres}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD-nextcloud}

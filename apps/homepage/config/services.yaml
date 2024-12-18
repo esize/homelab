@@ -7,7 +7,7 @@
         href: https://home.wool.homes/
         description: Smart Home hub
         icon: si-homeassistant
-        siteMonitor: https://home.lab.wool.homes/
+        siteMonitor: https://home.wool.homes/
         widget:
           type: homeassistant
           url: https://home.wool.homes/

@@ -54,6 +54,7 @@ services:
       NEXTCLOUD_DATA_DIR: /media/nextcloud
     command: >
       bash -c 'chown www-data:www-data /media/nextcloud
+      && chown www-data:www-data /var/www/html
       && /entrypoint.sh apache2-foreground'
     volumes:
       - ${DOCKER_DIRECTORY}/appdata/nextcloud/html:/var/www/html

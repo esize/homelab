@@ -14,10 +14,10 @@ services:
       - ${DOCKER_DIRECTORY}/appdata/nextcloud/database:/var/lib/postgresql/data
     environment:
       POSTGRES_DB: ${POSTGRES_DB-nextcloud}
-      POSTGRES_USER: ${POSTGRES_USER-nextcloud}
+      POSTGRES_USER: ${POSTGRES_USER-postgres}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD-nextcloud}
     healthcheck:
-      test: ["CMD", "pg_isready", "-U", "nextcloud"]
+      test: ["CMD", "pg_isready", "-U", "postgres"]
       interval: 30s
       timeout: 20s
       retries: 3
@@ -46,7 +46,7 @@ services:
     environment:
       REDIS_HOST: nextcloud-redis
       POSTGRES_DB: ${POSTGRES_DB-nextcloud}
-      POSTGRES_USER: ${POSTGRES_USER-nextcloud}
+      POSTGRES_USER: ${POSTGRES_USER-postgres}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD-nextcloud}
       POSTGRES_HOST: nextcloud-db
       NEXTCLOUD_TRUSTED_DOMAINS: ${NEXTCLOUD_SUBDOMAIN:-nextcloud}.${DOMAIN_NAME}

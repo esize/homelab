@@ -50,10 +50,10 @@ services:
       POSTGRES_HOST: nextcloud-db
       NEXTCLOUD_TRUSTED_DOMAINS: ${NEXTCLOUD_SUBDOMAIN:-nextcloud}.${DOMAIN_NAME}
       NEXTCLOUD_UPDATE: 1
-      NEXTCLOUD_DATA_DIR: /media
+      NEXTCLOUD_DATA_DIR: /var/www/media
     volumes:
       - ${DOCKER_DIRECTORY}/appdata/nextcloud/html:/var/www/html
-      - nextcloud-media:/media
+      - nextcloud-media:/var/www/media
     links:
       - nextcloud-db
     labels:

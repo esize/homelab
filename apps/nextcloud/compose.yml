@@ -50,10 +50,13 @@ services:
       POSTGRES_HOST: nextcloud-db
       NEXTCLOUD_TRUSTED_DOMAINS: ${NEXTCLOUD_SUBDOMAIN:-nextcloud}.${DOMAIN_NAME}
       NEXTCLOUD_UPDATE: 1
-      NEXTCLOUD_DATA_DIR: /var/www/html/data
+      NEXTCLOUD_DATA_DIR: /media/nextcloud
+    command: >
+      bash -c 'chown www-data:www-data /media/nextcloud
+      && /entrypoint.sh apache2-foreground'
     volumes:
       - ${DOCKER_DIRECTORY}/appdata/nextcloud/html:/var/www/html
-      - /media/nextcloud:/var/www/html/data
+      - /media/nextcloud:/media/nextcloud
     links:
       - nextcloud-db
     labels:

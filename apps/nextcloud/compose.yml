@@ -29,6 +29,9 @@ services:
     container_name: collabora
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
     profiles: ["all", "apps", "nextcloud"]
+    networks:
+      nextcloud:
+      traefik:
     environment:
       password: ${COLLABORA_PASSWORD-collabora}
       username: ${COLLABORA_USERNAME-collabora}

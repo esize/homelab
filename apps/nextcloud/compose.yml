@@ -30,8 +30,8 @@ services:
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
     profiles: ["all", "apps", "nextcloud"]
     networks:
-      nextcloud:
       traefik:
+      nextcloud:
     environment:
       password: ${COLLABORA_PASSWORD-collabora}
       username: ${COLLABORA_USERNAME-collabora}

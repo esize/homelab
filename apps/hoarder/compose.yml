@@ -16,6 +16,18 @@ services:
       MEILI_ADDR: http://meilisearch:7700
       BROWSER_WEB_URL: http://chrome:9222
       DATA_DIR: /data
+    labels:
+      traefik.enable: true
+      traefik.http.routers.hoarder.rule: Host(`${HOARDER_SUBDOMAIN:-hoarder}.${DOMAIN_NAME}`)
+      traefik.http.routers.hoarder.entrypoints: websecure
+      traefik.http.routers.hoarder.service: changedetection
+      traefik.http.services.hoarder.loadbalancer.server.port: 3000
+
+      homepage.group: Apps
+      homepage.name: Hoarder
+      homepage.icon: hoarder.svg
+      homepage.href: https://${HOARDER_SUBDOMAIN:-hoarder}.${DOMAIN_NAME}
+      homepage.description: The bookmark everything app
   chrome:
     image: gcr.io/zenika-hub/alpine-chrome:123
     profiles: ['hoarder', 'apps', 'all']

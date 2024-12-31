@@ -50,3 +50,6 @@ services:
     volumes:
       - ${DOCKER_DIRECTORY}/appdata/hoarder/search:/data
 
+networks:
+  hoarder:
+    external: false

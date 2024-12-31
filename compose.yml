@@ -40,7 +40,6 @@ include:
   - apps/penpot/compose.yml # Penpot (Design)
   - apps/freshrss/compose.yml # FreshRSS (News Feed Reader)
   - apps/mealie/compose.yml # Mealie (Recipe Manager)
-  - apps/nextcloud/compose.yml # Nextcloud
   - apps/hoarder/compose.yml # Hoarder
 
 ####################################################################################

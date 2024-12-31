@@ -13,6 +13,10 @@ services:
       traefik:
       hoarder:
     environment:
+      HOARDER_VERSION: release
+      NEXTAUTH_SECRET: super_secret_string
+      NEXTAUTH_URL: https://${HOARDER_SUBDOMAIN:-hoarder}.${DOMAIN_NAME}
+      MEILI_MASTER_KEY: strong_secret
       MEILI_ADDR: http://meilisearch:7700
       BROWSER_WEB_URL: http://chrome:9222
       DATA_DIR: /data
@@ -32,6 +36,11 @@ services:
     image: gcr.io/zenika-hub/alpine-chrome:123
     profiles: ['hoarder', 'apps', 'all']
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    environment:
+      HOARDER_VERSION: release
+      NEXTAUTH_SECRET: super_secret_string
+      NEXTAUTH_URL: https://${HOARDER_SUBDOMAIN:-hoarder}.${DOMAIN_NAME}
+      MEILI_MASTER_KEY: strong_secret
     command:
       - --no-sandbox
       - --disable-gpu
@@ -47,6 +56,10 @@ services:
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
     environment:
       MEILI_NO_ANALYTICS: "true"
+      HOARDER_VERSION: release
+      NEXTAUTH_SECRET: super_secret_string
+      NEXTAUTH_URL: https://${HOARDER_SUBDOMAIN:-hoarder}.${DOMAIN_NAME}
+      MEILI_MASTER_KEY: strong_secret
     volumes:
       - ${DOCKER_DIRECTORY}/appdata/hoarder/search:/data
 

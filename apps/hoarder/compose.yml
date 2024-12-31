@@ -54,6 +54,8 @@ services:
     image: getmeili/meilisearch:v1.11.1
     profiles: ['hoarder', 'apps', 'all']
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    networks:
+      hoarder:
     environment:
       MEILI_NO_ANALYTICS: "true"
       HOARDER_VERSION: release

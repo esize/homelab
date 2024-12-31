@@ -24,7 +24,7 @@ services:
       traefik.enable: true
       traefik.http.routers.hoarder.rule: Host(`${HOARDER_SUBDOMAIN:-hoarder}.${DOMAIN_NAME}`)
       traefik.http.routers.hoarder.entrypoints: websecure
-      traefik.http.routers.hoarder.service: changedetection
+      traefik.http.routers.hoarder.service: hoarder
       traefik.http.services.hoarder.loadbalancer.server.port: 3000
 
       homepage.group: Apps

@@ -1,0 +1,55 @@
+################################################################################
+# YOUR SPOTIFY
+################################################################################
+
+services:
+  server:
+    image: yooooomi/your_spotify_server
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    links:
+      - mongo
+    depends_on:
+      - mongo
+    environment:
+      API_ENDPOINT: https://${YOUR_SPOTIFY_SERVER_SUBDOMAIN:-your-spotify-server}.${DOMAIN_NAME} # This MUST be included as a valid URL in the spotify dashboard (see below)
+      CLIENT_ENDPOINT: https://${YOUR_SPOTIFY_WEB_SUBDOMAIN:-your-spotify}.${DOMAIN_NAME}
+    networks:
+      internal:
+      traefik:
+    env_file:
+      - .env
+    labels:
+      traefik.enable: true
+      traefik.http.routers.your-spotify-server.rule: Host(`${YOUR_SPOTIFY_SERVER_SUBDOMAIN:-your-spotify-server}.${DOMAIN_NAME}`)
+      traefik.http.routers.your-spotify-server.entrypoints: websecure
+      traefik.http.routers.your-spotify-server.service: your-spotify-server
+      traefik.http.services.your-spotify-server.loadbalancer.server.port: 8080
+    
+  mongo:
+    container_name: mongo
+    image: mongo:6
+    networks:
+      traefik:
+    volumes:
+      -  ${DOCKER_DIRECTORY}/appdata/your-spotify:/data/db
+
+  web:
+    image: yooooomi/your_spotify_client
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    networks:
+      internal:
+      traefik:
+    environment:
+      API_ENDPOINT: ${YOUR_SPOTIFY_SERVER_SUBDOMAIN:-your-spotify-server}.${DOMAIN_NAME} # This MUST be included as a valid URL in the spotify dashboard (see below)
+    labels:
+      traefik.enable: true
+      traefik.http.routers.your-spotify-web.rule: Host(`${YOUR_SPOTIFY_WEB_SUBDOMAIN:-your-spotify}.${DOMAIN_NAME}`)
+      traefik.http.routers.your-spotify-web.entrypoints: websecure
+      traefik.http.routers.your-spotify-web.service: your-spotify-web
+      traefik.http.services.your-spotify-web.loadbalancer.web.port: 3000
+
+      homepage.group: Apps
+      homepage.name: Your Spotify
+      homepage.icon: si-spotify
+      homepage.href: https://${YOUR_SPOTIFY_WEB_SUBDOMAIN:-your-spotify}.${DOMAIN_NAME}
+      homepage.description: Self hosted Spotify tracking dashboard

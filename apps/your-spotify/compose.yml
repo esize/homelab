@@ -27,7 +27,7 @@ services:
       traefik.http.services.your-spotify-server.loadbalancer.server.port: 8080
     
   mongo:
-    container_name: your-spotify-mongo
+    container_name: mongo
     image: mongo:6
     networks:
       internal:

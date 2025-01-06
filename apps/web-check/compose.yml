@@ -7,6 +7,8 @@ services:
     image: lissy93/web-check
     container_name: web-check
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    env_file:
+      - .env
     networks:
       traefik:
     labels:

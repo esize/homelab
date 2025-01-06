@@ -29,7 +29,7 @@ services:
   mongo:
     container_name: mongo
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
-    image: mongo
+    image: mongo:4.4
     networks:
       internal:
     volumes:

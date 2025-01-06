@@ -35,6 +35,7 @@ include:
   - apps/mealie/compose.yml # Mealie (Recipe Manager)
   - apps/hoarder/compose.yml # Hoarder
   - apps/web-check/compose.yml # Web Check
+  - apps/your-spotify/compose.yml # Your Spotify
 
 ####################################################################################
 # NETWORK CONFIGURATION

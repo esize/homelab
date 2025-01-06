@@ -4,6 +4,7 @@
 
 services:
   server:
+    container_name: your-spotify-server
     image: yooooomi/your_spotify_server
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
     links:
@@ -26,14 +27,15 @@ services:
       traefik.http.services.your-spotify-server.loadbalancer.server.port: 8080
     
   mongo:
-    container_name: mongo
+    container_name: your-spotify-mongo
     image: mongo:6
     networks:
-      traefik:
+      internal:
     volumes:
       -  ${DOCKER_DIRECTORY}/appdata/your-spotify:/data/db
 
   web:
+    container_name: your-spotify-web
     image: yooooomi/your_spotify_client
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
     networks:

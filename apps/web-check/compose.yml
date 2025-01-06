@@ -1,0 +1,23 @@
+################################################################################
+# WEB CHECK
+################################################################################
+
+services:
+  web-check:
+    image: lissy93/web-check
+    container_name: web-check
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    networks:
+      traefik:
+    labels:
+      traefik.enable: true
+      traefik.http.routers.web-check.rule: Host(`${WEB_CHECK_SUBDOMAIN:-web-check}.${DOMAIN_NAME}`)
+      traefik.http.routers.web-check.entrypoints: websecure
+      traefik.http.routers.web-check.service: web-check
+      traefik.http.services.web-check.loadbalancer.server.port: 3000
+
+      homepage.group: Dev
+      homepage.name: Web Check
+      homepage.icon: mdi-shield-check
+      homepage.href: https://${WEB_CHECK_SUBDOMAIN:-web-check}.${DOMAIN_NAME}
+      homepage.description: X-Ray Vision for your Website

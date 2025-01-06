@@ -34,6 +34,7 @@ include:
   - apps/freshrss/compose.yml # FreshRSS (News Feed Reader)
   - apps/mealie/compose.yml # Mealie (Recipe Manager)
   - apps/hoarder/compose.yml # Hoarder
+  - apps/web-check/compose.yml # Web Check
 
 ####################################################################################
 # NETWORK CONFIGURATION

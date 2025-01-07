@@ -38,6 +38,7 @@ services:
     container_name: your-spotify-web
     image: yooooomi/your_spotify_client
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    # Port 3000
     networks:
       traefik:
       internal:
@@ -48,13 +49,13 @@ services:
       TIMEZONE: America/New_York
     labels:
       traefik.enable: true
-      traefik.http.routers.your-spotify-web.rule: Host(`${YOUR_SPOTIFY_WEB_SUBDOMAIN:-your-spotify}.${DOMAIN_NAME}`)
-      traefik.http.routers.your-spotify-web.entrypoints: websecure
-      traefik.http.routers.your-spotify-web.service: your-spotify-web
-      traefik.http.services.your-spotify-web.loadbalancer.web.port: 3000
+      traefik.http.routers.music-history.rule: Host(`${YOUR_SPOTIFY_SUBDOMAIN:-music-history}.${DOMAIN_NAME}`)
+      traefik.http.routers.music-history.entrypoints: websecure
+      traefik.http.routers.music-history.service: music-history
+      traefik.http.services.music-history.loadbalancer.server.port: 3000
 
       homepage.group: Apps
       homepage.name: Your Spotify
       homepage.icon: si-spotify
-      homepage.href: https://${YOUR_SPOTIFY_WEB_SUBDOMAIN:-your-spotify}.${DOMAIN_NAME}
+      homepage.href: https://${YOUR_SPOTIFY_SUBDOMAIN:-music-history}.${DOMAIN_NAME}
       homepage.description: Self hosted Spotify tracking dashboard

@@ -37,10 +37,11 @@ services:
     image: yooooomi/your_spotify_client
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
     networks:
-      internal:
       traefik:
+      internal:
     environment:
       API_ENDPOINT: ${YOUR_SPOTIFY_SERVER_SUBDOMAIN:-your-spotify-server}.${DOMAIN_NAME} # This MUST be included as a valid URL in the spotify dashboard (see below)
+      CLIENT_ENDPOINT: https://${YOUR_SPOTIFY_WEB_SUBDOMAIN:-your-spotify}.${DOMAIN_NAME}
     labels:
       traefik.enable: true
       traefik.http.routers.your-spotify-web.rule: Host(`${YOUR_SPOTIFY_WEB_SUBDOMAIN:-your-spotify}.${DOMAIN_NAME}`)

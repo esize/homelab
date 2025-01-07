@@ -7,10 +7,7 @@ services:
     container_name: your-spotify-server
     image: yooooomi/your_spotify_server
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
-    links:
-      - mongo
-    depends_on:
-      - mongo
+
     environment:
       API_ENDPOINT: https://${YOUR_SPOTIFY_SERVER_SUBDOMAIN:-your-spotify-server}.${DOMAIN_NAME} # This MUST be included as a valid URL in the spotify dashboard (see below)
       CLIENT_ENDPOINT: https://${YOUR_SPOTIFY_WEB_SUBDOMAIN:-your-spotify}.${DOMAIN_NAME}

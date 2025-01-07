@@ -1,0 +1,23 @@
+################################################################################
+# PENPOT
+################################################################################
+
+services:
+  convertx:
+    image: ghcr.io/c4illin/convertx
+    container_name: convertx
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    volumes: 
+      - ${DOCKER_DIRECTORY}/appdata/convertx:/app/data
+    labels:
+      traefik.enable: true
+      traefik.http.routers.convertx.rule: Host(`${CONVERTX_SUBDOMAIN:-convert}.${DOMAIN_NAME}`)
+      traefik.http.routers.convertx.entrypoints: websecure
+      traefik.http.routers.convertx.service: convertx
+      traefik.http.services.convertx.loadbalancer.server.port: 3000
+
+      homepage.group: Apps
+      homepage.name: ConvertX
+      homepage.icon: mdi-swap-horizontal
+      homepage.href: https://${CONVERTX_SUBDOMAIN:-convert}.${DOMAIN_NAME}
+      homepage.description: Self hosted online file converter

@@ -36,6 +36,7 @@ include:
   - apps/hoarder/compose.yml # Hoarder
   - apps/web-check/compose.yml # Web Check
   - apps/your-spotify/compose.yml # Your Spotify
+  - apps/convertx/compose.yml # ConvertX
 
 ####################################################################################
 # NETWORK CONFIGURATION

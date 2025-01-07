@@ -43,7 +43,7 @@ services:
       traefik:
       internal:
     environment:
-      API_ENDPOINT: ${YOUR_SPOTIFY_SERVER_SUBDOMAIN:-your-spotify-server}.${DOMAIN_NAME} # This MUST be included as a valid URL in the spotify dashboard (see below)
+      API_ENDPOINT: https://${YOUR_SPOTIFY_SERVER_SUBDOMAIN:-your-spotify-server}.${DOMAIN_NAME} # This MUST be included as a valid URL in the spotify dashboard (see below)
       CLIENT_ENDPOINT: https://${YOUR_SPOTIFY_SUBDOMAIN:-music-history}.${DOMAIN_NAME}
       LOG_LEVEL: debug
       TIMEZONE: America/New_York

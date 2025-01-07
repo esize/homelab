@@ -9,6 +9,8 @@ services:
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
     volumes: 
       - ${DOCKER_DIRECTORY}/appdata/convertx:/app/data
+    networks:
+      traefik:
     labels:
       traefik.enable: true
       traefik.http.routers.convertx.rule: Host(`${CONVERTX_SUBDOMAIN:-convert}.${DOMAIN_NAME}`)

@@ -21,18 +21,18 @@
       description: Time Keeping and Business Processes
 
 - Personal:
-    - YouTube:
-        - icon: si-youtube
-          href: https://youtube.com
-          description:
-    - Proton Mail:
-        - icon: si-protonmail
-          href: https://mail.proton.me/u/0/inbox
-          description:
-    - Amazon:
-        - icon: si-amazon
-          href: https://amazon.com/gp/css/order-history
-          description:
+  - YouTube:
+    - icon: si-youtube
+      href: https://youtube.com
+      description:
+  - Proton Mail:
+    - icon: si-protonmail
+      href: https://mail.proton.me/u/0/inbox
+      description:
+  - Amazon:
+    - icon: si-amazon
+      href: https://amazon.com/gp/css/order-history
+      description:
 
 - School:
   - Canvas:
@@ -49,15 +49,15 @@
       href: https://hccfl-my.sharepoint.com/my      
 
 - Developer:
-    - Github:
-        - icon: si-github
-          href: https://github.com/esize?tab=repositories
-    - Simple Icons:
-        - icon: si-simpleicons
-          href: https://simpleicons.org/
-    - Dashboard Icons:
-        - icon: mdi-view-dashboard
-          href: https://github.com/walkxcode/dashboard-icons/tree/main/svg
-    - MDI:
-        - icon: mdi-vector-square
-          href: https://pictogrammers.com/library/mdi/
+  - Github:
+    - icon: si-github
+      href: https://github.com/esize?tab=repositories
+  - Simple Icons:
+    - icon: si-simpleicons
+      href: https://simpleicons.org/
+  - Dashboard Icons:
+    - icon: mdi-view-dashboard
+      href: https://github.com/walkxcode/dashboard-icons/tree/main/svg
+  - MDI:
+    - icon: mdi-vector-square
+      href: https://pictogrammers.com/library/mdi/

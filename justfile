@@ -1,6 +1,9 @@
 up:
     docker compose -f compose.yml --profile all up -d --remove-orphans
 
+pull:
+    docker compose -f compose.yml --profile all pull
+
 down:
     docker compose -f compose.yml --profile all down
 

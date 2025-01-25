@@ -17,6 +17,8 @@ services:
       TRUSTED_PROXIES: 127.0.0.0/8,::1,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16
       DEFAULT_URI: https://${PARTDB_SUBDOMAIN:-partdb}.${DOMAIN_NAME}/
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    env_file:
+      - .env
     networks:
       traefik:
 

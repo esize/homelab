@@ -56,7 +56,7 @@ services:
       internal:
     volumes:
       - ${DOCKER_DIRECTORY}/appdata/forgejo/runner:/data
-    command: "forgejo-runner daemon"
+    # command: "forgejo-runner daemon"
     depends_on:
       docker-in-docker:
         condition: service_started

@@ -1,6 +1,6 @@
 services:
   forgejo:
-    image: codeberg.org/forgejo/forgejo:9
+    image: codeberg.org/forgejo/forgejo:10
     container_name: forgejo
     profiles: ["forgejo", "apps", "all"]
     environment:

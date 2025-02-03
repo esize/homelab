@@ -45,7 +45,7 @@ services:
       internal:
 
   runner:
-    image: code.forgejo.org/forgejo/runner:4.0.1
+    image: code.forgejo.org/forgejo/runner:6
     container_name: forgejo_runner
     profiles: ["forgejo", "apps", "all"]
     environment:

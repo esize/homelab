@@ -2,7 +2,7 @@
 # KOMODO
 ####################################
 services:
-  core:
+  komodo-core:
     container_name: komodo-core
     image: ghcr.io/mbecker20/komodo:${COMPOSE_KOMODO_IMAGE_TAG:-latest}
     profiles: ["apps", "all", "komodo"]
@@ -33,7 +33,7 @@ services:
     volumes:
       - ${DOCKER_DIRECTORY}/appdata/komodo/repo-cache:/repo-cache
 
-  periphery:
+  komodo-periphery:
     container_name: komodo-periphery
     image: ghcr.io/mbecker20/periphery:${COMPOSE_KOMODO_IMAGE_TAG:-latest}
     profiles: ["apps", "all", "komodo"]

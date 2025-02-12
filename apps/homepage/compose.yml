@@ -11,6 +11,8 @@ secrets:
     file: ${DOCKER_DIRECTORY}/secrets/homepage/proxmox.secret
   jellyfin_api_key:
     file: ${DOCKER_DIRECTORY}/secrets/homepage/jellyfin.secret
+  jellyseerr_api_key:
+    file: ${DOCKER_DIRECTORY}/secrets/homepage/jellyseerr.secret
 
 
 

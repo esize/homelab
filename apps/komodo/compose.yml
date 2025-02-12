@@ -34,7 +34,7 @@ services:
       - ${DOCKER_DIRECTORY}/appdata/komodo/repo-cache:/repo-cache
 
   periphery:
-    container_name: komodo-core
+    container_name: komodo-periphery
     image: ghcr.io/mbecker20/periphery:${COMPOSE_KOMODO_IMAGE_TAG:-latest}
     profiles: ["apps", "all", "komodo"]
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}

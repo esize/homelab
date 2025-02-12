@@ -11,7 +11,7 @@
         widget:
           type: homeassistant
           url: https://home.wool.homes/
-          key: { { HOMEPAGE_FILE_HOMEASSISTANT_API_KEY_FILE } }
+          key: {{ HOMEPAGE_FILE_HOMEASSISTANT_API_KEY_FILE }}
           fields:
             - lights_on
             - switches_on
@@ -49,7 +49,7 @@
         siteMonitor: https://jellyfin.lab.wool.homes/
         widget:
           type: jellyfin
-          url: https://jellyfin.lab.wool.homes
+          url: http://192.168.254.13:8096
           key: {{ HOMEPAGE_FILE_JELLYFIN_API_KEY_FILE }}
           enableBlocks: true # optional, defaults to false
           enableNowPlaying: true # optional, defaults to true

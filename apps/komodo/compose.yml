@@ -15,8 +15,8 @@ services:
     env_file: ./compose.env
     environment:
       KOMODO_DATABASE_ADDRESS: mongo:27017
-      KOMODO_DATABASE_USERNAME: ${KOMODO_DB_USERNAME}
-      KOMODO_DATABASE_PASSWORD: ${KOMODO_DB_PASSWORD}
+      KOMODO_DATABASE_USERNAME: ${KOMODO_DB_USERNAME-admin}
+      KOMODO_DATABASE_PASSWORD: ${KOMODO_DB_PASSWORD-admin}
     labels:
       komodo.skip:
       traefik.enable: true
@@ -63,8 +63,8 @@ services:
       driver: ${COMPOSE_LOGGING_DRIVER:-local}
     env_file: ./compose.env
     environment:
-      MONGO_INITDB_ROOT_USERNAME: ${KOMODO_DB_USERNAME}
-      MONGO_INITDB_ROOT_PASSWORD: ${KOMODO_DB_PASSWORD}
+      MONGO_INITDB_ROOT_USERNAME: ${KOMODO_DB_USERNAME-admin}
+      MONGO_INITDB_ROOT_PASSWORD: ${KOMODO_DB_PASSWORD-admin}
     labels:
       komodo.skip:
     volumes:

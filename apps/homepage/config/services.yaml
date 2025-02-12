@@ -50,7 +50,7 @@
         widget:
           type: jellyfin
           url: https://jellyfin.lab.wool.homes
-          key: { { HOMEPAGE_FILE_JELLYFIN_API_KEY_FILE } }
+          key: {{ HOMEPAGE_FILE_JELLYFIN_API_KEY_FILE }}
           enableBlocks: true # optional, defaults to false
           enableNowPlaying: true # optional, defaults to true
           enableUser: true # optional, defaults to false
@@ -61,6 +61,10 @@
         description: Media request management
         icon: jellyseerr.svg
         siteMonitor: https://jellyseerr.lab.wool.homes/
+        widget:
+            type: jellyseerr
+            url: https://jellyseerr.lab.wool.homes
+            key: {{ HOMEPAGE_FILE_JELLYSEERR_API_KEY_FILE }}
     - MakeMKV:
         href: https://makemkv.lab.wool.homes/
         description: DVD ripper

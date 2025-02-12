@@ -13,6 +13,7 @@ secrets:
     file: ${DOCKER_DIRECTORY}/secrets/homepage/jellyfin.secret
 
 
+
 services:
   homepage:
     container_name: homepage
@@ -27,6 +28,9 @@ services:
       LOG_LEVEL: debug
       HOMEPAGE_FILE_OPENWEATHER_API_KEY_FILE: /run/secrets/openweather_api_key
       HOMEPAGE_FILE_HOMEASSISTANT_API_KEY_FILE: /run/secrets/homeassistant_api_key
+      HOMEPAGE_FILE_PROXMOX_API_KEY_FILE: /run/secrets/proxmox_api_key
+      HOMEPAGE_FILE_JELLYFIN_API_KEY_FILE: /run/secrets/jellyfin_api_key
+      HOMEPAGE_FILE_JELLYSEERR_API_KEY_FILE: /run/secrets/jellyseerr_api_key
     secrets:
       - source: openweather_api_key
         target: /run/secrets/openweather_api_key
@@ -36,6 +40,8 @@ services:
         target: /run/secrets/proxmox_api_key
       - source: jellyfin_api_key
         target: /run/secrets/jellyfin_api_key
+      - source: jellyseerr_api_key
+        target: /run/secrets/jellyseerr_api_key
     security_opt:
       - no-new-privileges:true
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}

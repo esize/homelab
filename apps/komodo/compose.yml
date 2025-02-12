@@ -53,7 +53,7 @@ services:
 
   komodo-mongo:
     container_name: komodo-mongo
-    image: mongo
+    image: mongo:4.4
     profiles: ["apps", "all", "komodo"]
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
     networks:

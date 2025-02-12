@@ -49,7 +49,7 @@
         siteMonitor: https://jellyfin.lab.wool.homes/
         widget:
           type: jellyfin
-          url: http://192.168.254.13:8096
+          url: https://jellyfin.lab.wool.homes
           key: { { HOMEPAGE_FILE_JELLYFIN_API_KEY_FILE } }
           enableBlocks: true # optional, defaults to false
           enableNowPlaying: true # optional, defaults to true

@@ -1,0 +1,76 @@
+####################################
+# KOMODO
+####################################
+services:
+  core:
+    container_name: komodo-core
+    image: ghcr.io/mbecker20/komodo:${COMPOSE_KOMODO_IMAGE_TAG:-latest}
+    profiles: ["apps", "all", "komodo"]
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    networks:
+      traefik:
+      komodo:
+    logging:
+      driver: ${COMPOSE_LOGGING_DRIVER:-local}
+    env_file: ./compose.env
+    environment:
+      KOMODO_DATABASE_ADDRESS: mongo:27017
+      KOMODO_DATABASE_USERNAME: ${KOMODO_DB_USERNAME}
+      KOMODO_DATABASE_PASSWORD: ${KOMODO_DB_PASSWORD}
+    labels:
+      komodo.skip:
+      traefik.enable: true
+      traefik.http.routers.komodo.rule: Host(`${KOMODO_SUBDOMAIN:-komodo}.${DOMAIN_NAME}`)
+      traefik.http.routers.komodo.entrypoints: websecure
+      traefik.http.routers.komodo.service: komodo
+      traefik.http.services.komodo.loadbalancer.server.port: 9120
+
+      homepage.group: Apps
+      homepage.name: Komodo
+      homepage.icon: https://komo.do/img/komodo-512x512.png
+      homepage.href: https://${KOMODO_SUBDOMAIN:-komodo}.${DOMAIN_NAME}
+      homepage.description: Docker Wizardry
+    volumes:
+      - ${DOCKER_DIRECTORY}/appdata/komodo/repo-cache:/repo-cache
+
+  periphery:
+    container_name: komodo-core
+    image: ghcr.io/mbecker20/periphery:${COMPOSE_KOMODO_IMAGE_TAG:-latest}
+    profiles: ["apps", "all", "komodo"]
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    networks:
+      komodo:
+    logging:
+      driver: ${COMPOSE_LOGGING_DRIVER:-local}
+    labels:
+      komodo.skip:
+    env_file: ./compose.env
+    volumes:
+      - ${DOCKER_DIRECTORY}/appdata/komodo/repo-cache:/repo-cache
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /proc:/proc
+      - ${PERIPHERY_ROOT_DIRECTORY:-/etc/komodo}:${PERIPHERY_ROOT_DIRECTORY:-/etc/komodo}
+
+  mongo:
+    container_name: komodo-mongo
+    image: mongo
+    profiles: ["apps", "all", "komodo"]
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    networks:
+      komodo:
+    command: --quiet --wiredTigerCacheSizeGB 0.25
+    logging:
+      driver: ${COMPOSE_LOGGING_DRIVER:-local}
+    env_file: ./compose.env
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${KOMODO_DB_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${KOMODO_DB_PASSWORD}
+    labels:
+      komodo.skip:
+    volumes:
+      - ${DOCKER_DIRECTORY}/appdata/komodo/mongo/data:/data/db
+      - ${DOCKER_DIRECTORY}/appdata/komodo/mongo/config:/data/configdb
+
+networks:
+  komodo:
+    external: false

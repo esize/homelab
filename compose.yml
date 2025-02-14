@@ -59,7 +59,3 @@ networks:
     ipam:
       config:
         - subnet: 192.168.92.0/24
-
-
-volumes:
-  media:

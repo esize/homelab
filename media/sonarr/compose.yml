@@ -1,0 +1,26 @@
+#######################################
+# SONARR
+#######################################
+
+services:
+  sonarr:
+    container_name: sonarr
+    image: ghcr.io/hotio/sonarr
+    profiles: ["sonarr", "arr", "all"]
+    restart: unless-stopped
+    environment:
+      PUID: 1000
+      PGID: 1000
+      UMASK: 002
+      TZ: Etc/UTC
+    volumes:
+      - /volume/sonarr:/config
+      - /data:/data
+    networks:
+      traefik:
+    labels:
+      traefik.enable: true
+      traefik.http.routers.sonarr.rule: Host(`sonarr.${DOMAIN_NAME}`)
+      traefik.http.routers.sonarr.entrypoints: websecure
+      traefik.http.routers.sonarr.service: sonarr
+      traefik.http.services.sonarr.loadbalancer.server.port: 8989

@@ -1,0 +1,24 @@
+services:
+  sabnzbd:
+    container_name: sabnzbd
+    image: ghcr.io/hotio/sabnzbd
+    profiles: ["sabnzbd", "arr", "all"]
+    restart: unless-stopped
+    environment:
+      PUID: 1000
+      PGID: 1000
+      UMASK: 002
+      TZ: Etc/UTC
+      WEBUI_PORTS: 8080/tcp,8080/udp
+      ARGS:
+    volumes:
+      - /volume/sabnzbd:/config
+      - /data:/data
+    networks:
+      traefik:
+    labels:
+      traefik.enable: true
+      traefik.http.routers.sabnzbd.rule: Host(`sabnzbd.${DOMAIN_NAME}`)
+      traefik.http.routers.sabnzbd.entrypoints: websecure
+      traefik.http.routers.sabnzbd.service: sabnzbd
+      traefik.http.services.sabnzbd.loadbalancer.server.port: 8080

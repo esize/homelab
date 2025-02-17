@@ -1,0 +1,26 @@
+#######################################
+# JELLYFIN
+#######################################
+
+services:
+  jellyfin:
+    container_name: jellyfin
+    image: ghcr.io/hotio/jellyfin
+    profiles: ["jellyfin", "arr", "all"]
+    restart: unless-stopped
+    environment:
+      PUID: 1000
+      PGID: 1000
+      UMASK: 002
+      TZ: Etc/UTC
+    volumes:
+      - /volume/jellyfin:/config
+      - /data:/data
+    networks:
+      traefik:
+    labels:
+      traefik.enable: true
+      traefik.http.routers.jellyfin.rule: Host(`jellyfin.${DOMAIN_NAME}`)
+      traefik.http.routers.jellyfin.entrypoints: websecure
+      traefik.http.routers.jellyfin.service: jellyfin
+      traefik.http.services.jellyfin.loadbalancer.server.port: 8096

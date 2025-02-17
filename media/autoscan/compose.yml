@@ -1,0 +1,26 @@
+#######################################
+# AUTOSCAN
+#######################################
+
+services:
+  autoscan:
+    container_name: autoscan
+    image: ghcr.io/hotio/autoscan
+    profiles: ["autoscan", "arr", "all"]
+    restart: unless-stopped
+    environment:
+      PUID: 1000
+      PGID: 1000
+      UMASK: 002
+      TZ: Etc/UTC
+    volumes:
+      - /volume/autoscan:/config
+      - /data:/data
+    networks:
+      traefik:
+    labels:
+      traefik.enable: true
+      traefik.http.routers.autoscan.rule: Host(`autoscan.${DOMAIN_NAME}`)
+      traefik.http.routers.autoscan.entrypoints: websecure
+      traefik.http.routers.autoscan.service: autoscan
+      traefik.http.services.autoscan.loadbalancer.server.port: 3030

@@ -1,0 +1,26 @@
+#######################################
+# RADARR
+#######################################
+
+services:
+  radarr:
+    container_name: radarr
+    image: ghcr.io/hotio/radarr
+    profiles: ["radarr", "arr", "all"]
+    restart: unless-stopped
+    environment:
+      PUID: 1000
+      PGID: 1000
+      UMASK: 002
+      TZ: Etc/UTC
+    volumes:
+      - /volume/radarr:/config
+      - /data:/data
+    networks:
+      traefik:
+    labels:
+      traefik.enable: true
+      traefik.http.routers.radarr.rule: Host(`radarr.${DOMAIN_NAME}`)
+      traefik.http.routers.radarr.entrypoints: websecure
+      traefik.http.routers.radarr.service: radarr
+      traefik.http.services.radarr.loadbalancer.server.port: 7878

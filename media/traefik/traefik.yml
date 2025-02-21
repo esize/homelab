@@ -18,7 +18,7 @@ providers:
   docker:
     endpoint: "tcp://socket-proxy:2375"
     exposedByDefault: false
-    network: homelab_traefik
+    network: traefik
   file:
     directory: /rules
     watch: true

@@ -39,8 +39,8 @@ services:
       - /volume/traefik/etc:/etc/traefik
       - /volume/traefik/acme/acme.json:/acme.json
     networks:
-      traefik-traefik-media:
-      docker-traefik-media:
+      traefik:
+      docker:
     security_opt:
       - no-new-privileges:true
     restart: always
@@ -62,7 +62,7 @@ services:
     ports:
       - 2375:2375
     networks:
-      docker-traefik-media:
+      docker:
     security_opt:
       - no-new-privileges:true
     restart: always
@@ -93,7 +93,7 @@ services:
       - TASKS=1
       - VOLUMES=1
 networks:
-  traefik-traefik-media:
+  traefik:
     external: true
-  docker-traefik-media:
+  docker:
     external: true

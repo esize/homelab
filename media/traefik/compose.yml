@@ -10,7 +10,6 @@ services:
   traefik:
     container_name: traefik
     image: library/traefik:v3.0
-    profiles: ["traefik", "core", "all"]
     ports:
       - published: 80
         target: 80
@@ -57,7 +56,6 @@ services:
   socket-proxy:
     container_name: socket-proxy
     image: tecnativa/docker-socket-proxy:latest
-    profiles: ["traefik", "core", "all"]
     privileged: true
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro

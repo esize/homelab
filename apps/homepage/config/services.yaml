@@ -47,68 +47,38 @@
         description: Self-hosted streaming service
         icon: si-jellyfin
         siteMonitor: https://jellyfin.media.wool.homes/
-        widget:
-          type: jellyfin
-          url: https://jellyfin.media.wool.homes
-          key: {{ HOMEPAGE_FILE_JELLYFIN_API_KEY_FILE }}
-          enableBlocks: true # optional, defaults to false
-          enableNowPlaying: true # optional, defaults to true
-          enableUser: true # optional, defaults to false
-          showEpisodeNumber: true # optional, defaults to false
-          expandOneStreamToTwoRows: false # optional, defaults to true
     - Jellyseerr:
         href: https://jellyseerr.media.wool.homes/
         description: Media request management
         icon: jellyseerr.svg
         siteMonitor: https://jellyseerr.media.wool.homes/
-        widget:
-            type: jellyseerr
-            url: https://jellyseerr.media.wool.homes
-            key: {{ HOMEPAGE_FILE_JELLYSEERR_API_KEY_FILE }}
     - Radarr:
         href: https://radarr.media.wool.homes/
         description: Movie manager and automation
         icon: si-radarr
         siteMonitor: https://radarr.media.wool.homes/
-        widget:
-            type: radarr
-            url: https://radarr.media.wool.homes
-            key: {{ HOMEPAGE_FILE_RADARR_API_KEY_FILE }}
-            enableQueue: true
     - Sonarr:
         href: https://sonarr.media.wool.homes/
         description: TV show manager and automation
         icon: si-sonarr
         siteMonitor: https://sonarr.media.wool.homes/
-        widget:
-            type: sonarr
-            url: https://sonarr.media.wool.homes
-            key: {{ HOMEPAGE_FILE_SONARR_API_KEY_FILE }}
-            enableQueue: true # optional, defaults to false
     - Readarr:
         href: https://readarr.media.wool.homes/
         description: Book manager and automation
         icon: readarr.svg
         siteMonitor: https://readarr.media.wool.homes/
-        widget:
-            type: readarr
-            url: https://readarr.media.wool.homes
-            key: {{ HOMEPAGE_FILE_READARR_API_KEY_FILE }}
+    - Bazarr:
+        href: https://bazarr.media.wool.homes/
+        description: Subtitle management
+        icon: bazarr.svg
+        siteMonitor: https://bazarr.media.wool.homes/
     - Prowlarr:
         href: https://prowlarr.media.wool.homes/
         description: Indexer management
         icon: prowlarr.svg
         siteMonitor: https://prowlarr.media.wool.homes/
-        widget:
-            type: prowlarr
-            url: https://prowlarr.media.wool.homes
-            key: {{ HOMEPAGE_FILE_PROWLARR_API_KEY_FILE }}
     - SABnzbd:
         href: https://sabnzbd.media.wool.homes/
         description: Usenet Client
         icon: sabnzbd.svg
         siteMonitor: https://sabnzbd.media.wool.homes/
-        widget:
-            type: sabnzbd
-            url: https://sabnzbd.media.wool.homes
-            key: {{ HOMEPAGE_FILE_SABNZBD_API_KEY_FILE }}

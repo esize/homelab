@@ -43,13 +43,13 @@
 
 - Media:
     - Jellyfin:
-        href: https://jellyfin.lab.wool.homes/
+        href: https://jellyfin.media.wool.homes/
         description: Self-hosted streaming service
         icon: si-jellyfin
-        siteMonitor: https://jellyfin.lab.wool.homes/
+        siteMonitor: https://jellyfin.media.wool.homes/
         widget:
           type: jellyfin
-          url: http://192.168.254.13:8096
+          url: https://jellyfin.media.wool.homes/
           key: {{ HOMEPAGE_FILE_JELLYFIN_API_KEY_FILE }}
           enableBlocks: true # optional, defaults to false
           enableNowPlaying: true # optional, defaults to true
@@ -57,56 +57,58 @@
           showEpisodeNumber: true # optional, defaults to false
           expandOneStreamToTwoRows: false # optional, defaults to true
     - Jellyseerr:
-        href: https://jellyseerr.lab.wool.homes/
+        href: https://jellyseerr.media.wool.homes/
         description: Media request management
         icon: jellyseerr.svg
-        siteMonitor: https://jellyseerr.lab.wool.homes/
+        siteMonitor: https://jellyseerr.media.wool.homes/
         widget:
             type: jellyseerr
-            url: https://jellyseerr.lab.wool.homes
+            url: https://jellyseerr.media.wool.homes
             key: {{ HOMEPAGE_FILE_JELLYSEERR_API_KEY_FILE }}
-    - MakeMKV:
-        href: https://makemkv.lab.wool.homes/
-        description: DVD ripper
-        icon: makemkv.png
-        siteMonitor: https://makemkv.lab.wool.homes/
-    - nzbget:
-        href: https://nzbget.lab.wool.homes/
-        description: Usenet NZB client
-        icon: nzbget.png
-        siteMonitor: https://nzbget.lab.wool.homes/
-    - qBittorrent:
-        href: https://torrent.lab.wool.homes/
-        description: Bittorrent Client
-        icon: si-qbittorrent
-        siteMonitor: https://torrent.lab.wool.homes/
     - Radarr:
-        href: https://radarr.lab.wool.homes/
+        href: https://radarr.media.wool.homes/
         description: Movie manager and automation
         icon: si-radarr
-        siteMonitor: https://radarr.lab.wool.homes/
+        siteMonitor: https://radarr.media.wool.homes/
+        widget:
+            type: radarr
+            url: https://radarr.media.wool.homes
+            key: {{ HOMEPAGE_FILE_RADARR_API_KEY_FILE }}
+            enableQueue: true
     - Sonarr:
-        href: https://sonarr.lab.wool.homes/
+        href: https://sonarr.media.wool.homes/
         description: TV show manager and automation
         icon: si-sonarr
-        siteMonitor: https://sonarr.lab.wool.homes/
+        siteMonitor: https://sonarr.media.wool.homes/
+        widget:
+            type: sonarr
+            url: https://sonarr.media.wool.homes
+            key: {{ HOMEPAGE_FILE_SONARR_API_KEY_FILE }}
+            enableQueue: true # optional, defaults to false
     - Readarr:
-        href: https://readarr.lab.wool.homes/
+        href: https://readarr.media.wool.homes/
         description: Book manager and automation
         icon: readarr.svg
-        siteMonitor: https://readarr.lab.wool.homes/
-    - Tdarr:
-        href: https://tdarr.lab.wool.homes/
-        description: Transcoding manager and automation
-        icon: https://home.tdarr.io/static/media/logo3-min.246d6df44c7f16ddebaf.png
-        siteMonitor: https://tdarr.lab.wool.homes/
+        siteMonitor: https://readarr.media.wool.homes/
+        widget:
+            type: readarr
+            url: https://readarr.media.wool.homes
+            key: {{ HOMEPAGE_FILE_READARR_API_KEY_FILE }}
     - Prowlarr:
-        href: https://prowlarr.lab.wool.homes/
+        href: https://prowlarr.media.wool.homes/
         description: Indexer management
         icon: prowlarr.svg
-        siteMonitor: https://prowlarr.lab.wool.homes/
-    - Calibre:
-        href: https://calibre.lab.wool.homes/
-        description: E-book manager and editor
-        icon: si-calibreweb
-        siteMonitor: https://calibre.lab.wool.homes/
+        siteMonitor: https://prowlarr.media.wool.homes/
+        widget:
+            type: prowlarr
+            url: https://prowlarr.media.wool.homes
+            key: {{ HOMEPAGE_FILE_PROWLARR_API_KEY_FILE }}
+    - SABnzbd:
+        href: https://sabnzbd.media.wool.homes/
+        description: Usenet Client
+        icon: sabnzbd.svg
+        siteMonitor: https://sabnzbd.media.wool.homes/
+        widget:
+            type: sabnzbd
+            url: https://sabnzbd.media.wool.homes
+            key: {{ HOMEPAGE_FILE_SABNZBD_API_KEY_FILE }}

@@ -13,6 +13,16 @@ secrets:
     file: ${DOCKER_DIRECTORY}/secrets/homepage/jellyfin.secret
   jellyseerr_api_key:
     file: ${DOCKER_DIRECTORY}/secrets/homepage/jellyseerr.secret
+  radarr_api_key:
+    file: ${DOCKER_DIRECTORY}/secrets/homepage/radarr.secret
+  sonarr_api_key:
+    file: ${DOCKER_DIRECTORY}/secrets/homepage/sonarr.secret
+  readarr_api_key:
+    file: ${DOCKER_DIRECTORY}/secrets/homepage/readarr.secret
+  prowlarr_api_key:
+    file: ${DOCKER_DIRECTORY}/secrets/homepage/prowlarr.secret
+  sabnzbd_api_key:
+    file: ${DOCKER_DIRECTORY}/secrets/homepage/sabnzbd.secret
 
 
 
@@ -33,6 +43,11 @@ services:
       HOMEPAGE_FILE_PROXMOX_API_KEY_FILE: /run/secrets/proxmox_api_key
       HOMEPAGE_FILE_JELLYFIN_API_KEY_FILE: /run/secrets/jellyfin_api_key
       HOMEPAGE_FILE_JELLYSEERR_API_KEY_FILE: /run/secrets/jellyseerr_api_key
+      HOMEPAGE_FILE_RADARR_API_KEY_FILE: /run/secrets/radarr_api_key
+      HOMEPAGE_FILE_SONARR_API_KEY_FILE: /run/secrets/sonarr_api_key
+      HOMEPAGE_FILE_READARR_API_KEY_FILE: /run/secrets/readarr_api_key
+      HOMEPAGE_FILE_PROWLARR_API_KEY_FILE: /run/secrets/prowlarr_api_key
+      HOMEPAGE_FILE_SABNZBD_API_KEY_FILE: /run/secrets/sabnzbd_api_key
     secrets:
       - source: openweather_api_key
         target: /run/secrets/openweather_api_key
@@ -44,6 +59,16 @@ services:
         target: /run/secrets/jellyfin_api_key
       - source: jellyseerr_api_key
         target: /run/secrets/jellyseerr_api_key
+      - source: radarr_api_key
+        target: /run/secrets/radarr_api_key
+      - source: sonarr_api_key
+        target: /run/secrets/sonarr_api_key
+      - source: readarr_api_key
+        target: /run/secrets/readarr_api_key
+      - source: prowlarr_api_key
+        target: /run/secrets/prowlarr_api_key
+      - source: sabnzbd_api_key
+        target: /run/secrets/sabnzbd_api_key
     security_opt:
       - no-new-privileges:true
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}

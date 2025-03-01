@@ -49,7 +49,7 @@
         siteMonitor: https://jellyfin.media.wool.homes/
         widget:
           type: jellyfin
-          url: https://jellyfin.media.wool.homes/
+          url: https://jellyfin.media.wool.homes
           key: {{ HOMEPAGE_FILE_JELLYFIN_API_KEY_FILE }}
           enableBlocks: true # optional, defaults to false
           enableNowPlaying: true # optional, defaults to true

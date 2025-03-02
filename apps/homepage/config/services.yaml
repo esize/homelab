@@ -82,3 +82,8 @@
         description: Usenet Client
         icon: sabnzbd.svg
         siteMonitor: https://sabnzbd.media.wool.homes/
+    - SABnzbd:
+        href: https://qbittorrent.media.wool.homes/
+        description: Torrent Client
+        icon: qbittorrent.svg
+        siteMonitor: https://qbittorrent.media.wool.homes/

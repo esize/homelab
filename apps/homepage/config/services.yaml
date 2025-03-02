@@ -12,9 +12,6 @@
           type: homeassistant
           url: https://home.wool.homes/
           key: {{ HOMEPAGE_FILE_HOMEASSISTANT_API_KEY_FILE }}
-          fields:
-            - lights_on
-            - switches_on
     - ESPHome:
         href: https://home.wool.homes/5c53de3b_esphome/ingress
         description: Turn microcontrollers into IOT devices

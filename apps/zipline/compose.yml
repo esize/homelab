@@ -30,7 +30,7 @@ services:
 
       homepage.group: Apps
       homepage.name: Zipline
-      homepage.icon: https://raw.githubusercontent.com/diced/zipline/trunk/public/zipline.png
+      homepage.icon: zipline.svg
       homepage.href: https://${ZIPELINE_SUBDOMAIN:-zipline}.${DOMAIN_NAME}
       homepage.description: Screenshots and pastebins
 

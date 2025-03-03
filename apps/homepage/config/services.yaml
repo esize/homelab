@@ -18,7 +18,7 @@
     - PiHole:
         href: http://pi.hole/admin/login.php/
         description: Ad Blocking and Local DNS
-        icon: pihole.svg
+        icon: si-pihole
         siteMonitor: http://pi.hole/admin/
 
 - Media:

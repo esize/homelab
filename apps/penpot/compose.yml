@@ -21,7 +21,7 @@ services:
 
       homepage.group: Dev
       homepage.name: Penpot
-      homepage.icon: penpot.svg
+      homepage.icon: si-penpot
       homepage.href: https://${PENPOT_SUBDOMAIN:-penpot}.${DOMAIN_NAME}
       homepage.description: Open Source Design and Collaboration Tool
     environment:

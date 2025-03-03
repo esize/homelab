@@ -20,6 +20,6 @@ services:
 
       homepage.group: Dev
       homepage.name: Web Check
-      homepage.icon: web-check.svg
+      homepage.icon: mdi-shield-check
       homepage.href: https://${WEB_CHECK_SUBDOMAIN:-web-check}.${DOMAIN_NAME}
       homepage.description: X-Ray Vision for your Website

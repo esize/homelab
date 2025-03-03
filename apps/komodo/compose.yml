@@ -27,7 +27,7 @@ services:
 
       homepage.group: Apps
       homepage.name: Komodo
-      homepage.icon: https://komo.do/img/komodo-512x512.png
+      homepage.icon: komodo.svg
       homepage.href: https://${KOMODO_SUBDOMAIN:-komodo}.${DOMAIN_NAME}
       homepage.description: Docker Wizardry
     volumes:

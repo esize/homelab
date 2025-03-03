@@ -56,6 +56,6 @@ services:
 
       homepage.group: Apps
       homepage.name: Your Spotify
-      homepage.icon: si-spotify
+      homepage.icon: your-spotify.svg
       homepage.href: https://${YOUR_SPOTIFY_SUBDOMAIN:-music-history}.${DOMAIN_NAME}
       homepage.description: Self hosted Spotify tracking dashboard

@@ -24,6 +24,6 @@ services:
 
       homepage.group: Dev
       homepage.name: Jupyter Lab
-      homepage.icon: si-jupyter
+      homepage.icon: jupyter.svg
       homepage.href: https://${JUPYTER_SUBDOMAIN:-jupyter}.${DOMAIN_NAME}
       homepage.description: A web-based interactive development environment for notebooks, code, and data.

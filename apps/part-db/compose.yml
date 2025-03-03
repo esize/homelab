@@ -36,6 +36,6 @@ services:
 
       homepage.group: Apps
       homepage.name: Part-DB
-      homepage.icon: mdi-chip
+      homepage.icon: part-db.svg
       homepage.href: https://${PARTDB_SUBDOMAIN:-partdb}.${DOMAIN_NAME}/
       homepage.description: Open-Source inventory management system for your electronic components.

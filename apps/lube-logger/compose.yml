@@ -32,7 +32,7 @@ services:
 
       homepage.group: Apps
       homepage.name: Lube Logger
-      homepage.icon: mdi-cog-outline
+      homepage.icon: lubelogger.png
       homepage.href: https://${LUBE_LOGGER_SUBDOMAIN:-lubelogger}.${DOMAIN_NAME}
       homepage.description: Vehicle Maintenance Tracker
 volumes:

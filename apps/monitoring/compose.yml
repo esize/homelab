@@ -31,7 +31,7 @@ services:
 
       homepage.group: Apps
       homepage.name: Grafana
-      homepage.icon: si-grafana
+      homepage.icon: grafana.svg
       homepage.href: https://${GRAFANA_SUBDOMAIN:-grafana}.${DOMAIN_NAME}
       homepage.description: Pretty graphs and dashboards
 
@@ -58,7 +58,7 @@ services:
 
       homepage.group: Apps
       homepage.name: InfluxDB
-      homepage.icon: si-influxdb
+      homepage.icon: influxdb.svg
       homepage.href: https://${INFLUXDB_SUBDOMAIN:-influxdb}.${DOMAIN_NAME}
       homepage.description: Time-series database
 

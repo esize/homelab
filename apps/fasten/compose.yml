@@ -23,7 +23,7 @@ services:
 
       homepage.group: Apps
       homepage.name: Fasten
-      homepage.icon: https://www.fastenhealth.com/apple-touch-icon.png
+      homepage.icon: fasten-health.svg
       homepage.href: https://${FASTEN_SUBDOMAIN:-fasten}.${DOMAIN_NAME}
       homepage.description: Personal health records
       

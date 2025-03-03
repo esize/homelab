@@ -38,7 +38,7 @@ services:
 
       homepage.group: Apps
       homepage.name: Mealie
-      homepage.icon: mdi-food
+      homepage.icon: mealie.svg
       homepage.href: https://${MEALIE_SUBDOMAIN:-mealie}.${DOMAIN_NAME}
       homepage.description: Recipe Manager
     secrets:

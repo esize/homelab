@@ -6,26 +6,26 @@
     - Home Assistant:
         href: https://home.wool.homes/
         description: Smart Home hub
-        icon: si-homeassistant
+        icon: home-assistant.svg
         siteMonitor: https://home.wool.homes/
 
 - Infra:
     - Proxmox:
         href: https://proxmox.lab.wool.homes/
         description: Enterprise Virtualization Platform
-        icon: si-proxmox
+        icon: proxmox.svg
         siteMonitor: https://proxmox.lab.wool.homes/
     - PiHole:
         href: http://pi.hole/admin/login.php/
         description: Ad Blocking and Local DNS
-        icon: si-pihole
+        icon: pihole.svg
         siteMonitor: http://pi.hole/admin/
 
 - Media:
     - Jellyfin:
         href: https://jellyfin.media.wool.homes/
         description: Self-hosted streaming service
-        icon: si-jellyfin
+        icon: jellyfin.svg
         siteMonitor: https://jellyfin.media.wool.homes/
     - Jellyseerr:
         href: https://jellyseerr.media.wool.homes/
@@ -35,12 +35,12 @@
     - Radarr:
         href: https://radarr.media.wool.homes/
         description: Movie manager and automation
-        icon: si-radarr
+        icon: radarr.svg
         siteMonitor: https://radarr.media.wool.homes/
     - Sonarr:
         href: https://sonarr.media.wool.homes/
         description: TV show manager and automation
-        icon: si-sonarr
+        icon: sonarr.svg
         siteMonitor: https://sonarr.media.wool.homes/
     - Readarr:
         href: https://readarr.media.wool.homes/

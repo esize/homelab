@@ -22,15 +22,15 @@
 
 - Personal:
   - YouTube:
-    - icon: si-youtube
+    - icon: youtube.svg
       href: https://youtube.com
       description:
   - Proton Mail:
-    - icon: si-protonmail
+    - icon: proton-mail.svg
       href: https://mail.proton.me/u/0/inbox
       description:
   - Amazon:
-    - icon: si-amazon
+    - icon: amazon.svg
       href: https://amazon.com/gp/css/order-history
       description:
 
@@ -50,7 +50,7 @@
 
 - Developer:
   - Github:
-    - icon: si-github
+    - icon: github.svg
       href: https://github.com/esize?tab=repositories
   - Simple Icons:
     - icon: si-simpleicons

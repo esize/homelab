@@ -19,6 +19,7 @@ services:
       PGID: $PGID
       LOG_LEVEL: debug
       HOMEPAGE_FILE_OPENWEATHER_API_KEY_FILE: /run/secrets/openweather_api_key
+      HOMEPAGE_ALLOWED_HOSTS: lab.wool.homes
     secrets:
       - source: openweather_api_key
         target: /run/secrets/openweather_api_key

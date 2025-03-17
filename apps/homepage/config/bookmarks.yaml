@@ -7,10 +7,6 @@
     - icon: https://seaport.seaworldentertainment.com/client/images/apple-touch-icon-precomposed.png
       href: https://seaport.seaworldentertainment.com/client/mytoday
       description: Schedules and Company News
-  - ReadyOp:
-    - icon: https://seaworld.readyop.com/assets/images/icons/apple-touch-icon.png
-      href: https://seaworld.readyop.com/
-      description: Security Logs and Reports
   - Job Postings:
     - icon: mdi-briefcase-search
       href: https://www.myworkday.com/seaworldentertainment/d/task/3005$4482.htmld

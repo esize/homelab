@@ -19,7 +19,7 @@ include:
   # UTILITIES
   ################################################################################
   - apps/dozzle/compose.yml #  Dozzle (Container Logs)
-  - apps/monitoring/compose.yml #  Grafana, Prometheus, InfluxDB, etc.
+  # - apps/monitoring/compose.yml #  Grafana, Prometheus, InfluxDB, etc.
   - apps/it-tools/compose.yml #  IT Tools (Miscellaneous)
 
   ################################################################################
@@ -35,10 +35,10 @@ include:
   - apps/freshrss/compose.yml # FreshRSS (News Feed Reader)
   - apps/mealie/compose.yml # Mealie (Recipe Manager)
   - apps/hoarder/compose.yml # Hoarder
-  - apps/web-check/compose.yml # Web Check
+  # - apps/web-check/compose.yml # Web Check
   - apps/your-spotify/compose.yml # Your Spotify
-  - apps/convertx/compose.yml # ConvertX
-  - apps/homarr/compose.yml # Homarr
+  # - apps/convertx/compose.yml # ConvertX
+  # - apps/homarr/compose.yml # Homarr
 
 ####################################################################################
 # NETWORK CONFIGURATION

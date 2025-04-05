@@ -39,6 +39,7 @@ include:
   - apps/your-spotify/compose.yml # Your Spotify
   # - apps/convertx/compose.yml # ConvertX
   # - apps/homarr/compose.yml # Homarr
+  - apps/midpoint/compose.yml # Midpoint
 
 ####################################################################################
 # NETWORK CONFIGURATION

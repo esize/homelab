@@ -36,7 +36,7 @@ services:
     networks:
      - net
     volumes:
-     - midpoint_home:/opt/midpoint/var
+     - ${DOCKER_DIRECTORY}/appdata/midpoint/home:/opt/midpoint/var
 
   midpoint_server:
     image: evolveum/midpoint:${MP_VER:-latest}-alpine
@@ -71,11 +71,10 @@ services:
       homepage.href: https://${MIDPOIONT_SUBDOMAIN:-midpoint}.${DOMAIN_NAME}
       homepage.description: Authorization
     volumes:
-     - midpoint_home:/opt/midpoint/var
+     - ${DOCKER_DIRECTORY}/appdata/midpoint/home:/opt/midpoint/var
 
 networks:
   net:
 
 volumes:
   midpoint_data:
-  midpoint_home:

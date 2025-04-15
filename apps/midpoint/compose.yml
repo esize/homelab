@@ -9,8 +9,7 @@ services:
     networks:
      - net
     volumes:
-     - midpoint_data:/var/lib/postgresql/data
-
+     - ${DOCKER_DIRECTORY}/appdata/midpoint/db:/var/lib/postgresql/data
   data_init:
     image: evolveum/midpoint:${MP_VER:-latest}-alpine
     command: >
@@ -28,6 +27,8 @@ services:
     depends_on:
      - midpoint_data
     environment:
+     - PUID=1000
+     - PGID=1000
      - MP_SET_midpoint_repository_jdbcUsername=midpoint
      - MP_SET_midpoint_repository_jdbcPassword=db.secret.pw.007
      - MP_SET_midpoint_repository_jdbcUrl=jdbc:postgresql://midpoint_data:5432/midpoint
@@ -37,6 +38,7 @@ services:
      - net
     volumes:
      - ${DOCKER_DIRECTORY}/appdata/midpoint/home:/opt/midpoint/var
+    user: "1000:1000"
 
   midpoint_server:
     image: evolveum/midpoint:${MP_VER:-latest}-alpine
@@ -48,6 +50,8 @@ services:
     command: [ "/opt/midpoint/bin/midpoint.sh", "container" ]
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
     environment:
+     - PUID=1000
+     - PGID=1000
      - MP_SET_midpoint_repository_jdbcUsername=midpoint
      - MP_SET_midpoint_repository_jdbcPassword=db.secret.pw.007
      - MP_SET_midpoint_repository_jdbcUrl=jdbc:postgresql://midpoint_data:5432/midpoint
@@ -72,9 +76,7 @@ services:
       homepage.description: Authorization
     volumes:
      - ${DOCKER_DIRECTORY}/appdata/midpoint/home:/opt/midpoint/var
+    user: "1000:1000"
 
 networks:
   net:
-
-volumes:
-  midpoint_data:

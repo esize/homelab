@@ -44,7 +44,7 @@ services:
   midpoint_server:
     image: evolveum/midpoint:${MP_VER:-latest}-alpine
     depends_on:
-      data_init:
+      midpoint_data_init:
         condition: service_completed_successfully
       midpoint_data:
         condition: service_started

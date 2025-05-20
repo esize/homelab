@@ -26,7 +26,7 @@ services:
       traefik.http.services.your-spotify-server.loadbalancer.server.port: 8080
     
   mongo:
-    container_name: mongo
+    container_name: your-spotify-mongo
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
     image: mongo:4.4
     networks:

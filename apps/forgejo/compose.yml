@@ -1,7 +1,7 @@
 services:
   forgejo:
     image: codeberg.org/forgejo/forgejo:10
-    container_name: forgejo
+    container_name: forgejo_server
     profiles: ["forgejo", "apps", "all"]
     environment:
       USER_UID: 1000

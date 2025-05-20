@@ -5,7 +5,7 @@
 services:
   mealie:
     image: ghcr.io/mealie-recipes/mealie:v2.3.0
-    container_name: mealie
+    container_name: mealie-server
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
     volumes:
       - ${DOCKER_DIRECTORY}/appdata/mealie/app:/app/data/

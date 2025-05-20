@@ -4,6 +4,7 @@
 
 services:
   karakeep-web:
+    container_name: karakeep-web
     image: ghcr.io/karakeep-app/karakeep:${KARAKEEP_VERSION:-release}
     profiles: ['karakeep', 'apps', 'all']
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
@@ -27,6 +28,7 @@ services:
       homepage.href: https://${KARAKEEP_SUBDOMAIN:-karakeep}.${DOMAIN_NAME}
       homepage.description: The bookmark everything app
   chrome:
+    container_name: karakeep-chrome
     image: gcr.io/zenika-hub/alpine-chrome:123
     profiles: ['karakeep', 'apps', 'all']
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
@@ -42,6 +44,7 @@ services:
     networks:
       karakeep:
   meilisearch:
+    container_name: karakeep-search
     image: getmeili/meilisearch:v1.11.1
     profiles: ['karakeep', 'apps', 'all']
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}

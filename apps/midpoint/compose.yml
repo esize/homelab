@@ -11,7 +11,7 @@ services:
      - net
     volumes:
      - ${DOCKER_DIRECTORY}/appdata/midpoint/db:/var/lib/postgresql/data
-  data_init:
+  midpoint_data_init:
     image: evolveum/midpoint:${MP_VER:-latest}-alpine
     command: >
       bash -c "

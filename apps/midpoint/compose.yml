@@ -1,15 +1,5 @@
 services:
-  employee_resource:
-    image: postgres:16-alpine
-    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
-    environment:
-     - POSTGRES_PASSWORD=db.secret.pw.007
-     - POSTGRES_USER=midpoint
-     - POSTGRES_INITDB_ARGS=--lc-collate=en_US.utf8 --lc-ctype=en_US.utf8
-    networks:
-     - net
-    volumes:
-     - ${DOCKER_DIRECTORY}/appdata/midpoint/resource:/var/lib/postgresql/data
+
   midpoint_data:
     image: postgres:16-alpine
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
@@ -82,34 +72,13 @@ services:
 
       homepage.group: Apps
       homepage.name: Midpoint
-      homepage.icon: midpoint.png
+      homepage.icon: mdi-scale-balance
       homepage.href: https://${MIDPOIONT_SUBDOMAIN:-midpoint}.${DOMAIN_NAME}
       homepage.description: Authorization
     volumes:
      - ${DOCKER_DIRECTORY}/appdata/midpoint/home:/opt/midpoint/var
     user: "1000:1000"
-  pg_admin:
-    container_name: midpoint_pg_admin
-    image: dpage/pgadmin4:latest
-    volumes:
-     - pgadmin:/var/lib/pgadmin
-     - ${DOCKER_DIRECTORY}/appdata/midpoint/home:/data
-    networks:
-     - net
-     - traefik
-    environment:
-      PGADMIN_DEFAULT_EMAIL: evan@wool.homes
-      PGADMIN_DEFAULT_PASSWORD: password
-    labels:
-      traefik.enable: true
-      traefik.http.routers.pgadmin.rule: Host(`${PGADMIN_SUBDOMAIN:-pgadmin}.${DOMAIN_NAME}`)
-      traefik.http.routers.pgadmin.entrypoints: websecure
-      traefik.http.routers.pgadmin.service: pgadmin
-      traefik.http.services.pgadmin.loadbalancer.server.port: 80
-
 
 networks:
   net:
 
-volumes:
-  pgadmin:

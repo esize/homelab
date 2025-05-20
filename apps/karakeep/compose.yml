@@ -3,32 +3,32 @@
 #######################################
 
 services:
-  hoarder-web:
-    image: ghcr.io/hoarder-app/hoarder:${HOARDER_VERSION:-release}
-    profiles: ['hoarder', 'apps', 'all']
+  karakeep-web:
+    image: ghcr.io/karakeep-app/karakeep:${KARAKEEP_VERSION:-release}
+    profiles: ['karakeep', 'apps', 'all']
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
     volumes:
-      - ${DOCKER_DIRECTORY}/appdata/hoarder/web:/data
+      - ${DOCKER_DIRECTORY}/appdata/karakeep/web:/data
     networks:
       traefik:
-      hoarder:
+      karakeep:
     env_file:
       - .env
     labels:
       traefik.enable: true
-      traefik.http.routers.hoarder.rule: Host(`${HOARDER_SUBDOMAIN:-hoarder}.${DOMAIN_NAME}`)
-      traefik.http.routers.hoarder.entrypoints: websecure
-      traefik.http.routers.hoarder.service: hoarder
-      traefik.http.services.hoarder.loadbalancer.server.port: 3000
+      traefik.http.routers.karakeep.rule: Host(`${KARAKEEP_SUBDOMAIN:-karakeep}.${DOMAIN_NAME}`)
+      traefik.http.routers.karakeep.entrypoints: websecure
+      traefik.http.routers.karakeep.service: karakeep
+      traefik.http.services.karakeep.loadbalancer.server.port: 3000
 
       homepage.group: Apps
-      homepage.name: Hoarder
-      homepage.icon: hoarder.svg
-      homepage.href: https://${HOARDER_SUBDOMAIN:-hoarder}.${DOMAIN_NAME}
+      homepage.name: karakeep
+      homepage.icon: karakeep.svg
+      homepage.href: https://${KARAKEEP_SUBDOMAIN:-karakeep}.${DOMAIN_NAME}
       homepage.description: The bookmark everything app
   chrome:
     image: gcr.io/zenika-hub/alpine-chrome:123
-    profiles: ['hoarder', 'apps', 'all']
+    profiles: ['karakeep', 'apps', 'all']
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
     env_file:
       - .env
@@ -40,20 +40,20 @@ services:
       - --remote-debugging-port=9222
       - --hide-scrollbars
     networks:
-      hoarder:
+      karakeep:
   meilisearch:
     image: getmeili/meilisearch:v1.11.1
-    profiles: ['hoarder', 'apps', 'all']
+    profiles: ['karakeep', 'apps', 'all']
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
     networks:
-      hoarder:
+      karakeep:
     environment:
       MEILI_NO_ANALYTICS: "true"
     env_file:
       - .env
     volumes:
-      - ${DOCKER_DIRECTORY}/appdata/hoarder/search:/data
+      - ${DOCKER_DIRECTORY}/appdata/karakeep/search:/data
 
 networks:
-  hoarder:
+  karakeep:
     external: false

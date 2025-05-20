@@ -33,7 +33,8 @@ include:
   - apps/pdf/compose.yml # Stirling PDF (PDF Tools)
   - apps/penpot/compose.yml # Penpot (Design)
   - apps/freshrss/compose.yml # FreshRSS (News Feed Reader)
-  - apps/hoarder/compose.yml # Hoarder
+  - apps/karakeep/compose.yml # Karakeep
+  # - apps/web-check/compose.yml # Web Check
   - apps/your-spotify/compose.yml # Your Spotify
   - apps/midpoint/compose.yml # Midpoint
 

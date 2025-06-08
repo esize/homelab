@@ -30,7 +30,7 @@ services:
       homepage.description: Self hosted online fi
   
   al_db:
-    image: postgix/postgis:15-3.3
+    image: postgis/postgis:15-3.3
     container_name: adventurelog-db
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
     environment:

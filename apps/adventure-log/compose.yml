@@ -3,12 +3,12 @@
 ################################################################################
 
 services:
-  web:
+  al_web:
     image: ghcr.io/seanmorley15/adventurelog-frontend:latest
     container_name: adventurelog-frontend
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
     environment:
-      PUBLIC_SERVER_URL: http://server:8000
+      PUBLIC_SERVER_URL: http://al_server:8000
       ORIGIN: https://adventurelog.lab.wool.homes
       BODY_SIZE_LIMIT: Infinity
     depends_on:
@@ -29,7 +29,7 @@ services:
       homepage.href: https://${adventurelog_SUBDOMAIN:-adventurelog}.${DOMAIN_NAME}
       homepage.description: Self hosted online fi
   
-  db:
+  al_db:
     image: postgix/postgis:15-3.3
     container_name: adventurelog-db
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
@@ -42,12 +42,12 @@ services:
     networks:
       adventurelog:
 
-  server:
+  al_server:
     image: ghcr.io/seanmorley15/adventurelog-backend:latest
     container_name: adventurelog-backend
     restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
     environment:
-      PGHOST: db
+      PGHOST: al_db
       PGDATABASE: database
       PGUSER: adventure
       PGPASSWORD: changeme123

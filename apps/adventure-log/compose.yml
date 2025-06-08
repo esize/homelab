@@ -1,0 +1,78 @@
+################################################################################
+# ADVENTURE LOG
+################################################################################
+
+services:
+  web:
+    image: ghcr.io/seanmorley15/adventurelog-frontend:latest
+    container_name: adventurelog-frontend
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    environment:
+      PUBLIC_SERVER_URL: http://server:8000
+      ORIGIN: https://adventurelog.lab.wool.homes
+      BODY_SIZE_LIMIT: Infinity
+    depends_on:
+      - server
+    networks:
+      traefik:
+      adventurelog:
+    labels:
+      traefik.enable: true
+      traefik.http.routers.adventurelog.rule: Host(`${ADVENTURELOG_SUBDOMAIN:-adventurelog}.${DOMAIN_NAME}`)
+      traefik.http.routers.adventurelog.entrypoints: websecure
+      traefik.http.routers.adventurelog.service: adventurelog
+      traefik.http.services.adventurelog.loadbalancer.server.port: 3000
+
+      homepage.group: Apps
+      homepage.name: AdventureLog
+      homepage.icon: mdi-swap-horizontal
+      homepage.href: https://${adventurelog_SUBDOMAIN:-adventurelog}.${DOMAIN_NAME}
+      homepage.description: Self hosted online fi
+  
+  db:
+    image: postgix/postgis:15-3.3
+    container_name: adventurelog-db
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    environment:
+      POSTGRES_DB: database
+      POSTGRES_USER: adventure
+      POSTGRES_PASSWORD: changeme123
+    volumes: 
+      - ${DOCKER_DIRECTORY}/appdata/adventurelog/db:/app/data
+    networks:
+      adventurelog:
+
+  server:
+    image: ghcr.io/seanmorley15/adventurelog-backend:latest
+    container_name: adventurelog-backend
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    environment:
+      PGHOST: db
+      PGDATABASE: database
+      PGUSER: adventure
+      PGPASSWORD: changeme123
+      SECRET_KEY: changeme123
+      DJANGO_ADMIN_USERNAME: admin
+      DJANGO_ADMIN_PASSWORD: admin
+      DJANGO_ADMIN_EMAIL: admin@example.com
+      PUBLIC_URL: https://adventurelog-media.lab.wool.homes
+      CSRF_TRUSTED_ORIGINS: https://adventurelog.lab.wool.homes,https://adventurelog-media.lab.wool.homes
+      DEBUG: False
+      FRONTEND_URL: https://adventurelog.lab.wool.homes
+    networks:
+      traefik:
+      adventurelog:
+    labels:
+      traefik.enable: true
+      traefik.http.routers.adventurelog-media.rule: Host(`${ADVENTURELOG_MEDIA_SUBDOMAIN:-adventurelog-media}.${DOMAIN_NAME}`)
+      traefik.http.routers.adventurelog-media.entrypoints: websecure
+      traefik.http.routers.adventurelog-media.service: adventurelog-media
+      traefik.http.services.adventurelog-media.loadbalancer.server.port: 80
+    depends_on:
+      - db
+    volumes: 
+      - ${DOCKER_DIRECTORY}/appdata/adventurelog/media:/app/data
+
+networks:
+  adventurelog:
+    external: false

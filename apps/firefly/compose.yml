@@ -104,3 +104,7 @@ services:
       APP_URL: https://${FIREFLY_SUBDOMAIN:-firefly}.${DOMAIN_NAME}
     networks:
       - firefly
+
+networks:
+  firefly:
+    external: false

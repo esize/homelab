@@ -1,0 +1,99 @@
+services:
+  firefly_app:
+    image: fireflyiii/core:latest
+    container_name: firefly_iii_core
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    volumes:
+      - ${DOCKER_DIRECTORY}/appdata/firefly/uploads:/var/www/html/storage/upload
+    networks:
+      - firefly
+      - traefik
+    labels:
+      traefik.enable: true
+      traefik.http.routers.firefly.rule: Host(`${FIREFLY_SUBDOMAIN:-firefly}.${DOMAIN_NAME}`)
+      traefik.http.routers.firefly.entrypoints: websecure
+      traefik.http.routers.firefly.service: firefly
+      traefik.http.services.firefly.loadbalancer.server.port: 80
+    depends_on:
+      - firefly_db
+    environment:
+      APP_ENV: production
+      APP_DEBUG: false
+      SITE_OWNER: evan@wool.homes
+      APP_KEY: jYoHD7ctTgV2EHuSx9iMCOdqZvnemf3e
+      DEFAULT_LANGUAGE: en_US
+      DEFAULT_LOCALE: equal
+      TZ: America/New_York
+      TRUSTED_PROXIES: "**"
+      LOG_CHANNEL: stack
+      APP_LOG_LEVEL: notice
+      AUDIT_LOG_LEVEL: emergency
+      DB_CONNECTION: mysql
+      DB_HOST: firefly_db
+      DB_PORT: 3306
+      DB_DATABASE: firefly
+      DB_USERNAME: firefly
+      DB_PASSWORD: secret_firefly_password
+      ENABLE_EXCHANGE_RATES: false
+      MAP_DEFAULT_LAT: 28.030315396730952
+      MAP_DEFAULT_LONG: -82.38903503773335
+      MAP_DEFAULT_ZOOM: 6
+      AUTHENTICATION_METHOD: web
+      ALLOW_WEBHOOKS: true
+      STATIC_CRON_TOKEN: XAdKQ2ml4xuiM48viYPs43Myb50n0a7S
+      APP_URL: https://${FIREFLY_SUBDOMAIN:-firefly}.${DOMAIN_NAME}
+  
+  firefly_db:
+    image: mariadb:lts
+    container_name: firefly_db
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    networks:
+      - firefly
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: yes
+      MYSQL_USER: firefly
+      MYSQL_PASSWORD: secret_firefly_password
+      MYSQL_DATABASE: firefly
+    volumes:
+      - ${DOCKER_DIRECTORY}/appdata/firefly/db:/var/lib/mysql
+
+  firefly_cron:
+    image: alpine
+    container_name: firefly_iii_cron
+    restart: ${UNIVERSAL_RESTART_POLICY:-unless-stopped}
+    command: sh -c "
+      apk add tzdata && \
+      ln -fs /usr/share/zoneinfo/$$TZ /etc/localtime && \
+      echo \"0 3 * * * wget -qO- http://app:8080/api/v1/cron/$$STATIC_CRON_TOKEN;echo\"
+      | crontab - && \
+      crond -f -L /dev/stdout"
+    depends_on:
+      - firefly_app
+    environment:
+      APP_ENV: production
+      APP_DEBUG: false
+      SITE_OWNER: evan@wool.homes
+      APP_KEY: jYoHD7ctTgV2EHuSx9iMCOdqZvnemf3e
+      DEFAULT_LANGUAGE: en_US
+      DEFAULT_LOCALE: equal
+      TZ: America/New_York
+      TRUSTED_PROXIES: "**"
+      LOG_CHANNEL: stack
+      APP_LOG_LEVEL: notice
+      AUDIT_LOG_LEVEL: emergency
+      DB_CONNECTION: mysql
+      DB_HOST: firefly_db
+      DB_PORT: 3306
+      DB_DATABASE: firefly
+      DB_USERNAME: firefly
+      DB_PASSWORD: secret_firefly_password
+      ENABLE_EXCHANGE_RATES: false
+      MAP_DEFAULT_LAT: 28.030315396730952
+      MAP_DEFAULT_LONG: -82.38903503773335
+      MAP_DEFAULT_ZOOM: 6
+      AUTHENTICATION_METHOD: web
+      ALLOW_WEBHOOKS: true
+      STATIC_CRON_TOKEN: XAdKQ2ml4xuiM48viYPs43Myb50n0a7S
+      APP_URL: https://${FIREFLY_SUBDOMAIN:-firefly}.${DOMAIN_NAME}
+    networks:
+      - firefly

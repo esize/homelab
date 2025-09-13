@@ -36,6 +36,7 @@ include:
   - apps/your-spotify/compose.yml # Your Spotify
   - apps/midpoint/compose.yml # Midpoint
   - apps/adventure-log/compose.yml # Adventure Log
+  - apps/firefly/compose.yml # Firefly III
 
 ####################################################################################
 # NETWORK CONFIGURATION

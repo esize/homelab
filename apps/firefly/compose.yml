@@ -13,7 +13,7 @@ services:
       traefik.http.routers.firefly.rule: Host(`${FIREFLY_SUBDOMAIN:-firefly}.${DOMAIN_NAME}`)
       traefik.http.routers.firefly.entrypoints: websecure
       traefik.http.routers.firefly.service: firefly
-      traefik.http.services.firefly.loadbalancer.server.port: 80
+      traefik.http.services.firefly.loadbalancer.server.port: 8080
 
       homepage.group: Apps
       homepage.name: Firefly III

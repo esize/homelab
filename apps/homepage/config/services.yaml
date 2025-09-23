@@ -42,11 +42,6 @@
         description: TV show manager and automation
         icon: sonarr.svg
         siteMonitor: https://sonarr.media.wool.homes/
-    - Readarr:
-        href: https://readarr.media.wool.homes/
-        description: Book manager and automation
-        icon: readarr.svg
-        siteMonitor: https://readarr.media.wool.homes/
     - Bazarr:
         href: https://bazarr.media.wool.homes/
         description: Subtitle management

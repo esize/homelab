@@ -32,12 +32,6 @@ http:
       rule: "Host(`sonarr.lab.wool.homes`)"
       tls: {}
       service: sonarr
-    readarr:
-      entryPoints:
-        - websecure
-      rule: "Host(`readarr.lab.wool.homes`)"
-      tls: {}
-      service: readarr
     jellyseerr:
       entryPoints:
         - websecure
@@ -93,11 +87,6 @@ http:
       loadBalancer:
         servers:
           - url: "http://192.168.254.13:8989"
-        passHostHeader: true
-    readarr:
-      loadBalancer:
-        servers:
-          - url: "http://192.168.254.13:8787"
         passHostHeader: true
     jellyseerr:
       loadBalancer:

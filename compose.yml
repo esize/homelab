@@ -29,7 +29,6 @@ include:
   - apps/part-db/compose.yml #  Part DB (Component Inventory)
   - apps/fasten/compose.yml #  Fasten (Personal Health Records)
   - apps/forgejo/compose.yml # Forgejo (Git)
-  - apps/zipline/compose.yml # Zipline (File Sharing)
   - apps/pdf/compose.yml # Stirling PDF (PDF Tools)
   - apps/freshrss/compose.yml # FreshRSS (News Feed Reader)
   - apps/karakeep/compose.yml # Karakeep

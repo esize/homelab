@@ -33,16 +33,16 @@
 - School:
   - Canvas:
     - icon: si-canvas
-      href: https://hcc.instructure.com/
+      href: https://usflearn.instructure.com/
   - Email:
     - icon: microsoft-outlook.svg
-      href: https://outlook.com/owa/hccfl.edu
-  - MyHCC:
+      href: https://outlook.com/owa/usf.edu
+  - MyUSF:
     - icon: mdi-school
-      href: https://my.hccfl.edu/
+      href: https://my.usf.edu/
   - OneDrive:
     - icon: microsoft-onedrive.svg
-      href: https://hccfl-my.sharepoint.com/my      
+      href: https://usfedu-my.sharepoint.com/
 
 - Developer:
   - Github:
